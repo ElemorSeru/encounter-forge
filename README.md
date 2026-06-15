@@ -1,6 +1,6 @@
 # GM Tools: Encounter Forge
 
-**Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand - sized to *your* party, not a generic XP table.
+**Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
 
 Instead of pulling a stat block from a compendium and hoping the CR math works out, Encounter Forge assembles a creature from a chassis, traits, actions, and (optionally) spells, then tunes its HP, AC, and damage so the resulting encounter actually lands at the difficulty you asked for.
 
