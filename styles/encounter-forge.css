@@ -1,0 +1,593 @@
+.encounter-forge *,
+.encounter-forge *::before,
+.encounter-forge *::after {
+  box-sizing: border-box;
+}
+
+.encounter-forge button {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.encounter-forge input[type="checkbox"] {
+  border: 1px solid #5a5a5a;
+  border-radius: 3px;
+  background: #2a2a2a;
+}
+
+.encounter-forge .window-content {
+  padding: 12px;
+  background: #1e1e1e;
+  color: #ddd;
+}
+
+.encounter-forge-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.encounter-forge-header i {
+  font-size: 1.4em;
+  color: #c0392b;
+}
+
+.encounter-forge-header span {
+  font-size: 0.8em;
+  color: #888;
+  font-style: italic;
+}
+
+.encounter-forge-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.encounter-forge-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.encounter-forge-form .form-group label {
+  font-weight: bold;
+  font-size: 0.85em;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ef-field-hint {
+  color: #777;
+  font-size: 0.95em;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  cursor: help;
+}
+
+.ef-field-hint:hover {
+  color: #c0392b;
+}
+
+.ef-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  align-items: start;
+}
+
+.ef-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ef-col-right {
+  padding-left: 16px;
+  border-left: 1px solid #3a3a3a;
+}
+
+/* Inputs & selects */
+.encounter-forge-form input[type="number"],
+.encounter-forge-form select {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  background: #2a2a2a;
+  color: #ddd;
+  font-family: inherit;
+  font-size: 0.95em;
+  color-scheme: dark;
+}
+
+.encounter-forge-form input[type="number"]:focus,
+.encounter-forge-form select:focus {
+  outline: none;
+  border-color: #c0392b;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.25);
+}
+
+.encounter-forge-form input[type="number"]:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: #2a2a2a;
+}
+
+.encounter-forge-form select option {
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+.solo-boss-group {
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  background: #252525;
+  border: 1px solid #4a3020;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.solo-boss-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.solo-boss-group label {
+  font-weight: bold !important;
+  font-size: 0.85em !important;
+  color: #e8b84a !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.solo-boss-hint {
+  font-size: 0.75em;
+  color: #666;
+  font-style: italic;
+  transition: color 0.15s;
+}
+
+.solo-boss-group:has(input[type="checkbox"]:checked) .solo-boss-hint {
+  color: #e8b84a;
+}
+
+.solo-boss-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #c0392b;
+  flex-shrink: 0;
+}
+
+.encounter-forge-divider {
+  height: 1px;
+  background: #3a3a3a;
+  margin: 4px 0;
+}
+
+.encounter-forge-form .form-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  justify-content: flex-end;
+}
+
+.ef-footer-split button {
+  flex: 1;
+}
+
+.encounter-forge-form .form-footer.ef-footer-center {
+  justify-content: center;
+}
+
+.encounter-forge-form .form-footer.ef-footer-end {
+  justify-content: flex-end;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #3a3a3a;
+}
+
+.ef-footer-end button {
+  flex: 0 0 auto;
+}
+
+.ef-footer-center button {
+  min-width: 200px;
+}
+
+.encounter-forge-form .form-footer.ef-footer-split-end {
+  justify-content: space-between;
+}
+
+.ef-footer-split-end .ef-footer-group {
+  display: flex;
+  gap: 8px;
+}
+
+.ef-footer-split-end button {
+  flex: 0 0 auto;
+}
+
+.encounter-forge-form .form-footer button {
+  padding: 6px 16px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.9em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.encounter-forge-form .form-footer button[type="submit"] {
+  background: #2a3f2a;
+  color: #9dc;
+  border: 1px solid #4a6a4a;
+}
+
+.encounter-forge-form .form-footer button[type="submit"]:hover {
+  background: #3a5a3a;
+  color: #bef;
+}
+
+.encounter-forge-form .form-footer button[type="button"] {
+  background: #2a2a2a;
+  color: #aaa;
+  border: 1px solid #3a3a3a;
+}
+
+.encounter-forge-form .form-footer button[type="button"]:hover {
+  background: #3a3a3a;
+  color: #ddd;
+}
+
+.ef-actor-picker.ef-collapsed {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ef-actor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 198px;
+  overflow-y: auto;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 4px;
+  background: #181818;
+}
+
+.ef-actor-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ef-actor-row:hover {
+  background: #2a2a2a;
+}
+
+.ef-actor-row input[type="checkbox"] {
+  accent-color: #c0392b;
+  flex-shrink: 0;
+}
+
+.ef-actor-row img {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ef-actor-name {
+  flex: 1;
+  font-size: 0.9em;
+  color: #ddd;
+}
+
+.ef-actor-owner {
+  font-size: 0.75em;
+  color: #888;
+  font-style: italic;
+}
+
+.ef-actor-empty {
+  font-size: 0.8em;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+
+.ef-readout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 8px 10px;
+  background: #181818;
+}
+
+.ef-readout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+}
+
+.ef-readout-label {
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85em;
+}
+
+.ef-readout-value {
+  color: #ddd;
+  font-weight: bold;
+}
+
+.ef-readout-outcome[data-outcome="easy"] .ef-readout-value {
+  color: #7fc97f;
+}
+
+.ef-readout-outcome[data-outcome="manageable"] .ef-readout-value {
+  color: #9dc;
+}
+
+.ef-readout-outcome[data-outcome="risky"] .ef-readout-value {
+  color: #e8b84a;
+}
+
+.ef-readout-outcome[data-outcome="dangerous"] .ef-readout-value {
+  color: #c0392b;
+}
+
+.ef-creature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.ef-creature-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  background: #181818;
+}
+
+.ef-creature-row img {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ef-creature-name {
+  flex: 1;
+  font-size: 0.9em;
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ef-creature-cr,
+.ef-creature-stat {
+  font-size: 0.8em;
+  color: #999;
+  white-space: nowrap;
+}
+
+.window-header button.encounter-forge-export-btn {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.window-header button.encounter-forge-export-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.encounter-forge-form input[type="text"],
+.encounter-forge-form textarea {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  background: #2a2a2a;
+  color: #ddd;
+  font-family: inherit;
+  font-size: 0.95em;
+  color-scheme: dark;
+  resize: vertical;
+}
+
+.encounter-forge-form input[type="text"]:focus,
+.encounter-forge-form textarea:focus {
+  outline: none;
+  border-color: #c0392b;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.25);
+}
+
+.encounter-forge-form input[type="text"]:disabled,
+.encounter-forge-form textarea:disabled,
+.encounter-forge-form select:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: #2a2a2a;
+}
+
+[data-section].ef-collapsed {
+  display: none;
+}
+
+.ef-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #6a4a20;
+  border-radius: 4px;
+  background: #2a2218;
+  color: #e8b84a;
+  font-size: 0.85em;
+}
+
+.ef-warning i {
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+.ef-tag-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 12px;
+}
+
+.ef-tag-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85em;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.ef-tag-checkbox input[type="checkbox"] {
+  accent-color: #c0392b;
+  flex-shrink: 0;
+}
+
+.ef-custom-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ef-custom-group-label {
+  font-weight: bold;
+  font-size: 0.85em;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ef-custom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 4px;
+  background: #181818;
+}
+
+.ef-custom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.ef-custom-row:hover {
+  background: #2a2a2a;
+}
+
+.ef-custom-row input[type="checkbox"] {
+  accent-color: #c0392b;
+  flex-shrink: 0;
+}
+
+.ef-custom-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ef-custom-name {
+  font-size: 0.9em;
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ef-custom-meta {
+  font-size: 0.75em;
+  color: #888;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ef-custom-row button {
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 0.8em;
+  cursor: pointer;
+  gap: 4px;
+  background: #2a2a2a;
+  color: #aaa;
+  border: 1px solid #3a3a3a;
+  flex-shrink: 0;
+}
+
+.ef-custom-row button:hover {
+  background: #3a3a3a;
+  color: #ddd;
+}
+
+.ef-custom-delete {
+  color: #c0392b !important;
+}
+
+.ef-custom-delete:hover {
+  background: #3a2020 !important;
+  color: #e88 !important;
+}

@@ -1,0 +1,393 @@
+[
+  {
+    "id": "spider_climb",
+    "name": "Spider Climb",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "aberration"
+    ],
+    "description": "The creature can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+    "effect": {
+      "speed": {
+        "climb": 30
+      }
+    }
+  },
+  {
+    "id": "fly_speed",
+    "name": "Winged Form",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "fiend",
+      "fey",
+      "dragon"
+    ],
+    "description": "The creature has a pair of wings or wing-like appendages that allow it to fly.",
+    "effect": {
+      "speed": {
+        "fly": 40
+      }
+    }
+  },
+  {
+    "id": "swim_speed",
+    "name": "Aquatic Body",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "elemental"
+    ],
+    "description": "The creature moves through water with ease and does not need to breathe air.",
+    "effect": {
+      "speed": {
+        "swim": 40
+      }
+    }
+  },
+  {
+    "id": "burrow_speed",
+    "name": "Tunneling Form",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "elemental",
+      "construct"
+    ],
+    "description": "The creature can burrow through nonmagical soil and loose stone. It can sense the vibrations of creatures walking within 30 feet through the ground.",
+    "effect": {
+      "speed": {
+        "burrow": 20
+      }
+    }
+  },
+  {
+    "id": "flyby",
+    "name": "Flyby",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "fey"
+    ],
+    "description": "The creature doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+  },
+  {
+    "id": "shadow_step",
+    "name": "Shadow Step",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "fey",
+      "fiend"
+    ],
+    "description": "As a bonus action, the creature can teleport up to 30 feet to an unoccupied space it can see that is in dim light or darkness. It may make one attack immediately after teleporting."
+  },
+  {
+    "id": "phase_stride",
+    "name": "Phase Stride",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "undead",
+      "construct"
+    ],
+    "description": "As a bonus action once per round, the creature can step partially out of phase with reality and teleport up to 15 feet to an unoccupied space it can see. This movement does not provoke opportunity attacks."
+  },
+  {
+    "id": "mud_form",
+    "name": "Flowing Form",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "elemental",
+      "aberration"
+    ],
+    "description": "The creature can move through any space at least 1 inch wide without squeezing. It can enter another creature's space and stop there. This does not grant it the ability to end its movement in another creature's space."
+  },
+  {
+    "id": "pressure_walk",
+    "name": "Sure-Footed",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature ignores difficult terrain caused by natural sources and nonmagical hazards such as rubble, mud, or undergrowth."
+  },
+  {
+    "id": "gravity_defiance",
+    "name": "Gravity Defiance",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "aberration",
+      "fey"
+    ],
+    "description": "The creature treats walls and ceilings as floors. Its movement speed applies to movement in any direction relative to any surface, and it does not fall unless it chooses to."
+  },
+  {
+    "id": "wind_riding",
+    "name": "Wind Rider",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "elemental",
+      "fey",
+      "beast"
+    ],
+    "description": "When the creature takes the Dash action, it does not provoke opportunity attacks for the rest of that turn."
+  },
+  {
+    "id": "rootsense",
+    "name": "Rootsense",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "elemental"
+    ],
+    "description": "The creature can detect the location of any creature in contact with the ground within 60 feet of it. This sense is blocked by at least 3 feet of stone, 1 foot of metal, or a thin sheet of lead.",
+    "effect": {
+      "speed": {
+        "burrow": 20
+      }
+    }
+  },
+  {
+    "id": "temporal_skip",
+    "name": "Temporal Skip",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 6,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "aberration",
+      "fey"
+    ],
+    "description": "Once per day, as a reaction when the creature would be hit by an attack, it briefly skips forward in time. The attack misses, and the creature reappears at the end of its next turn in the same space or the nearest available space. It is incapacitated until it reappears."
+  },
+  {
+    "id": "mistform_travel",
+    "name": "Mist Form",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fey",
+      "elemental"
+    ],
+    "description": "As a bonus action, the creature can transform into a cloud of mist until the start of its next turn. While in mist form, it cannot attack or use abilities, but it is immune to all damage and can move through any gap, door, or crack without squeezing."
+  },
+  {
+    "id": "dream_walk",
+    "name": "Dream Walk",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "undead",
+      "aberration"
+    ],
+    "description": "The creature can sense sleeping creatures within 120 feet and knows their exact location. It can move through spaces occupied by sleeping or unconscious creatures without expending extra movement."
+  },
+  {
+    "id": "fey_blink",
+    "name": "Blink Step",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "aberration"
+    ],
+    "description": "At the end of each of its turns, the creature can teleport up to 10 feet to an unoccupied space it can see. This teleportation does not provoke opportunity attacks.",
+    "effect": {}
+  },
+  {
+    "id": "earth_glide",
+    "name": "Earth Glide",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "construct"
+    ],
+    "description": "The creature can burrow through nonmagical, unworked earth and stone without disturbing the material it moves through. It can emerge from and submerge into earth as part of its movement.",
+    "effect": {
+      "speed": {
+        "burrow": 30
+      }
+    }
+  },
+  {
+    "id": "wing_rush",
+    "name": "Wing Rush",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "dragon",
+      "beast",
+      "fey"
+    ],
+    "description": "When the creature moves at least 20 feet toward a target in a straight line and then hits with a melee attack, the attack deals an extra 1d6 damage and the target must succeed on a DC {dc} Strength saving throw or be pushed back 5 feet.",
+    "effect": {
+      "speed": {
+        "fly": 30
+      }
+    }
+  },
+  {
+    "id": "liquid_form",
+    "name": "Liquid Form",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "aberration"
+    ],
+    "description": "The creature can collapse its body into a dense fluid mass. It can squeeze through any opening at least 1 inch wide. While doing so, it cannot attack, but it has resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+    "effect": {}
+  },
+  {
+    "id": "death_stride",
+    "name": "Death Stride",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature ignores movement penalties from difficult terrain caused by bodily remains, necrotic effects, or cursed ground. It can also pass through the spaces of dying or dead creatures without expending extra movement.",
+    "effect": {}
+  },
+  {
+    "id": "construct_stride",
+    "name": "Relentless Stride",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "construct",
+      "humanoid"
+    ],
+    "description": "The creature cannot be slowed by difficult terrain of any kind. Its speed is never reduced by spells or conditions to less than 10 feet so long as it is not restrained or incapacitated."
+  },
+  {
+    "id": "predator_sprint",
+    "name": "Predator Sprint",
+    "type": "feature",
+    "category": "movement",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "monstrosity",
+      "beast"
+    ],
+    "description": "On the first turn of combat, the creature's movement speed is doubled. Additionally, it does not provoke opportunity attacks for the rest of that first turn.",
+    "effect": {}
+  }
+]

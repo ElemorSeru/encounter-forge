@@ -1,0 +1,46 @@
+{
+  "id": "encounter-forge",
+  "title": "GM Tools: Encounter Forge",
+  "description": "Generate balanced, dynamically assembled encounters for D&D 5e. Combines archetypes, traits, and actions into unique creatures at any challenge rating.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "Elemor",
+      "patreon": "https://www.patreon.com/Elemor",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/encounter-forge.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/ElemorSeru/encounter-forge",
+  "manifest": "https://github.com/ElemorSeru/encounter-forge/releases/latest/download/module.json",
+  "download": "https://github.com/ElemorSeru/encounter-forge/releases/latest/download/module.zip",
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "3.0.0",
+          "verified": "3.3.1"
+        }
+      }
+    ]
+  },
+  "flags": {}
+}

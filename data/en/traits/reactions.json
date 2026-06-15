@@ -1,0 +1,339 @@
+[
+  {
+    "id": "parry",
+    "name": "Parry",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "humanoid"
+    ],
+    "description": "When an attacker the creature can see hits it with a melee attack, the creature can use its reaction to add its proficiency bonus to its AC against that attack, potentially causing it to miss.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "spite_rebound",
+    "name": "Spite Rebound",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "undead",
+      "aberration"
+    ],
+    "description": "When this creature is hit by a melee attack, it can use its reaction to release a pulse of force. The attacker takes 1d6 force damage.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "phantom_split",
+    "name": "Phantom Split",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fey",
+      "aberration",
+      "undead"
+    ],
+    "description": "When the creature is targeted by an attack, it can use its reaction to split its image. Roll a d6. On a 4 or higher, the attack strikes a phantom copy and automatically misses. The creature cannot use this ability again until the start of its next turn.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "redirect_pain",
+    "name": "Redirect",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "undead"
+    ],
+    "description": "When this creature takes damage from an attack, it can use its reaction to transfer half of that damage (rounded up) to one creature it has bitten, touched, or marked this combat. The target must be within 60 feet.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "predator_instinct",
+    "name": "Predator's Instinct",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "When a creature the creature can see within 60 feet falls to 0 hit points, the creature can use its reaction to move up to its full movement speed toward any creature.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "curse_backlash",
+    "name": "Curse Backlash",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fiend",
+      "fey",
+      "undead"
+    ],
+    "description": "When a creature casts a spell that directly targets this creature, it can use its reaction. The caster must succeed on a DC {dc} Wisdom saving throw or expend the spell slot without effect.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "uncanny_dodge",
+    "name": "Uncanny Dodge",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "lurker"
+    ],
+    "description": "When an attacker the creature can see hits it with an attack, the creature can use its reaction to halve the attack's damage.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "death_throes",
+    "name": "Death Throes",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "elemental",
+      "construct",
+      "aberration"
+    ],
+    "description": "When this creature is reduced to 0 hit points, it can use its reaction to make one final attack or use one action ability before it dies.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "repulsion_pulse",
+    "name": "Repulsion Pulse",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "elemental",
+      "aberration"
+    ],
+    "description": "When a creature moves within 5 feet of this creature, it can use its reaction to release a burst of repulsive force. The triggering creature must succeed on a DC {dc} Strength saving throw or be pushed 10 feet away.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "shield_ally",
+    "name": "Bodyguard",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "humanoid",
+      "construct"
+    ],
+    "description": "When an ally within 5 feet of this creature is targeted by an attack, the creature can use its reaction to swap positions with the ally. The attack then targets the creature instead.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "counter_grapple",
+    "name": "Thrashing Counter",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "When a creature successfully grapples this creature, the creature can use its reaction to make one melee attack against the grappling creature.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "spell_deflect",
+    "name": "Arcane Deflection",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "dragon",
+      "aberration"
+    ],
+    "description": "When the creature succeeds on a saving throw against a spell, it can use its reaction to redirect the spell's residual energy. One creature of its choice within 30 feet takes 1d8 force damage.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "glamour_redirect",
+    "name": "Glamour Redirect",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "fiend"
+    ],
+    "description": "When this creature is targeted by an attack, it can use its reaction to redirect the attack toward a charmed creature within 30 feet, if that creature is within range of the attacker. The new target becomes the attack's target instead.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "savage_retaliate",
+    "name": "Savage Retaliation",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "monstrosity",
+      "beast"
+    ],
+    "description": "When a creature within 5 feet hits this creature with a melee attack, it can use its reaction to immediately make one melee attack against the attacker.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "elemental_discharge",
+    "name": "Elemental Discharge",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "description": "When this creature takes 10 or more damage from a single attack, it can use its reaction to release a burst of its elemental energy. Each creature within 10 feet must succeed on a DC {dc} Dexterity saving throw or take 2d6 damage of the creature's primary damage type.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "spatial_fold",
+    "name": "Spatial Fold",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "construct"
+    ],
+    "description": "When a creature would hit this creature with a melee attack, it can use its reaction to fold space momentarily. The attack still hits and deals damage, but the creature immediately teleports up to 15 feet to an unoccupied space it can see after the damage is resolved.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "riposte",
+    "name": "Riposte",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "humanoid",
+      "any"
+    ],
+    "description": "When a creature misses this creature with a melee attack, it can use its reaction to make one melee attack against the attacker with advantage.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "fey_vengeance",
+    "name": "Fey Vengeance",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "undead"
+    ],
+    "description": "When a creature makes a saving throw against one of this creature's abilities and succeeds, the creature can use its reaction to impose a mild curse on that creature. The cursed creature has disadvantage on its next saving throw it makes against any effect.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  },
+  {
+    "id": "dragon_retaliation",
+    "name": "Dragon Retaliation",
+    "type": "feature",
+    "category": "reactions",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "dragon",
+      "monstrosity"
+    ],
+    "description": "When this creature takes 15 or more damage from a single attack, it can use its reaction to make one melee attack against the attacker if it is within reach.",
+    "activation_type": "reaction",
+    "activation_cost": 1
+  }
+]

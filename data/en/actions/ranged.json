@@ -1,0 +1,767 @@
+[
+  {
+    "id": "spine_shot",
+    "name": "Spine Shot",
+    "action_type": "rwak",
+    "range": 60,
+    "range_long": 120,
+    "uses_dex": true,
+    "description": "The creature fires a rigid spine or quill at a target.",
+    "damage_fallback": [
+      "1d6",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "piercing"
+      ],
+      "tier2": [
+        "2d6",
+        "piercing"
+      ],
+      "tier3": [
+        "3d6",
+        "piercing"
+      ],
+      "tier4": [
+        "4d6",
+        "piercing"
+      ],
+      "tier5": [
+        "5d6",
+        "piercing"
+      ],
+      "tier6": [
+        "6d6",
+        "piercing"
+      ]
+    },
+    "cr_min": 0,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "lurker",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "any"
+    ]
+  },
+  {
+    "id": "venom_spit",
+    "name": "Venom Spit",
+    "action_type": "rwak",
+    "range": 30,
+    "range_long": 60,
+    "uses_dex": true,
+    "description": "The creature spits a concentrated glob of poison. On a hit, the target must succeed on a DC {dc} Constitution saving throw or be poisoned until the end of its next turn.",
+    "damage_fallback": [
+      "1d8",
+      "poison"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "poison"
+      ],
+      "tier2": [
+        "2d8",
+        "poison"
+      ],
+      "tier3": [
+        "3d6",
+        "poison"
+      ],
+      "tier4": [
+        "3d8",
+        "poison"
+      ],
+      "tier5": [
+        "4d8",
+        "poison"
+      ],
+      "tier6": [
+        "5d8",
+        "poison"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "aberration",
+      "any"
+    ]
+  },
+  {
+    "id": "arcane_bolt",
+    "name": "Arcane Bolt",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": 120,
+    "uses_dex": true,
+    "description": "A projectile of pure magical force.",
+    "damage_fallback": [
+      "1d10",
+      "force"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "force"
+      ],
+      "tier2": [
+        "2d8",
+        "force"
+      ],
+      "tier3": [
+        "3d8",
+        "force"
+      ],
+      "tier4": [
+        "4d8",
+        "force"
+      ],
+      "tier5": [
+        "5d8",
+        "force"
+      ],
+      "tier6": [
+        "6d8",
+        "force"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "fiend",
+      "construct",
+      "any"
+    ]
+  },
+  {
+    "id": "necrotic_bolt",
+    "name": "Necrotic Bolt",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A tendril of death-energy lances out. On a hit, the target cannot regain hit points until the start of this creature's next turn.",
+    "damage_fallback": [
+      "1d8",
+      "necrotic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "necrotic"
+      ],
+      "tier2": [
+        "2d8",
+        "necrotic"
+      ],
+      "tier3": [
+        "3d8",
+        "necrotic"
+      ],
+      "tier4": [
+        "4d8",
+        "necrotic"
+      ],
+      "tier5": [
+        "5d8",
+        "necrotic"
+      ],
+      "tier6": [
+        "6d8",
+        "necrotic"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ]
+  },
+  {
+    "id": "psychic_lance",
+    "name": "Psychic Lance",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A focused beam of mental assault. On a hit, the target must succeed on a DC {dc} Wisdom saving throw or be incapacitated until the end of its next turn.",
+    "damage_fallback": [
+      "1d10",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "psychic"
+      ],
+      "tier2": [
+        "2d8",
+        "psychic"
+      ],
+      "tier3": [
+        "3d8",
+        "psychic"
+      ],
+      "tier4": [
+        "4d8",
+        "psychic"
+      ],
+      "tier5": [
+        "5d8",
+        "psychic"
+      ],
+      "tier6": [
+        "6d8",
+        "psychic"
+      ]
+    },
+    "cr_min": 4,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "artillery"
+    ],
+    "tags": [
+      "aberration",
+      "fiend"
+    ]
+  },
+  {
+    "id": "cinder_spit",
+    "name": "Cinder Spit",
+    "action_type": "rwak",
+    "range": 40,
+    "range_long": 80,
+    "uses_dex": true,
+    "description": "A lump of smoldering material that ignites on impact. On a hit, the target catches fire and takes 1d6 fire damage at the start of its next turn unless it spends an action to put out the flames.",
+    "damage_fallback": [
+      "1d8",
+      "fire"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "fire"
+      ],
+      "tier2": [
+        "2d6",
+        "fire"
+      ],
+      "tier3": [
+        "3d6",
+        "fire"
+      ],
+      "tier4": [
+        "3d8",
+        "fire"
+      ],
+      "tier5": [
+        "4d8",
+        "fire"
+      ],
+      "tier6": [
+        "5d8",
+        "fire"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "dragon",
+      "fiend",
+      "any"
+    ]
+  },
+  {
+    "id": "bone_shard",
+    "name": "Bone Shard",
+    "action_type": "rwak",
+    "range": 30,
+    "range_long": 60,
+    "uses_dex": true,
+    "description": "The creature hurls a razor-edged shard of bone. On a hit, the target's speed is reduced by 5 feet until the shard is removed (requires an action).",
+    "damage_fallback": [
+      "1d6",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "piercing"
+      ],
+      "tier2": [
+        "2d6",
+        "piercing"
+      ],
+      "tier3": [
+        "2d8",
+        "piercing"
+      ],
+      "tier4": [
+        "3d8",
+        "piercing"
+      ],
+      "tier5": [
+        "4d6",
+        "piercing"
+      ],
+      "tier6": [
+        "5d6",
+        "piercing"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "construct",
+      "any"
+    ]
+  },
+  {
+    "id": "lightning_strike",
+    "name": "Lightning Strike",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A bolt of electrical energy. On a hit, the target must succeed on a DC {dc} Constitution saving throw or drop one held item of the creature's choice.",
+    "damage_fallback": [
+      "1d10",
+      "lightning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "lightning"
+      ],
+      "tier2": [
+        "2d8",
+        "lightning"
+      ],
+      "tier3": [
+        "3d8",
+        "lightning"
+      ],
+      "tier4": [
+        "4d8",
+        "lightning"
+      ],
+      "tier5": [
+        "5d8",
+        "lightning"
+      ],
+      "tier6": [
+        "6d8",
+        "lightning"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "construct",
+      "dragon",
+      "any"
+    ]
+  },
+  {
+    "id": "thorn_dart",
+    "name": "Thorn Dart",
+    "action_type": "rwak",
+    "range": 40,
+    "range_long": 80,
+    "uses_dex": true,
+    "description": "A magically hardened thorn or sliver of enchanted wood. On a hit, the target must succeed on a DC {dc} Wisdom saving throw or be distracted by vivid hallucinations and have disadvantage on its next attack roll.",
+    "damage_fallback": [
+      "1d6",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "piercing"
+      ],
+      "tier2": [
+        "2d6",
+        "piercing"
+      ],
+      "tier3": [
+        "2d8",
+        "piercing"
+      ],
+      "tier4": [
+        "3d6",
+        "piercing"
+      ],
+      "tier5": [
+        "4d6",
+        "piercing"
+      ],
+      "tier6": [
+        "5d6",
+        "piercing"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "fey",
+      "any"
+    ]
+  },
+  {
+    "id": "ice_shard",
+    "name": "Ice Shard",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A spike of conjured ice launched at speed. On a hit, the target's speed is reduced by 10 feet until the start of its next turn as frost encrusts the wound.",
+    "damage_fallback": [
+      "1d10",
+      "cold"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "cold"
+      ],
+      "tier2": [
+        "2d8",
+        "cold"
+      ],
+      "tier3": [
+        "3d8",
+        "cold"
+      ],
+      "tier4": [
+        "4d8",
+        "cold"
+      ],
+      "tier5": [
+        "5d8",
+        "cold"
+      ],
+      "tier6": [
+        "6d8",
+        "cold"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "dragon",
+      "undead"
+    ]
+  },
+  {
+    "id": "acid_spit",
+    "name": "Acid Spit",
+    "action_type": "rwak",
+    "range": 30,
+    "range_long": 60,
+    "uses_dex": true,
+    "description": "A pressurized stream of corrosive fluid. On a hit, the target also takes 1d4 acid damage at the start of its next turn as the acid continues eating away at armor and flesh.",
+    "damage_fallback": [
+      "1d8",
+      "acid"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "acid"
+      ],
+      "tier2": [
+        "2d6",
+        "acid"
+      ],
+      "tier3": [
+        "3d6",
+        "acid"
+      ],
+      "tier4": [
+        "3d8",
+        "acid"
+      ],
+      "tier5": [
+        "4d8",
+        "acid"
+      ],
+      "tier6": [
+        "5d8",
+        "acid"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "beast",
+      "elemental",
+      "any"
+    ]
+  },
+  {
+    "id": "shadow_needle",
+    "name": "Shadow Needle",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A barbed sliver of pure shadow that buries into the soul. On a hit, the target cannot benefit from the Help action or any ally's assistance until the start of the creature's next turn.",
+    "damage_fallback": [
+      "1d8",
+      "necrotic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "necrotic"
+      ],
+      "tier2": [
+        "2d6",
+        "necrotic"
+      ],
+      "tier3": [
+        "3d6",
+        "necrotic"
+      ],
+      "tier4": [
+        "3d8",
+        "necrotic"
+      ],
+      "tier5": [
+        "4d8",
+        "necrotic"
+      ],
+      "tier6": [
+        "5d8",
+        "necrotic"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "lurker",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "fey",
+      "fiend"
+    ]
+  },
+  {
+    "id": "thunder_shot",
+    "name": "Thunder Shot",
+    "action_type": "rsak",
+    "range": 30,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A concussive burst of compressed air or sonic force. On a hit, the target must succeed on a DC {dc} Constitution saving throw or be deafened until the end of its next turn and pushed back 5 feet.",
+    "damage_fallback": [
+      "1d8",
+      "thunder"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "thunder"
+      ],
+      "tier2": [
+        "2d8",
+        "thunder"
+      ],
+      "tier3": [
+        "3d6",
+        "thunder"
+      ],
+      "tier4": [
+        "3d8",
+        "thunder"
+      ],
+      "tier5": [
+        "4d8",
+        "thunder"
+      ],
+      "tier6": [
+        "5d8",
+        "thunder"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "monstrosity",
+      "any"
+    ]
+  },
+  {
+    "id": "poison_dart",
+    "name": "Poison Dart",
+    "action_type": "rwak",
+    "range": 30,
+    "range_long": 60,
+    "uses_dex": true,
+    "description": "A tiny dart coated in fast-acting paralytic venom. On a hit, the target must succeed on a DC {dc} Constitution saving throw or have its movement speed reduced to 0 until the end of its next turn.",
+    "damage_fallback": [
+      "1d4",
+      "poison"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d4",
+        "poison"
+      ],
+      "tier2": [
+        "2d4",
+        "poison"
+      ],
+      "tier3": [
+        "3d4",
+        "poison"
+      ],
+      "tier4": [
+        "4d4",
+        "poison"
+      ],
+      "tier5": [
+        "5d4",
+        "poison"
+      ],
+      "tier6": [
+        "6d4",
+        "poison"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 10,
+    "chassis_affinity": [
+      "lurker",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "humanoid",
+      "beast",
+      "any"
+    ]
+  },
+  {
+    "id": "radiant_burst",
+    "name": "Radiant Burst",
+    "action_type": "rsak",
+    "range": 60,
+    "range_long": null,
+    "uses_dex": true,
+    "description": "A searing pulse of light or infernal fire. On a hit against an undead or construct, the target has disadvantage on all rolls until the end of its next turn as the light overwhelms its senses.",
+    "damage_fallback": [
+      "1d8",
+      "radiant"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "radiant"
+      ],
+      "tier2": [
+        "2d8",
+        "radiant"
+      ],
+      "tier3": [
+        "3d6",
+        "radiant"
+      ],
+      "tier4": [
+        "3d8",
+        "radiant"
+      ],
+      "tier5": [
+        "4d8",
+        "radiant"
+      ],
+      "tier6": [
+        "5d8",
+        "radiant"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "artillery",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "humanoid",
+      "fey",
+      "fiend"
+    ]
+  }
+]

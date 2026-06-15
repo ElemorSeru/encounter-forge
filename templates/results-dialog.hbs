@@ -1,0 +1,46 @@
+<div class="encounter-forge-form encounter-forge-results">
+  <div class="encounter-forge-header">
+    <i class="fas fa-dice-d20"></i>
+    <span>{{localize "ENCOUNTERFORGE.Results.Subtitle"}}</span>
+  </div>
+
+  <div class="ef-readout">
+    <div class="ef-readout-row">
+      <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Results.Party"}}</span>
+      <span class="ef-readout-value">{{partyDPR}} / {{partyHP}}</span>
+    </div>
+    <div class="ef-readout-row">
+      <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Results.Group"}}</span>
+      <span class="ef-readout-value">{{groupDPR}} / {{groupHP}}</span>
+    </div>
+    <div class="ef-readout-row">
+      <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Rounds"}}</span>
+      <span class="ef-readout-value">{{roundsDefeat}} / {{roundsThreaten}}</span>
+    </div>
+    <div class="ef-readout-row ef-readout-outcome" data-outcome="{{outcome}}">
+      <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Outlook"}}</span>
+      <span class="ef-readout-value">{{outcomeLabel}}</span>
+    </div>
+  </div>
+
+  <div class="encounter-forge-divider"></div>
+
+  <div class="ef-creature-list">
+    {{#each creatures}}
+      <div class="ef-creature-row">
+        <img src="{{this.img}}" />
+        <span class="ef-creature-name">{{this.name}}</span>
+        <span class="ef-creature-cr">{{localize "ENCOUNTERFORGE.Results.CR"}} {{this.cr}}</span>
+        <span class="ef-creature-stat">{{this.hp}} HP</span>
+        <span class="ef-creature-stat">AC {{this.ac}}</span>
+        <span class="ef-creature-stat">{{this.dpr}} DPR</span>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="form-footer ef-footer-center">
+    <button type="button" data-action="closeDialog">
+      <i class="fas fa-times"></i> {{localize "ENCOUNTERFORGE.Dialog.Close"}}
+    </button>
+  </div>
+</div>

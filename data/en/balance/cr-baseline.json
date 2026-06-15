@@ -1,0 +1,21 @@
+{
+  "0":   { "prof": 2, "ac": 13, "hp": 3.5,  "attack_bonus": 3, "dpr": 0.5,  "save_dc": 13 },
+  "1/8": { "prof": 2, "ac": 13, "hp": 21,   "attack_bonus": 3, "dpr": 2.5,  "save_dc": 13 },
+  "1/4": { "prof": 2, "ac": 13, "hp": 42.5, "attack_bonus": 3, "dpr": 4.5,  "save_dc": 13 },
+  "1/2": { "prof": 2, "ac": 13, "hp": 60,   "attack_bonus": 3, "dpr": 7,    "save_dc": 13 },
+  "1":   { "prof": 2, "ac": 13, "hp": 78,   "attack_bonus": 3, "dpr": 11.5, "save_dc": 13 },
+  "2":   { "prof": 2, "ac": 13, "hp": 93,   "attack_bonus": 3, "dpr": 17.5, "save_dc": 13 },
+  "3":   { "prof": 2, "ac": 13, "hp": 108,  "attack_bonus": 4, "dpr": 23.5, "save_dc": 13 },
+  "4":   { "prof": 2, "ac": 14, "hp": 123,  "attack_bonus": 5, "dpr": 29.5, "save_dc": 14 },
+  "5":   { "prof": 3, "ac": 15, "hp": 138,  "attack_bonus": 6, "dpr": 35.5, "save_dc": 15 },
+  "6":   { "prof": 3, "ac": 15, "hp": 153,  "attack_bonus": 6, "dpr": 41.5, "save_dc": 15 },
+  "7":   { "prof": 3, "ac": 15, "hp": 168,  "attack_bonus": 6, "dpr": 47.5, "save_dc": 15 },
+  "8":   { "prof": 3, "ac": 16, "hp": 183,  "attack_bonus": 7, "dpr": 53.5, "save_dc": 16 },
+  "9":   { "prof": 4, "ac": 16, "hp": 198,  "attack_bonus": 7, "dpr": 59.5, "save_dc": 16 },
+  "10":  { "prof": 4, "ac": 17, "hp": 213,  "attack_bonus": 7, "dpr": 65.5, "save_dc": 16 },
+  "11":  { "prof": 4, "ac": 17, "hp": 228,  "attack_bonus": 8, "dpr": 71.5, "save_dc": 17 },
+  "12":  { "prof": 4, "ac": 17, "hp": 243,  "attack_bonus": 8, "dpr": 77.5, "save_dc": 18 },
+  "13":  { "prof": 5, "ac": 18, "hp": 258,  "attack_bonus": 8, "dpr": 83.5, "save_dc": 18 },
+  "14":  { "prof": 5, "ac": 18, "hp": 273,  "attack_bonus": 8, "dpr": 89.5, "save_dc": 18 },
+  "15":  { "prof": 5, "ac": 18, "hp": 288,  "attack_bonus": 8, "dpr": 95.5, "save_dc": 18 }
+}

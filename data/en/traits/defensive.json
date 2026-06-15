@@ -1,0 +1,522 @@
+[
+  {
+    "id": "natural_armor_light",
+    "name": "Hardened Hide",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature's skin is thick and calloused, granting a natural resilience to glancing blows.",
+    "effect": {
+      "ac_bonus": 1
+    }
+  },
+  {
+    "id": "fire_resistance",
+    "name": "Fire Resistance",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "description": "The creature has resistance to fire damage.",
+    "effect": {
+      "resistance": [
+        "fire"
+      ]
+    }
+  },
+  {
+    "id": "cold_resistance",
+    "name": "Cold Resistance",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "elemental",
+      "undead"
+    ],
+    "description": "The creature has resistance to cold damage.",
+    "effect": {
+      "resistance": [
+        "cold"
+      ]
+    }
+  },
+  {
+    "id": "poison_immunity",
+    "name": "Poison Immunity",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "undead",
+      "construct",
+      "fiend"
+    ],
+    "description": "The creature is immune to poison damage and the poisoned condition.",
+    "effect": {
+      "immunity": [
+        "poison"
+      ],
+      "condition_immunity": [
+        "poisoned"
+      ]
+    }
+  },
+  {
+    "id": "bludgeoning_resistance",
+    "name": "Shock-Tolerant Frame",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "elemental"
+    ],
+    "description": "The creature's body absorbs impact well, granting resistance to bludgeoning damage from nonmagical attacks.",
+    "effect": {
+      "resistance": [
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "id": "charmed_immunity",
+    "name": "Unfettered Will",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "undead",
+      "construct",
+      "aberration"
+    ],
+    "description": "The creature's mind operates in ways incompatible with charm effects. It is immune to the charmed condition.",
+    "effect": {
+      "condition_immunity": [
+        "charmed"
+      ]
+    }
+  },
+  {
+    "id": "frightened_immunity",
+    "name": "Heedless Nerve",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "undead",
+      "construct"
+    ],
+    "description": "The creature does not register fear. It is immune to the frightened condition.",
+    "effect": {
+      "condition_immunity": [
+        "frightened"
+      ]
+    }
+  },
+  {
+    "id": "blood_ward",
+    "name": "Blood Ward",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The first time each round the creature takes damage, it gains resistance to that damage type until the start of its next turn as its form instinctively hardens against the source."
+  },
+  {
+    "id": "stone_patience",
+    "name": "Stone Patience",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "elemental",
+      "beast"
+    ],
+    "description": "While the creature does not move on its turn, its AC increases by 3 until the start of its next turn as it braces and locks its form completely still."
+  },
+  {
+    "id": "carapace_of_grief",
+    "name": "Carapace of Grief",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "aberration"
+    ],
+    "description": "The creature's suffering has been calcified into its outer shell. The first time it is hit by an attack each combat, the attack deals minimum damage."
+  },
+  {
+    "id": "hollow_core",
+    "name": "Hollow Core",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "undead",
+      "aberration"
+    ],
+    "description": "The creature's vital structures are diffused throughout its body or simply absent. It is immune to additional damage from critical hits."
+  },
+  {
+    "id": "reflective_shell",
+    "name": "Reflective Carapace",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "dragon",
+      "elemental"
+    ],
+    "description": "The creature's exterior has a shimmering, mirror-like quality. When it is targeted by a ranged spell attack, roll a d6. On a 6, the spell rebounds and targets the caster instead."
+  },
+  {
+    "id": "necrotic_anchor",
+    "name": "Necrotic Anchor",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "Undead energy saturates this creature's form, making it paradoxically resistant to the force that empowers other undead. It cannot be reduced below 1 hit point by necrotic damage.",
+    "effect": {
+      "resistance": [
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "id": "symbiotic_armor",
+    "name": "Symbiotic Plating",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "aberration"
+    ],
+    "description": "The creature is covered in smaller living organisms that sense incoming threats through vibration and chemical signals. It cannot be surprised."
+  },
+  {
+    "id": "necrotic_resistance",
+    "name": "Death's Familiarity",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The creature has danced close enough to death that its energy no longer harms it as readily. It has resistance to necrotic damage.",
+    "effect": {
+      "resistance": [
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "id": "psychic_inversion",
+    "name": "Psychic Inversion",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature's mind is so alien that psychic attempts to harm it instead nourish it. When the creature would take psychic damage, it instead regains hit points equal to half the damage that would have been dealt."
+  },
+  {
+    "id": "lightning_resistance",
+    "name": "Earthen Grounding",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "elemental",
+      "construct",
+      "beast"
+    ],
+    "description": "The creature has resistance to lightning damage.",
+    "effect": {
+      "resistance": [
+        "lightning"
+      ]
+    }
+  },
+  {
+    "id": "prone_immunity",
+    "name": "Rooted Stance",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "elemental",
+      "beast"
+    ],
+    "description": "The creature's center of gravity is impossibly low or its limbs are too numerous to topple. It is immune to the prone condition.",
+    "effect": {
+      "condition_immunity": [
+        "prone"
+      ]
+    }
+  },
+  {
+    "id": "exhaust_immunity",
+    "name": "Tireless Chassis",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "undead"
+    ],
+    "description": "The creature does not tire or wear down. It is immune to exhaustion.",
+    "effect": {
+      "condition_immunity": [
+        "exhaustion"
+      ]
+    }
+  },
+  {
+    "id": "bone_lattice",
+    "name": "Bone Lattice",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "construct"
+    ],
+    "description": "Once per day, when the creature is reduced to 0 hit points, its skeletal framework reassembles itself. The creature immediately returns to 1 hit point and stands."
+  },
+  {
+    "id": "fey_veil",
+    "name": "Fey Veil",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "aberration"
+    ],
+    "description": "The creature wraps itself in shifting illusions. Whenever it takes damage, the attacker must succeed on a DC {dc} Wisdom saving throw or have disadvantage on the next attack they make against the creature before the start of their next turn."
+  },
+  {
+    "id": "spore_ward",
+    "name": "Spore Ward",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "beast",
+      "aberration",
+      "elemental"
+    ],
+    "description": "The creature releases a cloud of spores when struck in melee. The attacker must succeed on a DC {dc} Constitution saving throw or have their speed halved until the start of their next turn.",
+    "effect": {}
+  },
+  {
+    "id": "monstrosity_bulk",
+    "name": "Monstrous Bulk",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "monstrosity",
+      "beast"
+    ],
+    "description": "The creature's sheer mass and irregular shape makes it difficult to put down. Its hit point maximum is increased.",
+    "effect": {
+      "hp_bonus": 4
+    }
+  },
+  {
+    "id": "ward_of_iron",
+    "name": "Ward of Iron",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "humanoid",
+      "construct"
+    ],
+    "description": "The creature is trained to fight through punishment. When it is reduced to half its maximum hit points for the first time each combat, it gains resistance to all nonmagical damage until the end of its next turn."
+  },
+  {
+    "id": "void_shroud",
+    "name": "Void Shroud",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1.5,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature exists partly outside of normal space. Any attack that would reduce it to 0 hit points instead leaves it at 1 hit point if it has not used this ability this combat. After using it, the creature gains the incapacitated condition until the start of its next turn."
+  },
+  {
+    "id": "fey_ward",
+    "name": "Unbreakable Glamour",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey"
+    ],
+    "description": "The creature's fey nature deflects targeted malice. Attacks made against it while it has not attacked the attacker have disadvantage. Once the creature attacks a creature, this effect ends against that creature until combat resets."
+  },
+  {
+    "id": "dragon_scales",
+    "name": "Dragon Scales",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "dragon"
+    ],
+    "description": "The creature is covered in overlapping scales that deflect strikes and shed elemental energy. It has a natural AC bonus and resistance to one damage type matching its elemental affinity.",
+    "effect": {
+      "ac_bonus": 1,
+      "resistance": [
+        "fire"
+      ]
+    }
+  },
+  {
+    "id": "construct_plating",
+    "name": "Reinforced Plating",
+    "type": "feature",
+    "category": "defensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "construct"
+    ],
+    "description": "Thick metal plating covers the creature's frame. It has resistance to piercing damage from nonmagical attacks, but its movement speed is reduced by 5 feet.",
+    "effect": {
+      "resistance": [
+        "piercing"
+      ],
+      "ac_bonus": 1
+    }
+  }
+]

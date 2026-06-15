@@ -1,0 +1,858 @@
+[
+  {
+    "id": "breath_fire",
+    "name": "Breath Weapon (Fire)",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature exhales a cone of fire (15-foot cone). Each creature in the area must succeed on a DC {dc} Dexterity saving throw, taking 4d6 fire damage on a failed save or half on success. Recharge 5-6.",
+    "damage_fallback": [
+      "2d6",
+      "fire"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d6",
+        "fire"
+      ],
+      "tier2": [
+        "4d6",
+        "fire"
+      ],
+      "tier3": [
+        "6d6",
+        "fire"
+      ],
+      "tier4": [
+        "8d6",
+        "fire"
+      ],
+      "tier5": [
+        "10d6",
+        "fire"
+      ],
+      "tier6": [
+        "12d6",
+        "fire"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "elemental",
+      "any"
+    ]
+  },
+  {
+    "id": "stench_aura",
+    "name": "Stench",
+    "action_type": "util",
+    "range": 5,
+    "uses_dex": false,
+    "description": "The creature emits a nauseating odor. Any creature that starts its turn within 5 feet must succeed on a DC {dc} Constitution saving throw or be poisoned until the start of its next turn. On a success, the creature is immune to this effect for 24 hours.",
+    "damage_fallback": [
+      "1d4",
+      "poison"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d4",
+        "poison"
+      ],
+      "tier2": [
+        "1d6",
+        "poison"
+      ],
+      "tier3": [
+        "2d6",
+        "poison"
+      ],
+      "tier4": [
+        "2d8",
+        "poison"
+      ],
+      "tier5": [
+        "3d8",
+        "poison"
+      ],
+      "tier6": [
+        "4d8",
+        "poison"
+      ]
+    },
+    "cr_min": 0,
+    "cr_max": 10,
+    "chassis_affinity": [
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "undead",
+      "any"
+    ]
+  },
+  {
+    "id": "spore_burst",
+    "name": "Spore Burst",
+    "action_type": "save",
+    "range": 20,
+    "uses_dex": false,
+    "description": "The creature releases a cloud of toxic spores (20-foot radius centered on self). Each creature in the area must succeed on a DC {dc} Constitution saving throw or be blinded and poisoned until the end of its next turn.",
+    "damage_fallback": [
+      "2d6",
+      "poison"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "poison"
+      ],
+      "tier2": [
+        "2d6",
+        "poison"
+      ],
+      "tier3": [
+        "3d6",
+        "poison"
+      ],
+      "tier4": [
+        "4d6",
+        "poison"
+      ],
+      "tier5": [
+        "5d6",
+        "poison"
+      ],
+      "tier6": [
+        "6d6",
+        "poison"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "aberration",
+      "elemental",
+      "any"
+    ]
+  },
+  {
+    "id": "wail_of_despair",
+    "name": "Wail of Despair",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature emits a keening sound that cuts at the spirit. Each creature within 30 feet that can hear must succeed on a DC {dc} Wisdom saving throw or be frightened until the end of its next turn. Creatures that fail by 5 or more are also incapacitated.",
+    "damage_fallback": [
+      "2d6",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "psychic"
+      ],
+      "tier2": [
+        "2d6",
+        "psychic"
+      ],
+      "tier3": [
+        "3d6",
+        "psychic"
+      ],
+      "tier4": [
+        "4d6",
+        "psychic"
+      ],
+      "tier5": [
+        "5d6",
+        "psychic"
+      ],
+      "tier6": [
+        "6d6",
+        "psychic"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "leader",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration",
+      "fey"
+    ]
+  },
+  {
+    "id": "summon_lesser",
+    "name": "Call of the Kin",
+    "action_type": "util",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature lets out a signal only its kind can hear. Roll a d6. On a 4 or higher, 1d4 lesser versions of the creature (CR 1/8 to CR 1) appear within 30 feet at the end of the creature's next turn. They act immediately.",
+    "damage_fallback": [
+      "1d4",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d4",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "1d4",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "1d6",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "1d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "2d8",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 5,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "leader",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "undead",
+      "fiend",
+      "any"
+    ]
+  },
+  {
+    "id": "constrict",
+    "name": "Constrict",
+    "action_type": "mwak",
+    "range": 5,
+    "uses_dex": false,
+    "description": "The creature wraps itself around a target. On a hit, the target is grappled and restrained. While restrained this way, the target takes the listed damage at the start of each of its turns. Only one creature can be constricted at a time.",
+    "damage_fallback": [
+      "1d8",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "2d8",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "3d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "4d8",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "5d8",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "aberration",
+      "any"
+    ]
+  },
+  {
+    "id": "terror_command",
+    "name": "Terror Command",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature lets out a wordless command that carries the weight of absolute authority. Each creature of the creature's choice within 30 feet that can hear it must succeed on a DC {dc} Charisma saving throw or use its reaction to move up to its full speed away from the creature.",
+    "damage_fallback": [
+      "1d4",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d4",
+        "psychic"
+      ],
+      "tier2": [
+        "1d6",
+        "psychic"
+      ],
+      "tier3": [
+        "2d6",
+        "psychic"
+      ],
+      "tier4": [
+        "2d8",
+        "psychic"
+      ],
+      "tier5": [
+        "3d8",
+        "psychic"
+      ],
+      "tier6": [
+        "4d6",
+        "psychic"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "leader",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "fiend",
+      "dragon",
+      "undead",
+      "humanoid",
+      "any"
+    ]
+  },
+  {
+    "id": "void_pulse",
+    "name": "Void Pulse",
+    "action_type": "save",
+    "range": 15,
+    "uses_dex": false,
+    "description": "A wave of nullifying energy radiates outward (15-foot radius). Each creature in the area must succeed on a DC {dc} Constitution saving throw or lose concentration on any spell they are maintaining. Magical effects of 2nd level or lower within the area are also suppressed for 1 round.",
+    "damage_fallback": [
+      "2d8",
+      "force"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "force"
+      ],
+      "tier2": [
+        "2d8",
+        "force"
+      ],
+      "tier3": [
+        "3d8",
+        "force"
+      ],
+      "tier4": [
+        "4d8",
+        "force"
+      ],
+      "tier5": [
+        "5d8",
+        "force"
+      ],
+      "tier6": [
+        "6d8",
+        "force"
+      ]
+    },
+    "cr_min": 5,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "construct",
+      "any"
+    ]
+  },
+  {
+    "id": "breath_cold",
+    "name": "Breath Weapon (Cold)",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature exhales a 30-foot line of freezing air. Each creature in the area must succeed on a DC {dc} Constitution saving throw, taking listed cold damage on a failed save or half on success. Creatures that fail are also slowed (speed halved) until the end of their next turn. Recharge 5-6.",
+    "damage_fallback": [
+      "2d8",
+      "cold"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d8",
+        "cold"
+      ],
+      "tier2": [
+        "4d8",
+        "cold"
+      ],
+      "tier3": [
+        "6d8",
+        "cold"
+      ],
+      "tier4": [
+        "8d8",
+        "cold"
+      ],
+      "tier5": [
+        "10d8",
+        "cold"
+      ],
+      "tier6": [
+        "12d8",
+        "cold"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "elemental",
+      "undead"
+    ]
+  },
+  {
+    "id": "breath_lightning",
+    "name": "Breath Weapon (Lightning)",
+    "action_type": "save",
+    "range": 40,
+    "uses_dex": false,
+    "description": "The creature exhales a crackling 40-foot line of electricity (5 feet wide). Each creature in the area must succeed on a DC {dc} Dexterity saving throw, taking listed lightning damage on a failed save or half on success. On a failed save, the target also drops one held item of the creature's choice. Recharge 5-6.",
+    "damage_fallback": [
+      "2d8",
+      "lightning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d8",
+        "lightning"
+      ],
+      "tier2": [
+        "4d8",
+        "lightning"
+      ],
+      "tier3": [
+        "6d8",
+        "lightning"
+      ],
+      "tier4": [
+        "8d8",
+        "lightning"
+      ],
+      "tier5": [
+        "10d8",
+        "lightning"
+      ],
+      "tier6": [
+        "12d8",
+        "lightning"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "elemental",
+      "construct"
+    ]
+  },
+  {
+    "id": "breath_acid",
+    "name": "Breath Weapon (Acid)",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature spews a 30-foot cone of caustic fluid. Each creature in the area must succeed on a DC {dc} Dexterity saving throw, taking listed acid damage on a failed save or half on success. Creatures that fail have their AC reduced by 2 until they take an action to clean the acid away. Recharge 5-6.",
+    "damage_fallback": [
+      "2d6",
+      "acid"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d6",
+        "acid"
+      ],
+      "tier2": [
+        "4d6",
+        "acid"
+      ],
+      "tier3": [
+        "6d6",
+        "acid"
+      ],
+      "tier4": [
+        "8d6",
+        "acid"
+      ],
+      "tier5": [
+        "10d6",
+        "acid"
+      ],
+      "tier6": [
+        "12d6",
+        "acid"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "aberration",
+      "beast"
+    ]
+  },
+  {
+    "id": "fey_glamour",
+    "name": "Bewildering Glamour",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature floods the senses of nearby creatures with overwhelming beauty or horror. Each creature within 30 feet that can see it must succeed on a DC {dc} Wisdom saving throw or be charmed until the end of its next turn. A charmed creature cannot take the Attack action and must use its movement to move toward the creature if it can do so safely.",
+    "damage_fallback": [
+      "1d6",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "psychic"
+      ],
+      "tier2": [
+        "2d6",
+        "psychic"
+      ],
+      "tier3": [
+        "3d6",
+        "psychic"
+      ],
+      "tier4": [
+        "4d6",
+        "psychic"
+      ],
+      "tier5": [
+        "5d6",
+        "psychic"
+      ],
+      "tier6": [
+        "6d6",
+        "psychic"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "leader",
+      "any"
+    ],
+    "tags": [
+      "fey",
+      "fiend",
+      "aberration"
+    ]
+  },
+  {
+    "id": "earth_eruption",
+    "name": "Earth Eruption",
+    "action_type": "save",
+    "range": 20,
+    "uses_dex": false,
+    "description": "The creature slams the ground and causes a 20-foot radius patch of earth to heave upward. Each creature standing on the ground in the area must succeed on a DC {dc} Dexterity saving throw or take listed bludgeoning damage and be knocked prone. The area becomes difficult terrain until cleared.",
+    "damage_fallback": [
+      "2d6",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "3d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "4d6",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "5d6",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "6d6",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "8d6",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "monstrosity",
+      "any"
+    ]
+  },
+  {
+    "id": "acid_pool",
+    "name": "Corrosive Pool",
+    "action_type": "save",
+    "range": 20,
+    "uses_dex": false,
+    "description": "The creature vomits a pool of acid (10-foot radius) at a point within range. Each creature in the area must succeed on a DC {dc} Dexterity saving throw or take listed acid damage. The pool persists for 1 minute. Any creature that enters or starts its turn in the pool takes 1d6 acid damage.",
+    "damage_fallback": [
+      "2d6",
+      "acid"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d6",
+        "acid"
+      ],
+      "tier2": [
+        "3d6",
+        "acid"
+      ],
+      "tier3": [
+        "4d6",
+        "acid"
+      ],
+      "tier4": [
+        "5d6",
+        "acid"
+      ],
+      "tier5": [
+        "6d6",
+        "acid"
+      ],
+      "tier6": [
+        "8d6",
+        "acid"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "artillery",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "elemental",
+      "beast"
+    ]
+  },
+  {
+    "id": "lashing_roots",
+    "name": "Lashing Roots",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "Roots or tendrils burst from the ground in a 20-foot radius centered on a point within range. Each creature in the area must succeed on a DC {dc} Strength saving throw or be restrained until the start of the creature's next turn. The area becomes difficult terrain until the roots are cleared.",
+    "damage_fallback": [
+      "1d6",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "piercing"
+      ],
+      "tier2": [
+        "2d6",
+        "piercing"
+      ],
+      "tier3": [
+        "3d6",
+        "piercing"
+      ],
+      "tier4": [
+        "3d8",
+        "piercing"
+      ],
+      "tier5": [
+        "4d8",
+        "piercing"
+      ],
+      "tier6": [
+        "5d8",
+        "piercing"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "elemental",
+      "fey",
+      "any"
+    ]
+  },
+  {
+    "id": "fear_wave",
+    "name": "Fear Wave",
+    "action_type": "save",
+    "range": 30,
+    "uses_dex": false,
+    "description": "The creature projects a ripple of primal terror outward. Each creature within 30 feet that can see or hear it must succeed on a DC {dc} Wisdom saving throw or drop whatever it is holding and use its reaction to move away from the creature as far as its movement allows.",
+    "damage_fallback": [
+      "1d6",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "psychic"
+      ],
+      "tier2": [
+        "2d6",
+        "psychic"
+      ],
+      "tier3": [
+        "3d6",
+        "psychic"
+      ],
+      "tier4": [
+        "3d8",
+        "psychic"
+      ],
+      "tier5": [
+        "4d8",
+        "psychic"
+      ],
+      "tier6": [
+        "5d8",
+        "psychic"
+      ]
+    },
+    "cr_min": 4,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "leader",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "monstrosity",
+      "fiend",
+      "beast"
+    ]
+  },
+  {
+    "id": "necrotic_wave",
+    "name": "Necrotic Wave",
+    "action_type": "save",
+    "range": 15,
+    "uses_dex": false,
+    "description": "The creature releases a pulse of death energy in a 15-foot radius. Each living creature in the area must succeed on a DC {dc} Constitution saving throw or take listed necrotic damage and have their hit point maximum reduced by the same amount until they finish a long rest.",
+    "damage_fallback": [
+      "2d6",
+      "necrotic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "2d6",
+        "necrotic"
+      ],
+      "tier2": [
+        "3d6",
+        "necrotic"
+      ],
+      "tier3": [
+        "4d6",
+        "necrotic"
+      ],
+      "tier4": [
+        "5d6",
+        "necrotic"
+      ],
+      "tier5": [
+        "6d6",
+        "necrotic"
+      ],
+      "tier6": [
+        "8d6",
+        "necrotic"
+      ]
+    },
+    "cr_min": 4,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "leader",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ]
+  }
+]

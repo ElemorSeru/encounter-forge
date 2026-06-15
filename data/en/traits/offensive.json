@@ -1,0 +1,450 @@
+[
+  {
+    "id": "poison_on_hit",
+    "name": "Venomous Strike",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "aberration"
+    ],
+    "description": "When this creature hits with a melee attack, the target must succeed on a DC {dc} Constitution saving throw or become poisoned until the end of its next turn."
+  },
+  {
+    "id": "frightful_presence",
+    "name": "Frightful Presence",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 2,
+    "tags": [
+      "any",
+      "dragon",
+      "fiend",
+      "undead"
+    ],
+    "description": "Each creature of the creature's choice that is within 60 feet and aware of it must succeed on a DC {dc} Wisdom saving throw or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
+  },
+  {
+    "id": "wound_that_remembers",
+    "name": "Wounds That Remember",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The creature's attacks leave wounds that pulse with residual harm. When it hits a creature with a melee attack, that creature takes 1d4 necrotic damage at the start of its next turn as the wound reopens."
+  },
+  {
+    "id": "brand_of_suffering",
+    "name": "Brand of Suffering",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "undead"
+    ],
+    "description": "When this creature hits the same target with two attacks in a single turn, that target is branded. Branded creatures shed a faint glow visible in darkness and grant advantage to attacks made against them until the start of the creature's next turn."
+  },
+  {
+    "id": "enervating_aura",
+    "name": "Enervating Aura",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The creature radiates a deadening force. Creatures that start their turn within 10 feet of it have their movement speed halved until the start of their next turn."
+  },
+  {
+    "id": "draining_touch",
+    "name": "Life Drain",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1.5,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "When this creature deals necrotic damage, the target's hit point maximum is reduced by the amount dealt. This reduction lasts until the target completes a long rest."
+  },
+  {
+    "id": "doom_howl",
+    "name": "Doom Howl",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "undead",
+      "fiend"
+    ],
+    "description": "Once per combat as an action, the creature releases a sound that bypasses ears and resonates inside the mind. Creatures within 60 feet that can hear it must succeed on a DC {dc} Wisdom saving throw or be paralyzed until the end of their next turn."
+  },
+  {
+    "id": "spite_burst",
+    "name": "Spite Burst",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "aberration",
+      "undead"
+    ],
+    "description": "When this creature is reduced to half its maximum hit points for the first time in a combat, it releases a burst of volatile energy. All creatures within 15 feet must succeed on a DC {dc} Dexterity saving throw or take 2d8 force damage, half on success."
+  },
+  {
+    "id": "memory_theft",
+    "name": "Memory Theft",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "fey",
+      "undead"
+    ],
+    "description": "When this creature scores a critical hit, the target must succeed on a DC {dc} Intelligence saving throw or lose access to a random spell slot or class feature for the next hour as a fragment of memory is consumed."
+  },
+  {
+    "id": "hex_spit",
+    "name": "Hex Spit",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "aberration",
+      "fey"
+    ],
+    "description": "Once per turn when this creature hits a target with a ranged attack, that target has disadvantage on its next attack roll. Additionally, if that target rolls a natural 20 on its next attack, the roll is instead treated as a natural 1."
+  },
+  {
+    "id": "pack_tactics",
+    "name": "Pack Tactics",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 0,
+    "cr_max": 10,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "humanoid"
+    ],
+    "description": "The creature has advantage on attack rolls against a creature if at least one of its allies is within 5 feet of that creature and the ally is not incapacitated."
+  },
+  {
+    "id": "blood_frenzy",
+    "name": "Bloodscent Frenzy",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "The creature can smell injury. It has advantage on melee attack rolls against any creature that does not have all of its hit points."
+  },
+  {
+    "id": "parasitic_death",
+    "name": "Parasitic Legacy",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "undead",
+      "beast"
+    ],
+    "description": "When this creature dies, the creature that dealt the killing blow must succeed on a DC {dc} Constitution saving throw. On a failure, the target is poisoned for 1 minute and cannot regain hit points while poisoned."
+  },
+  {
+    "id": "spite_bond",
+    "name": "Spite Bond",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "fiend"
+    ],
+    "description": "When this creature dies, the creature that killed it feels a resonant curse take hold. That creature must succeed on a DC {dc} Wisdom saving throw or suffer disadvantage on attack rolls for 1 minute as grief and dread wash through them."
+  },
+  {
+    "id": "sunlight_sensitivity",
+    "name": "Sunlight Sensitivity",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": -0.5,
+    "weight": 2,
+    "tags": [
+      "undead",
+      "aberration"
+    ],
+    "description": "While in sunlight, the creature has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight."
+  },
+  {
+    "id": "mnemonic_hunger",
+    "name": "Mnemonic Hunger",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "undead"
+    ],
+    "description": "When this creature deals psychic damage, it feeds. It gains temporary hit points equal to half the psychic damage dealt, as consumed memories become a brief armor of stolen experience."
+  },
+  {
+    "id": "doom_mark",
+    "name": "Mark of Doom",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1.5,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "Creatures that this creature reduces to 0 hit points have their death saving throws made at disadvantage. If they die, they cannot be resurrected by any means short of a wish spell for 24 hours."
+  },
+  {
+    "id": "petrifying_gaze",
+    "name": "Petrifying Gaze",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "beast",
+      "dragon"
+    ],
+    "description": "When a creature that can see this creature's eyes starts its turn within 30 feet of it, it must succeed on a DC {dc} Constitution saving throw. On a failure, it is restrained. On a subsequent failed save, it is petrified for 1 hour."
+  },
+  {
+    "id": "corrupting_touch",
+    "name": "Corrupting Touch",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "aberration",
+      "fiend"
+    ],
+    "description": "When this creature hits with a melee attack, the target must succeed on a DC {dc} Constitution saving throw or have its Strength score reduced by 1d4 until it completes a long rest."
+  },
+  {
+    "id": "hunger_eternal",
+    "name": "Hunger Eternal",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "undead"
+    ],
+    "description": "When no creature is within the creature's reach, it is compelled to advance. It must use its movement to move toward the nearest creature it is aware of, and it cannot willingly end its turn farther from that creature than it started."
+  },
+  {
+    "id": "fey_enthrall",
+    "name": "Fey Enthrall",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "fiend"
+    ],
+    "description": "When this creature hits a creature with an attack and that creature fails a DC {dc} Charisma saving throw, it is compelled. On its next turn, it must use at least one action doing something the creature mentally suggests, provided it is not directly harmful to itself."
+  },
+  {
+    "id": "elemental_overload",
+    "name": "Elemental Overload",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "dragon"
+    ],
+    "description": "When this creature scores a critical hit, the target is overwhelmed by elemental energy and is stunned until the end of its next turn as its body struggles to process the surge."
+  },
+  {
+    "id": "construct_overclock",
+    "name": "Overclock",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "construct"
+    ],
+    "description": "Once per combat as a bonus action, the creature pushes itself beyond design limits. Until the start of its next turn, it gains one additional attack when it takes the Attack action. After using this ability, its speed is halved until the end of its next turn."
+  },
+  {
+    "id": "savage_rend",
+    "name": "Savage Rend",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "monstrosity",
+      "beast",
+      "aberration"
+    ],
+    "description": "When this creature hits the same target with two melee attacks in a single turn, it tears a piece away. The target must succeed on a DC {dc} Constitution saving throw or take 2d6 additional slashing damage and be unable to benefit from natural healing until it completes a short rest."
+  },
+  {
+    "id": "humanoid_tactics",
+    "name": "Tactical Positioning",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 1,
+    "cr_max": 10,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "humanoid",
+      "any"
+    ],
+    "description": "When this creature and at least one ally are both adjacent to the same enemy, attacks this creature makes against that enemy have advantage and deal an extra 1d4 damage."
+  },
+  {
+    "id": "fey_curse",
+    "name": "Fey Curse",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "undead",
+      "aberration"
+    ],
+    "description": "Once per combat as a bonus action, the creature lays a curse on a creature it can see within 30 feet. The cursed creature subtracts 1d4 from all saving throws it makes until the curse is removed by a remove curse spell or similar effect."
+  },
+  {
+    "id": "elemental_surge",
+    "name": "Elemental Surge",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "dragon",
+      "fiend"
+    ],
+    "description": "Once per round, when this creature deals damage with an attack, it can channel its elemental nature to add 1d8 bonus damage of a damage type appropriate to its element (fire, cold, lightning, or acid). Choose the type when this trait is assigned."
+  },
+  {
+    "id": "monstrosity_terror",
+    "name": "Monstrous Presence",
+    "type": "feature",
+    "category": "offensive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "monstrosity",
+      "beast",
+      "dragon"
+    ],
+    "description": "The sheer wrongness of the creature's form unnerves those nearby. Creatures that start their turn within 10 feet of this creature must succeed on a DC {dc} Wisdom saving throw or waste their bonus action as they hesitate."
+  }
+]

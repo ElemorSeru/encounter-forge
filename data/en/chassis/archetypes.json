@@ -1,0 +1,86 @@
+[
+  {
+    "id": "brute",
+    "type": "brute",
+    "label": "Brute",
+    "themes": ["any", "beast", "humanoid", "undead", "fiend", "elemental", "dragon"],
+    "tiers": {
+      "tier1": { "str": 18, "dex": 8, "con": 16, "int": 5, "wis": 8, "cha": 6, "hp": 45, "ac": 12, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 20, "dex": 8, "con": 17, "int": 6, "wis": 9, "cha": 7, "hp": 110, "ac": 13, "size": "lg", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 22, "dex": 9, "con": 18, "int": 6, "wis": 10, "cha": 8, "hp": 170, "ac": 14, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 24, "dex": 9, "con": 20, "int": 7, "wis": 10, "cha": 8, "hp": 200, "ac": 16, "size": "huge", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 26, "dex": 9, "con": 22, "int": 8, "wis": 11, "cha": 9, "hp": 235, "ac": 17, "size": "huge", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 28, "dex": 9, "con": 24, "int": 8, "wis": 11, "cha": 10, "hp": 275, "ac": 18, "size": "huge", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  },
+  {
+    "id": "lurker",
+    "type": "lurker",
+    "label": "Lurker",
+    "themes": ["any", "beast", "undead", "aberration", "fey"],
+    "tiers": {
+      "tier1": { "str": 14, "dex": 16, "con": 12, "int": 8, "wis": 12, "cha": 8, "hp": 27, "ac": 14, "size": "med", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 16, "dex": 18, "con": 14, "int": 9, "wis": 13, "cha": 9, "hp": 78, "ac": 15, "size": "med", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 18, "dex": 20, "con": 15, "int": 10, "wis": 14, "cha": 10, "hp": 130, "ac": 16, "size": "med", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 19, "dex": 22, "con": 16, "int": 11, "wis": 15, "cha": 11, "hp": 160, "ac": 17, "size": "med", "speeds": { "walk": 45 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 20, "dex": 24, "con": 17, "int": 12, "wis": 15, "cha": 12, "hp": 195, "ac": 18, "size": "lg", "speeds": { "walk": 45 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 21, "dex": 26, "con": 18, "int": 13, "wis": 16, "cha": 13, "hp": 230, "ac": 19, "size": "lg", "speeds": { "walk": 50 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  },
+  {
+    "id": "skirmisher",
+    "type": "skirmisher",
+    "label": "Skirmisher",
+    "themes": ["any", "beast", "humanoid", "fey", "elemental"],
+    "tiers": {
+      "tier1": { "str": 14, "dex": 14, "con": 12, "int": 8, "wis": 10, "cha": 8, "hp": 32, "ac": 13, "size": "med", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 16, "dex": 16, "con": 14, "int": 9, "wis": 11, "cha": 9, "hp": 92, "ac": 14, "size": "med", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 18, "dex": 18, "con": 15, "int": 10, "wis": 12, "cha": 10, "hp": 152, "ac": 15, "size": "lg", "speeds": { "walk": 45 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 20, "dex": 19, "con": 17, "int": 11, "wis": 13, "cha": 11, "hp": 180, "ac": 16, "size": "lg", "speeds": { "walk": 45 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 22, "dex": 20, "con": 18, "int": 12, "wis": 13, "cha": 12, "hp": 215, "ac": 17, "size": "lg", "speeds": { "walk": 50 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 24, "dex": 21, "con": 20, "int": 13, "wis": 14, "cha": 13, "hp": 255, "ac": 18, "size": "huge", "speeds": { "walk": 50 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  },
+  {
+    "id": "controller",
+    "type": "controller",
+    "label": "Controller",
+    "themes": ["any", "aberration", "undead", "fiend", "fey", "dragon"],
+    "tiers": {
+      "tier1": { "str": 10, "dex": 12, "con": 12, "int": 14, "wis": 14, "cha": 14, "hp": 24, "ac": 12, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 11, "dex": 13, "con": 14, "int": 16, "wis": 15, "cha": 15, "hp": 80, "ac": 13, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 12, "dex": 14, "con": 15, "int": 18, "wis": 16, "cha": 16, "hp": 130, "ac": 14, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 13, "dex": 14, "con": 16, "int": 20, "wis": 17, "cha": 17, "hp": 160, "ac": 15, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 14, "dex": 15, "con": 17, "int": 22, "wis": 18, "cha": 18, "hp": 195, "ac": 16, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 14, "dex": 16, "con": 18, "int": 24, "wis": 19, "cha": 20, "hp": 240, "ac": 17, "size": "huge", "speeds": { "walk": 40 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  },
+  {
+    "id": "artillery",
+    "type": "artillery",
+    "label": "Artillery",
+    "themes": ["any", "humanoid", "construct", "elemental", "fiend"],
+    "tiers": {
+      "tier1": { "str": 8, "dex": 16, "con": 10, "int": 12, "wis": 12, "cha": 10, "hp": 22, "ac": 12, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 9, "dex": 17, "con": 12, "int": 13, "wis": 13, "cha": 11, "hp": 72, "ac": 13, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 10, "dex": 18, "con": 13, "int": 14, "wis": 14, "cha": 12, "hp": 118, "ac": 14, "size": "lg", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 11, "dex": 19, "con": 14, "int": 16, "wis": 15, "cha": 13, "hp": 148, "ac": 15, "size": "lg", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 12, "dex": 21, "con": 15, "int": 18, "wis": 16, "cha": 14, "hp": 180, "ac": 16, "size": "lg", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 13, "dex": 23, "con": 16, "int": 20, "wis": 17, "cha": 15, "hp": 220, "ac": 17, "size": "huge", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  },
+  {
+    "id": "leader",
+    "type": "leader",
+    "label": "Leader",
+    "themes": ["any", "humanoid", "undead", "fiend", "dragon"],
+    "tiers": {
+      "tier1": { "str": 14, "dex": 12, "con": 14, "int": 12, "wis": 14, "cha": 16, "hp": 38, "ac": 14, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier2": { "str": 16, "dex": 13, "con": 15, "int": 13, "wis": 15, "cha": 18, "hp": 98, "ac": 15, "size": "med", "speeds": { "walk": 30 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier3": { "str": 18, "dex": 14, "con": 16, "int": 14, "wis": 16, "cha": 20, "hp": 160, "ac": 16, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier4": { "str": 19, "dex": 14, "con": 17, "int": 16, "wis": 17, "cha": 22, "hp": 190, "ac": 17, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier5": { "str": 20, "dex": 15, "con": 18, "int": 18, "wis": 18, "cha": 24, "hp": 225, "ac": 18, "size": "lg", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] },
+      "tier6": { "str": 21, "dex": 15, "con": 19, "int": 20, "wis": 19, "cha": 26, "hp": 265, "ac": 19, "size": "huge", "speeds": { "walk": 35 }, "resistances": [], "immunities": [], "condition_immunities": [] }
+    }
+  }
+]

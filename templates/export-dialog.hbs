@@ -1,0 +1,216 @@
+<div class="encounter-forge-form">
+  <div class="encounter-forge-header">
+    <i class="fas fa-file-export"></i>
+    <span>{{localize "ENCOUNTERFORGE.Export.Subtitle"}}</span>
+  </div>
+
+  {{#if sourceMissing}}
+    <div class="ef-warning">
+      <i class="fas fa-triangle-exclamation"></i>
+      <span>{{localize "ENCOUNTERFORGE.Export.SourceMissing"}}</span>
+    </div>
+  {{/if}}
+
+  <div class="ef-grid">
+    <div class="ef-col">
+      {{#if sourceName}}
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.Source"}}</label>
+          <input type="text" value="{{sourceName}}" disabled />
+        </div>
+      {{/if}}
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Export.Name"}}</label>
+        <input type="text" name="name" value="{{name}}" required />
+      </div>
+
+      {{#unless isSpell}}
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.Kind"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Kind'}}"></i></label>
+          <select name="kind">
+            {{#each kindOptions}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="form-group" data-section="trait-category">
+          <label>{{localize "ENCOUNTERFORGE.Export.Category"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.TraitCategory'}}"></i></label>
+          <select name="categoryTrait">
+            {{#each traitCategories}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="form-group" data-section="action-category">
+          <label>{{localize "ENCOUNTERFORGE.Export.Category"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ActionCategory'}}"></i></label>
+          <select name="categoryAction">
+            {{#each actionCategories}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+      {{/unless}}
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Export.Description"}}</label>
+        <textarea name="description" rows="4">{{description}}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Export.Tags"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Tags'}}"></i></label>
+        <div class="ef-tag-grid">
+          {{#each tags}}
+            <label class="ef-tag-checkbox">
+              <input type="checkbox" name="tags" value="{{this.value}}" {{#if this.checked}}checked{{/if}} />
+              <span>{{this.label}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="ef-col ef-col-right">
+      {{#unless isSpell}}
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.CRMin"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.CRRange'}}"></i></label>
+            <input type="number" name="crMin" value="{{crMin}}" min="0" step="0.125" />
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.CRMax"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.CRRange'}}"></i></label>
+            <input type="number" name="crMax" value="{{crMax}}" min="0" step="0.125" />
+          </div>
+        </div>
+      {{/unless}}
+
+      <div data-section="trait">
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.CRAdjustment"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.CRAdjustment'}}"></i></label>
+          <input type="number" name="crAdjustment" value="{{crAdjustment}}" min="0" max="3" />
+        </div>
+
+        <div data-section="legendary">
+          <div class="ef-grid">
+            <div class="form-group">
+              <label>{{localize "ENCOUNTERFORGE.Export.LegendaryType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.LegendaryType'}}"></i></label>
+              <select name="legendaryType">
+                {{#each legendaryOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{{localize "ENCOUNTERFORGE.Export.LegendaryCost"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.LegendaryCost'}}"></i></label>
+              <input type="number" name="legendaryCost" value="{{legendaryCost}}" min="1" max="3" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.ResistanceUses"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ResistanceUses'}}"></i></label>
+            <input type="number" name="resistanceUses" value="{{resistanceUses}}" min="1" max="3" />
+          </div>
+        </div>
+      </div>
+
+      <div data-section="action">
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.ActionType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ActionType'}}"></i></label>
+            <select name="actionType">
+              {{#each actionTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.Range"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Range'}}"></i></label>
+            <input type="number" name="range" value="{{range}}" min="0" />
+          </div>
+        </div>
+
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.DamageFormula"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+            <input type="text" name="damageFormulaAction" value="{{damageFormula}}" placeholder="2d6" />
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.DamageType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+            <select name="damageTypeAction">
+              {{#each damageTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.ChassisAffinity"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ChassisAffinity'}}"></i></label>
+          <div class="ef-tag-grid">
+            {{#each chassisOptions}}
+              <label class="ef-tag-checkbox">
+                <input type="checkbox" name="chassisAffinity" value="{{this.value}}" {{#if this.checked}}checked{{/if}} />
+                <span>{{this.label}}</span>
+              </label>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div data-section="spell">
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.School"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.School'}}"></i></label>
+            <select name="school">
+              {{#each schoolOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group solo-boss-group">
+            <div class="solo-boss-left">
+              <label>{{localize "ENCOUNTERFORGE.Export.Cantrip"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Cantrip'}}"></i></label>
+            </div>
+            <input type="checkbox" name="cantrip" value="1" {{#if cantrip}}checked{{/if}} />
+          </div>
+        </div>
+
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.TierMin"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SpellTier'}}"></i></label>
+            <input type="number" name="tierMin" value="{{tierMin}}" min="1" max="6" />
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.TierMax"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SpellTier'}}"></i></label>
+            <input type="number" name="tierMax" value="{{tierMax}}" min="1" max="6" />
+          </div>
+        </div>
+
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.DamageFormula"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+            <input type="text" name="damageFormulaSpell" value="{{damageFormula}}" placeholder="2d6" />
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.DamageType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+            <select name="damageTypeSpell">
+              {{#each damageTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-footer ef-footer-end">
+    <button type="button" data-action="closeDialog">
+      <i class="fas fa-times"></i> {{localize "ENCOUNTERFORGE.Dialog.Cancel"}}
+    </button>
+    <button type="submit">
+      <i class="fas fa-file-export"></i> {{#if isResync}}{{localize "ENCOUNTERFORGE.Export.ReSync"}}{{else}}{{localize "ENCOUNTERFORGE.Export.Export"}}{{/if}}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,284 @@
+[
+  {
+    "id": "legendary_resistance_2",
+    "name": "Legendary Resistance (2/Day)",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 7,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "Twice per day, if the creature fails a saving throw, it can choose to succeed instead.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "resistance",
+    "resistance_uses": 2
+  },
+  {
+    "id": "legendary_lair_tremor",
+    "name": "Lair Action: Tremor",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "description": "On initiative count 20 (losing ties), the creature can cause the ground in a 30-foot radius to shudder. Each creature in that area must succeed on a DC {dc} Dexterity saving throw or fall prone.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "lair"
+  },
+  {
+    "id": "legendary_lair_darkness",
+    "name": "Lair Action: Crushing Dark",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "On initiative count 20 (losing ties), the creature can snuff all nonmagical light sources within 60 feet of itself. The area is plunged into darkness that cannot be dispelled except by a spell of 2nd level or higher.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "lair"
+  },
+  {
+    "id": "legendary_lair_summon",
+    "name": "Lair Action: Dire Summons",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "undead"
+    ],
+    "description": "On initiative count 20 (losing ties), the creature calls out to lesser servants. A group of minor creatures appropriate to its theme manifests within 30 feet. These creatures act on initiative count 10 and fight until destroyed or the encounter ends.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "lair"
+  },
+  {
+    "id": "legendary_action_move",
+    "name": "Legendary Action: Swift Advance",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature can take 3 legendary actions per round, choosing from the options listed. Only one option can be used at a time and only at the end of another creature's turn. The creature regains spent legendary actions at the start of its turn. Move (Costs 1 Action): The creature moves up to its speed. Attack (Costs 2 Actions): The creature makes one attack.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 1
+  },
+  {
+    "id": "legendary_wail",
+    "name": "Legendary Action: Wail of the Forsaken",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "As a legendary action, the creature emits a mournful wail. Each creature within 30 feet that can hear it must succeed on a DC {dc} Wisdom saving throw or become frightened until the end of its next turn.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 1
+  },
+  {
+    "id": "legendary_regen",
+    "name": "Legendary Healing: Drain the Fallen",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 9,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "When a creature within 30 feet is reduced to 0 hit points, the creature regains 20 hit points as it feeds on the departing life energy.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "passive"
+  },
+  {
+    "id": "legendary_mind_shatter",
+    "name": "Legendary Action: Mind Shatter",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "fiend"
+    ],
+    "description": "As a legendary action (costs 2), the creature targets one creature it can see within 60 feet. That creature must succeed on a DC {dc} Intelligence saving throw or take 4d6 psychic damage and be stunned until the end of its next turn.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 2
+  },
+  {
+    "id": "legendary_fey_vanish",
+    "name": "Legendary Action: Vanishing Step",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "undead"
+    ],
+    "description": "As a legendary action, the creature turns invisible until the start of its next turn or until it makes an attack. While invisible, it can move up to half its movement speed.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 1
+  },
+  {
+    "id": "legendary_beast_apex",
+    "name": "Legendary Action: Apex Strike",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "beast",
+      "monstrosity",
+      "dragon"
+    ],
+    "description": "As a legendary action (costs 2 actions), the creature makes one attack with advantage. On a hit, the attack deals an additional 2d8 damage and the target must succeed on a DC {dc} Strength saving throw or be knocked prone.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 2
+  },
+  {
+    "id": "legendary_dragon_recharge",
+    "name": "Legendary Resilience: Breath Recharge",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 9,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "dragon",
+      "elemental"
+    ],
+    "description": "At the start of each of its turns, the creature rolls a d6. On a 5 or 6, its breath weapon or primary area attack recharges immediately. When the creature uses a recharge ability, it roars or vents energy, imposing disadvantage on the next attack made against it until the start of its next turn.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "passive"
+  },
+  {
+    "id": "legendary_lair_psychic",
+    "name": "Lair Action: Psychic Tremor",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "fey"
+    ],
+    "description": "On initiative count 20 (losing ties), the creature floods the area with alien thought. Each creature within 60 feet must succeed on a DC {dc} Wisdom saving throw or take 2d6 psychic damage and be unable to use their reaction until the start of their next turn.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "lair"
+  },
+  {
+    "id": "legendary_construct_rebuild",
+    "name": "Legendary Resilience: Self-Repair",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 9,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "construct"
+    ],
+    "description": "At the start of its turn, if the creature is below half its maximum hit points, it regains 10 hit points. This ability ceases if the creature takes a critical hit from an adamantine weapon or similar anti-construct effect.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "passive"
+  },
+  {
+    "id": "legendary_lair_flame",
+    "name": "Lair Action: Scorched Earth",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "dragon",
+      "elemental",
+      "fiend"
+    ],
+    "description": "On initiative count 20 (losing ties), the creature causes flames or superheated air to burst from the ground in a 20-foot radius. Each creature in that area must succeed on a DC {dc} Dexterity saving throw or take 2d6 fire damage. The area becomes difficult terrain until the start of initiative count 20 on the next round.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "lair"
+  },
+  {
+    "id": "legendary_action_curse",
+    "name": "Legendary Action: Cursed Strike",
+    "type": "feature",
+    "category": "legendary",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fey",
+      "fiend"
+    ],
+    "description": "As a legendary action (costs 2 actions), the creature makes one melee or ranged attack. On a hit, in addition to normal damage, the target is cursed. The cursed creature has disadvantage on saving throws until it is targeted by a remove curse spell or similar effect.",
+    "activation_type": "",
+    "activation_cost": null,
+    "legendary_type": "action",
+    "legendary_cost": 2
+  }
+]

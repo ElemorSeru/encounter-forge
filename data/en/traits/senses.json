@@ -1,0 +1,334 @@
+[
+  {
+    "id": "darkvision_60",
+    "name": "Darkvision",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 3,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light. It can't discern color in darkness, only shades of gray."
+  },
+  {
+    "id": "darkvision_120",
+    "name": "Superior Darkvision",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The creature can see in dim light within 120 feet as if it were bright light, and in darkness as if it were dim light."
+  },
+  {
+    "id": "blindsight_30",
+    "name": "Blindsight",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "construct",
+      "aberration"
+    ],
+    "description": "The creature can perceive its surroundings within 30 feet without relying on sight, through vibration, echolocation, or other non-visual senses."
+  },
+  {
+    "id": "tremorsense_30",
+    "name": "Tremorsense",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "elemental",
+      "construct"
+    ],
+    "description": "The creature can detect and pinpoint the origin of vibrations within 30 feet, provided it and the source of the vibrations are in contact with the same ground or substance."
+  },
+  {
+    "id": "truesight_10",
+    "name": "Truesight",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fiend",
+      "aberration",
+      "dragon",
+      "construct"
+    ],
+    "description": "The creature can see within 10 feet as if under the effects of truesight, seeing through invisibility, illusions, and into the Ethereal Plane."
+  },
+  {
+    "id": "keen_smell",
+    "name": "Keen Smell",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "The creature has advantage on Wisdom (Perception) checks that rely on smell."
+  },
+  {
+    "id": "keen_hearing",
+    "name": "Keen Hearing",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "The creature has advantage on Wisdom (Perception) checks that rely on hearing."
+  },
+  {
+    "id": "scent_of_fear",
+    "name": "Scent of Fear",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature can smell stress hormones and blood. It automatically knows the general health status of any creature it can smell: uninjured, bloodied (below half HP), or near death."
+  },
+  {
+    "id": "detect_magic_passive",
+    "name": "Arcane Awareness",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "fey",
+      "dragon"
+    ],
+    "description": "The creature passively senses the presence of magic within 30 feet. It knows when a creature within that range is concentrating on a spell, though not what spell."
+  },
+  {
+    "id": "death_sense",
+    "name": "Death Sense",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature can sense creatures within 60 feet that have 0 hit points or are making death saving throws. It always knows the direction of the nearest corpse within 300 feet."
+  },
+  {
+    "id": "telepathy_30",
+    "name": "Limited Telepathy",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "aberration",
+      "fiend",
+      "fey"
+    ],
+    "description": "The creature can communicate simple concepts and emotions to any creature it can see within 30 feet, even if they share no common language."
+  },
+  {
+    "id": "echo_location",
+    "name": "Echo Location",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "aberration"
+    ],
+    "description": "The creature uses sound to map its environment. It cannot use this sense while deafened, but it can detect invisible creatures within 30 feet and is not fooled by illusions that lack a sound component."
+  },
+  {
+    "id": "lies_detector",
+    "name": "Truth Sense",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fey",
+      "fiend",
+      "aberration"
+    ],
+    "description": "The creature knows when a creature within 30 feet that it can see speaks a deliberate lie. It does not automatically know the truth, only that the statement is false."
+  },
+  {
+    "id": "emotional_sight",
+    "name": "Emotional Sight",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "fey",
+      "fiend"
+    ],
+    "description": "The creature perceives the emotional state of creatures within 60 feet as visible auras. Frightened, charmed, or emotionally compromised creatures are immediately apparent to it, and it has advantage on Wisdom (Insight) checks."
+  },
+  {
+    "id": "primal_awareness",
+    "name": "Primal Awareness",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "monstrosity",
+      "beast"
+    ],
+    "description": "The creature's senses are perfectly tuned for predation. It has advantage on Wisdom (Perception) checks and cannot be surprised by creatures that are not magically hidden or invisible."
+  },
+  {
+    "id": "construct_scanner",
+    "name": "Threat Scanner",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "construct",
+      "aberration"
+    ],
+    "description": "The creature constantly analyzes its surroundings. It always knows the current hit point total of any creature it can see, and it is aware of the number and general type of any creature within 60 feet, even through walls."
+  },
+  {
+    "id": "fey_sight",
+    "name": "Fey Sight",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "aberration"
+    ],
+    "description": "The creature sees through illusions and polymorph effects as if they were not there. It also has advantage on saving throws against being charmed or having its senses deceived."
+  },
+  {
+    "id": "combat_instincts",
+    "name": "Combat Instincts",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "humanoid",
+      "any"
+    ],
+    "description": "Years of experience have sharpened the creature's battlefield awareness. It cannot be surprised while it is conscious, and it always knows the number of enemies within 30 feet."
+  },
+  {
+    "id": "elemental_attune",
+    "name": "Elemental Attunement",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "elemental",
+      "dragon"
+    ],
+    "description": "The creature senses the flow of elemental energy. It can identify the damage type of any attack or spell used within 60 feet before the effect resolves, and it always knows the direction of the nearest elemental creature within 120 feet."
+  },
+  {
+    "id": "undead_awareness",
+    "name": "Grave Sense",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature can sense the presence of life force. It knows the exact location of any creature within 60 feet that has more than 0 hit points, even through walls and obstacles, and it can tell how many hit points that creature has remaining."
+  },
+  {
+    "id": "dragon_lore",
+    "name": "Draconic Senses",
+    "type": "feature",
+    "category": "senses",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "dragon"
+    ],
+    "description": "The creature's ancient senses pierce concealment and detect wealth. It has advantage on Perception checks, can smell gold and magical items within 60 feet, and cannot be fooled by disguises or illusions that alter a creature's scent."
+  }
+]

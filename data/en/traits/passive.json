@@ -1,0 +1,452 @@
+[
+  {
+    "id": "magic_resistance",
+    "name": "Magic Resistance",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature has advantage on saving throws against spells and other magical effects."
+  },
+  {
+    "id": "magic_weapons",
+    "name": "Magic Weapons",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature's weapon attacks are magical for the purpose of overcoming resistance and immunity."
+  },
+  {
+    "id": "false_appearance",
+    "name": "False Appearance",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "construct",
+      "elemental"
+    ],
+    "description": "While the creature remains motionless, it is indistinguishable from a natural part of the environment, such as a boulder, a tree, or a pool of shadow."
+  },
+  {
+    "id": "water_breathing",
+    "name": "Amphibious",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "elemental"
+    ],
+    "description": "The creature can breathe both air and water."
+  },
+  {
+    "id": "regeneration",
+    "name": "Regeneration",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1.5,
+    "weight": 1,
+    "tags": [
+      "any"
+    ],
+    "description": "The creature regains 10 hit points at the start of its turn. If the creature takes acid or fire damage, this trait doesn't function at the start of the creature's next turn."
+  },
+  {
+    "id": "legendary_resistance_1",
+    "name": "Legendary Resistance (1/Day)",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 7,
+    "cr_max": 15,
+    "cr_adjustment": 2,
+    "weight": 1,
+    "tags": [
+      "any"
+    ],
+    "description": "Once per day, if the creature fails a saving throw, it can choose to succeed instead."
+  },
+  {
+    "id": "timekeeper",
+    "name": "Timekeeper",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "aberration"
+    ],
+    "description": "The creature's internal rhythm cannot be disrupted. It is immune to the effects of haste and slow spells. Additionally, it has advantage on initiative rolls."
+  },
+  {
+    "id": "verdant_growth",
+    "name": "Verdant Growth",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "fey",
+      "elemental"
+    ],
+    "description": "While the creature is in contact with natural soil, plant life, or rain, it regains 5 hit points at the start of each of its turns."
+  },
+  {
+    "id": "void_step",
+    "name": "Void Step",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "undead",
+      "aberration",
+      "fey"
+    ],
+    "description": "The creature makes no sound when it moves. It cannot be heard by any mundane or magical means that rely on sound, and it automatically succeeds on Dexterity (Stealth) checks related to noise."
+  },
+  {
+    "id": "swarmborn",
+    "name": "Swarmborn",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 10,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "aberration"
+    ],
+    "description": "When this creature is reduced to half its maximum hit points, it fractures into a smaller form and a coordinated swarm of lesser versions of itself. The GM may describe this as splitting visually, though mechanically the creature gains advantage on all attacks for 1 round from the chaos of the transition."
+  },
+  {
+    "id": "ancestor_whisper",
+    "name": "Ancestor's Whisper",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fey",
+      "aberration"
+    ],
+    "description": "The creature can commune with the last memories preserved in fresh corpses. It can extract a single piece of information from any corpse that died within the last 24 hours by touching it for 1 minute."
+  },
+  {
+    "id": "dream_siphon",
+    "name": "Dream Siphon",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fey",
+      "aberration"
+    ],
+    "description": "The creature feeds on the dreams of sleepers. While any creature is unconscious or sleeping within 30 feet of it, the creature regains 1 hit point at the start of each of its turns."
+  },
+  {
+    "id": "mimicry",
+    "name": "Mimicry",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "any",
+      "beast",
+      "fey"
+    ],
+    "description": "The creature can mimic sounds it has heard, including voices. A creature that hears the sounds can tell they are imitations with a successful DC 14 Wisdom (Insight) check."
+  },
+  {
+    "id": "tethered_soul",
+    "name": "Tethered Soul",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "aberration"
+    ],
+    "description": "When this creature is reduced to 0 hit points, its soul clings to the physical world for one final moment. It remains active until the end of its next turn, after which it dies. It may use this last turn normally."
+  },
+  {
+    "id": "echo_form",
+    "name": "Echo Form",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "fey",
+      "aberration",
+      "undead"
+    ],
+    "description": "At the start of combat, a silent duplicate of this creature appears in an adjacent space. The duplicate has no hit points but is visually identical. The first successful attack of the combat that targets the creature has a 50% chance of targeting the duplicate instead and automatically missing."
+  },
+  {
+    "id": "salt_of_sorrow",
+    "name": "Salt of Sorrow",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "aberration",
+      "fey"
+    ],
+    "description": "Whenever a creature deals psychic damage to this creature, the attacker takes 1d4 psychic damage as the creature's condensed suffering reflects back through the psychic link."
+  },
+  {
+    "id": "false_prophet",
+    "name": "False Prophet",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 4,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "fiend",
+      "fey",
+      "aberration"
+    ],
+    "description": "Creatures that successfully resist one of this creature's abilities still feel wrong about it afterward. Even on a successful saving throw, a creature is shaken for 1 round and has disadvantage on Insight checks made against this creature."
+  },
+  {
+    "id": "corroded_memory",
+    "name": "Corroded Memory",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "aberration",
+      "undead"
+    ],
+    "description": "Creatures that encounter this creature find their memory of its appearance clouded afterward. Witnesses cannot accurately describe the creature's features for 24 hours and have disadvantage on checks to identify it by name or description."
+  },
+  {
+    "id": "no_language",
+    "name": "Primal Mind",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 8,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast"
+    ],
+    "description": "The creature operates entirely on instinct. It cannot be reasoned with through language and is immune to social conditions such as being persuaded, deceived, or intimidated through speech."
+  },
+  {
+    "id": "reckless_attacker",
+    "name": "Reckless",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "any",
+      "beast",
+      "humanoid"
+    ],
+    "description": "At the start of its turn, the creature can choose to attack recklessly. Doing so gives it advantage on all melee attack rolls during that turn, but attack rolls against it have advantage until the start of its next turn."
+  },
+  {
+    "id": "cursed_vessel",
+    "name": "Cursed Vessel",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "description": "The creature is a container for a curse rather than a true living thing. Spells that heal living creatures do not affect it. Holy water and similar effects deal 2d6 radiant damage to it."
+  },
+  {
+    "id": "mirror_soul",
+    "name": "Mirror Soul",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 5,
+    "cr_max": 15,
+    "cr_adjustment": 1,
+    "weight": 1,
+    "tags": [
+      "any",
+      "construct",
+      "aberration",
+      "fey"
+    ],
+    "description": "The creature briefly mirrors the last type of damage it sustained. Until the end of its next turn after taking damage, any creature that touches the creature or hits it with a melee attack takes 1d6 damage of the same type."
+  },
+  {
+    "id": "draconic_authority",
+    "name": "Draconic Authority",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 3,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "dragon",
+      "fiend"
+    ],
+    "description": "The creature radiates ancient power. Creatures with a CR lower than this creature that start their turn within 30 feet must succeed on a DC {dc} Wisdom saving throw or be unable to willingly move closer to the creature that turn."
+  },
+  {
+    "id": "elemental_body",
+    "name": "Elemental Body",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "elemental"
+    ],
+    "description": "The creature is a manifest expression of its element. Any creature that touches it or hits it with a melee attack takes 1d4 damage of the creature's elemental type (fire, cold, lightning, or acid). Choose the type when this trait is assigned."
+  },
+  {
+    "id": "monstrosity_instinct",
+    "name": "Monstrous Instinct",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 0,
+    "cr_max": 10,
+    "cr_adjustment": 0,
+    "weight": 2,
+    "tags": [
+      "monstrosity",
+      "beast"
+    ],
+    "description": "The creature acts on pure predatory instinct. It always acts on the first round of combat without needing to roll initiative above 0, and it never hesitates or delays its first action."
+  },
+  {
+    "id": "battle_hardened",
+    "name": "Battle Hardened",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 2,
+    "tags": [
+      "humanoid",
+      "any"
+    ],
+    "description": "The creature has seen countless fights. It is immune to the frightened condition while it can see at least one ally, and it has advantage on saving throws against effects that would cause it to become paralyzed or stunned."
+  },
+  {
+    "id": "construct_memory",
+    "name": "Perfect Memory",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0,
+    "weight": 1,
+    "tags": [
+      "construct",
+      "aberration"
+    ],
+    "description": "The creature perfectly records everything it perceives. It cannot be deceived by false memories, cannot be the target of any effect that alters its memories, and it has advantage on checks to recall information it has previously encountered."
+  },
+  {
+    "id": "fey_pact",
+    "name": "Pact of the Wild",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 2,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "fey",
+      "elemental"
+    ],
+    "description": "The creature has an ancient bond with the natural world. While in natural terrain (forests, swamps, grasslands, mountains), it cannot be surprised, it has advantage on Stealth checks, and its movement speed increases by 10 feet."
+  },
+  {
+    "id": "blood_hunger",
+    "name": "Blood Hunger",
+    "type": "feature",
+    "category": "passive",
+    "cr_min": 1,
+    "cr_max": 15,
+    "cr_adjustment": 0.5,
+    "weight": 1,
+    "tags": [
+      "undead",
+      "beast",
+      "aberration"
+    ],
+    "description": "When this creature reduces a living creature to 0 hit points, it feeds. It regains hit points equal to the damage dealt by the killing blow, up to its maximum."
+  }
+]

@@ -1,0 +1,921 @@
+[
+  {
+    "id": "slam",
+    "name": "Slam",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A heavy, crushing blow with a limb, appendage, or body mass.",
+    "damage_fallback": [
+      "1d6",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "3d6",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "4d6",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "5d6",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "6d6",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 0,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "any"
+    ]
+  },
+  {
+    "id": "claw",
+    "name": "Claw",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A raking strike with natural claws, designed to tear flesh.",
+    "damage_fallback": [
+      "1d6",
+      "slashing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "slashing"
+      ],
+      "tier2": [
+        "2d6",
+        "slashing"
+      ],
+      "tier3": [
+        "2d8",
+        "slashing"
+      ],
+      "tier4": [
+        "3d8",
+        "slashing"
+      ],
+      "tier5": [
+        "4d8",
+        "slashing"
+      ],
+      "tier6": [
+        "5d8",
+        "slashing"
+      ]
+    },
+    "cr_min": 0,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "lurker",
+      "skirmisher",
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "aberration",
+      "dragon",
+      "any"
+    ]
+  },
+  {
+    "id": "bite",
+    "name": "Bite",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A powerful snap of fanged jaws.",
+    "damage_fallback": [
+      "1d8",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "piercing"
+      ],
+      "tier2": [
+        "2d8",
+        "piercing"
+      ],
+      "tier3": [
+        "3d8",
+        "piercing"
+      ],
+      "tier4": [
+        "4d8",
+        "piercing"
+      ],
+      "tier5": [
+        "5d8",
+        "piercing"
+      ],
+      "tier6": [
+        "6d8",
+        "piercing"
+      ]
+    },
+    "cr_min": 0,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "beast",
+      "dragon",
+      "any"
+    ]
+  },
+  {
+    "id": "necrotic_touch",
+    "name": "Necrotic Touch",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A touch that draws vitality from the living. On a hit, the target also takes 1d6 necrotic damage that cannot be healed until the creature completes a short rest.",
+    "damage_fallback": [
+      "1d6",
+      "necrotic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "necrotic"
+      ],
+      "tier2": [
+        "2d6",
+        "necrotic"
+      ],
+      "tier3": [
+        "3d6",
+        "necrotic"
+      ],
+      "tier4": [
+        "4d6",
+        "necrotic"
+      ],
+      "tier5": [
+        "5d6",
+        "necrotic"
+      ],
+      "tier6": [
+        "6d6",
+        "necrotic"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "leader",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ]
+  },
+  {
+    "id": "tendril_lash",
+    "name": "Tendril Lash",
+    "action_type": "mwak",
+    "range": 10,
+    "description": "A whipping strike from a long, muscular appendage with surprising reach.",
+    "damage_fallback": [
+      "1d8",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "2d8",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "3d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "4d8",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "5d8",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "beast",
+      "any"
+    ]
+  },
+  {
+    "id": "rending_claw",
+    "name": "Rending Claw",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A vicious, hooking strike meant to tear and destabilize. On a hit, if the target is wearing armor, their AC is reduced by 1 until the armor is repaired.",
+    "damage_fallback": [
+      "1d8",
+      "slashing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "slashing"
+      ],
+      "tier2": [
+        "2d6",
+        "slashing"
+      ],
+      "tier3": [
+        "3d6",
+        "slashing"
+      ],
+      "tier4": [
+        "3d8",
+        "slashing"
+      ],
+      "tier5": [
+        "4d8",
+        "slashing"
+      ],
+      "tier6": [
+        "5d8",
+        "slashing"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "lurker",
+      "skirmisher",
+      "brute"
+    ],
+    "tags": [
+      "beast",
+      "aberration",
+      "any"
+    ]
+  },
+  {
+    "id": "grasping_limb",
+    "name": "Grasping Limb",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "The creature attempts to seize and restrain a target. On a hit, the target is also grappled (escape DC {dc}).",
+    "damage_fallback": [
+      "1d6",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "2d8",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "3d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "4d6",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "5d6",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "any"
+    ]
+  },
+  {
+    "id": "bone_spike",
+    "name": "Bone Spike",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A natural spike of exposed bone used as a stabbing weapon.",
+    "damage_fallback": [
+      "1d8",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "piercing"
+      ],
+      "tier2": [
+        "2d8",
+        "piercing"
+      ],
+      "tier3": [
+        "2d10",
+        "piercing"
+      ],
+      "tier4": [
+        "3d10",
+        "piercing"
+      ],
+      "tier5": [
+        "4d10",
+        "piercing"
+      ],
+      "tier6": [
+        "5d10",
+        "piercing"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "lurker",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "construct",
+      "beast"
+    ]
+  },
+  {
+    "id": "psychic_slam",
+    "name": "Psychic Slam",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A physical strike accompanied by a burst of psychic pressure. On a hit, the target must succeed on a DC {dc} Intelligence saving throw or be unable to take reactions until the start of its next turn.",
+    "damage_fallback": [
+      "1d6",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "psychic"
+      ],
+      "tier2": [
+        "2d6",
+        "psychic"
+      ],
+      "tier3": [
+        "3d6",
+        "psychic"
+      ],
+      "tier4": [
+        "4d6",
+        "psychic"
+      ],
+      "tier5": [
+        "5d6",
+        "psychic"
+      ],
+      "tier6": [
+        "6d6",
+        "psychic"
+      ]
+    },
+    "cr_min": 3,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "fiend"
+    ]
+  },
+  {
+    "id": "tail_sweep",
+    "name": "Tail Sweep",
+    "action_type": "mwak",
+    "range": 10,
+    "description": "A powerful horizontal sweep of a heavy tail. On a hit, the target must succeed on a DC {dc} Strength saving throw or be knocked prone.",
+    "damage_fallback": [
+      "2d6",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d6",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "2d8",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "3d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "4d6",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "5d6",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "dragon",
+      "beast",
+      "any"
+    ]
+  },
+  {
+    "id": "cold_touch",
+    "name": "Numbing Touch",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A freezing grasp that steals warmth and slows the body. On a hit, the target's speed is reduced by 10 feet until the start of its next turn.",
+    "damage_fallback": [
+      "1d8",
+      "cold"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "cold"
+      ],
+      "tier2": [
+        "2d6",
+        "cold"
+      ],
+      "tier3": [
+        "3d6",
+        "cold"
+      ],
+      "tier4": [
+        "3d8",
+        "cold"
+      ],
+      "tier5": [
+        "4d8",
+        "cold"
+      ],
+      "tier6": [
+        "5d8",
+        "cold"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "any"
+    ],
+    "tags": [
+      "undead",
+      "elemental"
+    ]
+  },
+  {
+    "id": "ember_strike",
+    "name": "Ember Strike",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "The creature's limb burns with inner fire. On a hit, the target catches alight and takes 1d6 fire damage at the start of its next turn unless it uses an action to douse the flames.",
+    "damage_fallback": [
+      "1d8",
+      "fire"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "fire"
+      ],
+      "tier2": [
+        "2d6",
+        "fire"
+      ],
+      "tier3": [
+        "2d8",
+        "fire"
+      ],
+      "tier4": [
+        "3d8",
+        "fire"
+      ],
+      "tier5": [
+        "4d8",
+        "fire"
+      ],
+      "tier6": [
+        "5d8",
+        "fire"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "dragon",
+      "fiend"
+    ]
+  },
+  {
+    "id": "stone_fist",
+    "name": "Stone Fist",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A blow of compressed stone or dense metal. On a hit, the target must succeed on a DC {dc} Strength saving throw or be knocked back 10 feet.",
+    "damage_fallback": [
+      "1d10",
+      "bludgeoning"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "bludgeoning"
+      ],
+      "tier2": [
+        "2d8",
+        "bludgeoning"
+      ],
+      "tier3": [
+        "3d8",
+        "bludgeoning"
+      ],
+      "tier4": [
+        "4d8",
+        "bludgeoning"
+      ],
+      "tier5": [
+        "5d8",
+        "bludgeoning"
+      ],
+      "tier6": [
+        "6d8",
+        "bludgeoning"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "construct"
+    ]
+  },
+  {
+    "id": "glamour_touch",
+    "name": "Glamour Touch",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A caress laced with fey enchantment. On a hit, the target must succeed on a DC {dc} Wisdom saving throw or be charmed until the end of its next turn. While charmed, the target cannot make attacks against the creature.",
+    "damage_fallback": [
+      "1d6",
+      "psychic"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "psychic"
+      ],
+      "tier2": [
+        "2d6",
+        "psychic"
+      ],
+      "tier3": [
+        "2d8",
+        "psychic"
+      ],
+      "tier4": [
+        "3d6",
+        "psychic"
+      ],
+      "tier5": [
+        "4d6",
+        "psychic"
+      ],
+      "tier6": [
+        "5d6",
+        "psychic"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "fey",
+      "fiend"
+    ]
+  },
+  {
+    "id": "acid_lash",
+    "name": "Acid Lash",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A strike that leaves a corrosive residue. On a hit, the target's AC is reduced by 1 until it cleans the acid off (requires an action). This penalty can stack up to three times.",
+    "damage_fallback": [
+      "1d6",
+      "acid"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d6",
+        "acid"
+      ],
+      "tier2": [
+        "2d6",
+        "acid"
+      ],
+      "tier3": [
+        "3d6",
+        "acid"
+      ],
+      "tier4": [
+        "4d6",
+        "acid"
+      ],
+      "tier5": [
+        "5d6",
+        "acid"
+      ],
+      "tier6": [
+        "6d6",
+        "acid"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "lurker",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "aberration",
+      "elemental",
+      "beast"
+    ]
+  },
+  {
+    "id": "savage_gore",
+    "name": "Savage Gore",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A brutal horn or spike attack. This creature must move at least 10 feet in a straight line before attacking with this. On a hit, the target must succeed on a DC {dc} Strength saving throw or be knocked prone.",
+    "damage_fallback": [
+      "1d10",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d10",
+        "piercing"
+      ],
+      "tier2": [
+        "2d8",
+        "piercing"
+      ],
+      "tier3": [
+        "3d8",
+        "piercing"
+      ],
+      "tier4": [
+        "4d8",
+        "piercing"
+      ],
+      "tier5": [
+        "5d8",
+        "piercing"
+      ],
+      "tier6": [
+        "6d8",
+        "piercing"
+      ]
+    },
+    "cr_min": 1,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "skirmisher",
+      "any"
+    ],
+    "tags": [
+      "monstrosity",
+      "beast",
+      "any"
+    ]
+  },
+  {
+    "id": "rusted_blade",
+    "name": "Rusted Blade",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A corroded weapon that leaves festering wounds. On a hit, the target must succeed on a DC {dc} Constitution saving throw or take 1d4 piercing damage at the start of each of its turns for 1 minute. The condition ends when the target receives any magical healing.",
+    "damage_fallback": [
+      "1d8",
+      "piercing"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "piercing"
+      ],
+      "tier2": [
+        "2d6",
+        "piercing"
+      ],
+      "tier3": [
+        "2d8",
+        "piercing"
+      ],
+      "tier4": [
+        "3d8",
+        "piercing"
+      ],
+      "tier5": [
+        "4d6",
+        "piercing"
+      ],
+      "tier6": [
+        "5d6",
+        "piercing"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "skirmisher",
+      "lurker",
+      "any"
+    ],
+    "tags": [
+      "humanoid",
+      "undead",
+      "construct"
+    ]
+  },
+  {
+    "id": "thunder_slam",
+    "name": "Thunder Slam",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "A strike accompanied by a burst of concussive force. On a hit, the target must succeed on a DC {dc} Constitution saving throw or be deafened until the end of its next turn and pushed 5 feet away.",
+    "damage_fallback": [
+      "1d8",
+      "thunder"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "thunder"
+      ],
+      "tier2": [
+        "2d6",
+        "thunder"
+      ],
+      "tier3": [
+        "3d6",
+        "thunder"
+      ],
+      "tier4": [
+        "3d8",
+        "thunder"
+      ],
+      "tier5": [
+        "4d8",
+        "thunder"
+      ],
+      "tier6": [
+        "5d8",
+        "thunder"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "brute",
+      "any"
+    ],
+    "tags": [
+      "elemental",
+      "monstrosity",
+      "construct"
+    ]
+  },
+  {
+    "id": "radiant_strike",
+    "name": "Searing Strike",
+    "action_type": "mwak",
+    "range": 5,
+    "description": "The creature's blow burns with holy or infernal light. On a hit, the target must succeed on a DC {dc} Constitution saving throw or be blinded until the start of its next turn.",
+    "damage_fallback": [
+      "1d8",
+      "radiant"
+    ],
+    "damage_tiers": {
+      "tier1": [
+        "1d8",
+        "radiant"
+      ],
+      "tier2": [
+        "2d6",
+        "radiant"
+      ],
+      "tier3": [
+        "3d6",
+        "radiant"
+      ],
+      "tier4": [
+        "3d8",
+        "radiant"
+      ],
+      "tier5": [
+        "4d8",
+        "radiant"
+      ],
+      "tier6": [
+        "5d8",
+        "radiant"
+      ]
+    },
+    "cr_min": 2,
+    "cr_max": 15,
+    "chassis_affinity": [
+      "controller",
+      "any"
+    ],
+    "tags": [
+      "fiend",
+      "humanoid",
+      "fey"
+    ]
+  }
+]

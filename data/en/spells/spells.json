@@ -1,0 +1,2610 @@
+[
+  {
+    "name": "blade ward",
+    "school": "abjuration",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "construct",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "resistance",
+    "school": "abjuration",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "fey",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "absorb elements",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "mage armor",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "fey",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "protection from evil and good",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fiend",
+      "undead",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "shield",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "sanctuary",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "fey",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "lesser restoration",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "warding bond",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "arcane lock",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "construct",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "counterspell",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "aberration",
+      "construct",
+      "dragon",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "dispel magic",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "magic circle",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fiend",
+      "undead",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "protection from energy",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "banishment",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fiend",
+      "humanoid",
+      "construct"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "cha",
+      "damage": [
+        "0",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "death ward",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "undead",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "stoneskin",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "construct",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "globe of invulnerability",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "dragon",
+      "construct",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "wall of force",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "construct",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "mind blank",
+    "school": "abjuration",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "aberration",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "acid splash",
+    "school": "conjuration",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "aberration",
+      "beast"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "1d6",
+        "acid"
+      ]
+    }
+  },
+  {
+    "name": "create bonfire",
+    "school": "conjuration",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "1d8",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "fog cloud",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "fey",
+      "beast"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "grease",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "humanoid",
+      "beast"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "0",
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "name": "unseen servant",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "misty step",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "web",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "beast",
+      "aberration",
+      "any"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "0",
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "name": "cloud of daggers",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fiend",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "4d4",
+        "slashing"
+      ]
+    }
+  },
+  {
+    "name": "flaming sphere",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "2d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "sleet storm",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "dragon",
+      "undead"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "0",
+        "cold"
+      ]
+    }
+  },
+  {
+    "name": "stinking cloud",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "beast",
+      "elemental",
+      "undead"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "0",
+        "poison"
+      ]
+    }
+  },
+  {
+    "name": "summon undead",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "conjure animals",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "beast",
+      "fey",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "dimension door",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "aberration",
+      "fey",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "evard's black tentacles",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "3d6",
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "name": "conjure elemental",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "cloudkill",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "elemental",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "5d8",
+        "poison"
+      ]
+    }
+  },
+  {
+    "name": "teleportation circle",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "fey",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "plane shift",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "aberration",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "cha",
+      "damage": [
+        "0",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "gate",
+    "school": "conjuration",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "fiend",
+      "aberration",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "guidance",
+    "school": "divination",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "fey",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "true strike",
+    "school": "divination",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "aberration",
+      "fey",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "detect magic",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "identify",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "construct",
+      "humanoid",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "comprehend languages",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "aberration",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "detect thoughts",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "aberration",
+      "fey",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "see invisibility",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "aberration",
+      "construct",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "locate object",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "construct",
+      "humanoid",
+      "beast"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "find traps",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "beast",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "arcane eye",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "aberration",
+      "construct",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "clairvoyance",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "aberration",
+      "fey",
+      "undead"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "speak with dead",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "undead",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "locate creature",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "beast",
+      "aberration",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "divination",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "humanoid",
+      "fey",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "true seeing",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "dragon",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "legend lore",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "dragon",
+      "humanoid",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "scrying",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "fey",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "find the path",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "beast",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "foresight",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "aberration",
+      "fey",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "astral projection",
+    "school": "divination",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "aberration",
+      "undead",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "friends",
+    "school": "enchantment",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "humanoid",
+      "fey",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "mind sliver",
+    "school": "enchantment",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "aberration",
+      "fiend",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "int",
+      "damage": [
+        "1d6",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "bane",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fiend",
+      "undead",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "cha",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "charm person",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "command",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fiend",
+      "humanoid",
+      "undead"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "dissonant whispers",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "aberration",
+      "undead",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "3d6",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "enthrall",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "hold person",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "fiend",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "suggestion",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "fear",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fiend",
+      "undead",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "hypnotic pattern",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fey",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "enemies abound",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "aberration",
+      "fiend",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "int",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "charm monster",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "compulsion",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "dominate person",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fiend",
+      "aberration",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "hold monster",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "aberration",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "dominate monster",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "aberration",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "symbol",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "undead",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "feeblemind",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "fiend",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "int",
+      "damage": [
+        "4d6",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "power word stun",
+    "school": "enchantment",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "aberration",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "fire bolt",
+    "school": "evocation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "dragon",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d10",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "eldritch blast",
+    "school": "evocation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "fiend",
+      "aberration",
+      "any"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d10",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "ray of frost",
+    "school": "evocation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "undead",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d8",
+        "cold"
+      ]
+    }
+  },
+  {
+    "name": "burning hands",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "3d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "thunderwave",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "beast",
+      "any"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "2d8",
+        "thunder"
+      ]
+    }
+  },
+  {
+    "name": "shatter",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "elemental",
+      "construct",
+      "monstrosity"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "3d8",
+        "thunder"
+      ]
+    }
+  },
+  {
+    "name": "scorching ray",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "2d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "spiritual weapon",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "humanoid",
+      "undead",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d8",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "fireball",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "8d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "lightning bolt",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "8d6",
+        "lightning"
+      ]
+    }
+  },
+  {
+    "name": "call lightning",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "beast",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "3d10",
+        "lightning"
+      ]
+    }
+  },
+  {
+    "name": "wall of fire",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "dragon",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "5d8",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "ice storm",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "dragon",
+      "undead"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "4d8",
+        "cold"
+      ]
+    }
+  },
+  {
+    "name": "cone of cold",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "dragon",
+      "undead"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "8d8",
+        "cold"
+      ]
+    }
+  },
+  {
+    "name": "flame strike",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "elemental",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "4d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "chain lightning",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "elemental",
+      "dragon",
+      "construct"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "10d8",
+        "lightning"
+      ]
+    }
+  },
+  {
+    "name": "sunburst",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fey",
+      "humanoid",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "12d6",
+        "radiant"
+      ]
+    }
+  },
+  {
+    "name": "fire storm",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "elemental",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "7d10",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "power word pain",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fiend",
+      "aberration",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "meteor swarm",
+    "school": "evocation",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "dragon",
+      "elemental",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "20d6",
+        "fire"
+      ]
+    }
+  },
+  {
+    "name": "minor illusion",
+    "school": "illusion",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "aberration",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "dancing lights",
+    "school": "illusion",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "construct",
+      "any"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "silent image",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "humanoid",
+      "undead"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "disguise self",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "humanoid",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "color spray",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "fey",
+      "elemental",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "0",
+        "radiant"
+      ]
+    }
+  },
+  {
+    "name": "mirror image",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "blur",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "aberration",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "invisibility",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "undead",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "phantasmal force",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "int",
+      "damage": [
+        "1d6",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "nathair's mischief",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "fey",
+      "dragon",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "major image",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fey",
+      "aberration",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "phantom steed",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fey",
+      "undead",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "enemies abound",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fey",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "int",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "greater invisibility",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "undead",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "hallucinatory terrain",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "elemental",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "phantasmal killer",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "4d10",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "seeming",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fey",
+      "humanoid",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "mislead",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "fey",
+      "aberration",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "weird",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "aberration",
+      "fey",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "4d10",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "project image",
+    "school": "illusion",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "fey",
+      "aberration",
+      "undead"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "chill touch",
+    "school": "necromancy",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d8",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "toll the dead",
+    "school": "necromancy",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "1d8",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "inflict wounds",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "3d10",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "false life",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "construct",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "ray of sickness",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "2d8",
+        "poison"
+      ]
+    }
+  },
+  {
+    "name": "blindness/deafness",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "0",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "ray of enfeeblement",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "0",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "gentle repose",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "undead",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "animate dead",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "bestow curse",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "undead",
+      "fiend",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "vampiric touch",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "3d6",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "blight",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "8d8",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "shadow of moil",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "undead",
+      "aberration",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "danse macabre",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "undead",
+      "fiend"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "contagion",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "undead",
+      "fiend",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "0",
+        "poison"
+      ]
+    }
+  },
+  {
+    "name": "antilife shell",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "circle of death",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "8d6",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "harm",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "14d6",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "finger of death",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "undead",
+      "fiend",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "7d8",
+        "necrotic"
+      ]
+    }
+  },
+  {
+    "name": "power word kill",
+    "school": "necromancy",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "undead",
+      "fiend",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "shillelagh",
+    "school": "transmutation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "beast",
+      "fey",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "attack",
+      "damage": [
+        "1d8",
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "name": "poison spray",
+    "school": "transmutation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "beast",
+      "elemental",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "1d12",
+        "poison"
+      ]
+    }
+  },
+  {
+    "name": "thunderclap",
+    "school": "transmutation",
+    "cantrip": true,
+    "tier_min": 1,
+    "tags": [
+      "elemental",
+      "beast",
+      "any"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "1d6",
+        "thunder"
+      ]
+    }
+  },
+  {
+    "name": "expeditious retreat",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "beast",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "jump",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "beast",
+      "elemental",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "longstrider",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 1,
+    "tags": [
+      "beast",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "alter self",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "aberration",
+      "fey",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "enlarge/reduce",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "construct",
+      "elemental",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "spider climb",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 2,
+    "tags": [
+      "beast",
+      "aberration",
+      "construct"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "gaseous form",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "elemental",
+      "undead",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "fly",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "fey",
+      "dragon",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "haste",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "humanoid",
+      "construct",
+      "fey"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "slow",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 3,
+    "tags": [
+      "construct",
+      "aberration",
+      "fey"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "psychic"
+      ]
+    }
+  },
+  {
+    "name": "polymorph",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "fey",
+      "aberration",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "transmute rock",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 4,
+    "tags": [
+      "elemental",
+      "construct",
+      "humanoid"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "0",
+        "bludgeoning"
+      ]
+    }
+  },
+  {
+    "name": "passwall",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "construct",
+      "aberration",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "disintegrate",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "construct",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "10d6",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "flesh to stone",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "aberration",
+      "dragon",
+      "elemental"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "con",
+      "damage": [
+        "0",
+        "force"
+      ]
+    }
+  },
+  {
+    "name": "etherealness",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 5,
+    "tags": [
+      "undead",
+      "fey",
+      "aberration"
+    ],
+    "fallback": {
+      "type": "util"
+    }
+  },
+  {
+    "name": "true polymorph",
+    "school": "transmutation",
+    "cantrip": false,
+    "tier_min": 6,
+    "tags": [
+      "fey",
+      "aberration",
+      "dragon"
+    ],
+    "fallback": {
+      "type": "save",
+      "save_stat": "wis",
+      "damage": [
+        "0",
+        "force"
+      ]
+    }
+  }
+]

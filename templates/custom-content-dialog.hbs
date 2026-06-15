@@ -1,0 +1,49 @@
+<div class="encounter-forge-form">
+  <div class="encounter-forge-header">
+    <i class="fas fa-list"></i>
+    <span>{{localize "ENCOUNTERFORGE.CustomContent.Subtitle"}}</span>
+  </div>
+
+  {{#if hasAny}}
+    {{#each groups}}
+      {{#if this.entries.length}}
+        <div class="ef-custom-group">
+          <div class="ef-custom-group-label">{{this.label}}</div>
+          <div class="ef-custom-list">
+            {{#each this.entries}}
+              <div class="ef-custom-row">
+                <input type="checkbox" data-action="toggleEnabled" data-id="{{this.id}}" data-kind="{{this.kind}}" {{#if this.enabled}}checked{{/if}} />
+                <div class="ef-custom-info">
+                  <span class="ef-custom-name">{{this.name}}</span>
+                  <span class="ef-custom-meta">{{this.categoryLabel}} - {{this.sourceName}}</span>
+                </div>
+                <button type="button" data-action="resync" data-id="{{this.id}}" data-kind="{{this.kind}}" title="{{@root.resyncTooltip}}">
+                  <i class="fas fa-rotate"></i> {{localize "ENCOUNTERFORGE.CustomContent.ReSync"}}
+                </button>
+                <button type="button" class="ef-custom-delete" data-action="deleteEntry" data-id="{{this.id}}" data-kind="{{this.kind}}" title="{{localize 'ENCOUNTERFORGE.CustomContent.Delete'}}">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
+  {{else}}
+    <p class="ef-actor-empty">{{localize "ENCOUNTERFORGE.CustomContent.Empty"}}</p>
+  {{/if}}
+
+  <div class="form-footer ef-footer-split-end">
+    <div class="ef-footer-group">
+      <button type="button" data-action="exportContent" title="{{localize 'ENCOUNTERFORGE.CustomContent.ExportHint'}}">
+        <i class="fas fa-upload"></i> {{localize "ENCOUNTERFORGE.CustomContent.Export"}}
+      </button>
+      <button type="button" data-action="importContent" title="{{localize 'ENCOUNTERFORGE.CustomContent.ImportHint'}}">
+        <i class="fas fa-download"></i> {{localize "ENCOUNTERFORGE.CustomContent.Import"}}
+      </button>
+    </div>
+    <button type="button" data-action="closeDialog">
+      <i class="fas fa-times"></i> {{localize "ENCOUNTERFORGE.Dialog.Close"}}
+    </button>
+  </div>
+</div>

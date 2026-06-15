@@ -1,0 +1,132 @@
+<div class="encounter-forge-form">
+  <div class="encounter-forge-header">
+    <i class="fas fa-hat-wizard"></i>
+    <span>Assembles a unique creature from trait, action, and archetype pools.</span>
+  </div>
+
+  {{#if showName}}
+    <div class="form-group">
+      <label>{{localize "ENCOUNTERFORGE.Dialog.Name"}}</label>
+      <input type="text" name="overrideName" value="{{nameValue}}" />
+    </div>
+  {{/if}}
+
+  <div class="ef-grid">
+    <div class="ef-col">
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Players"}}</label>
+        <input type="number" name="playerCount" value="{{playerCount}}" min="1" max="8" />
+      </div>
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Level"}}</label>
+        <input type="number" name="playerLevel" value="{{playerLevel}}" min="1" max="20" />
+      </div>
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Enemies"}}</label>
+        <input type="number" name="enemyCount" value="{{enemyCount}}" min="1" max="10" {{#if enemyCountLocked}}disabled{{/if}} />
+      </div>
+
+      {{#unless hideSolo}}
+        <div class="form-group solo-boss-group">
+          <div class="solo-boss-left">
+            <label title="{{localize 'ENCOUNTERFORGE.Dialog.SoloHint'}}">
+              {{localize "ENCOUNTERFORGE.Dialog.Solo"}}
+            </label>
+            <span class="solo-boss-hint">{{localize "ENCOUNTERFORGE.Dialog.SoloHint"}}</span>
+          </div>
+          <input type="checkbox" name="solo" value="1" {{#if solo}}checked{{/if}} />
+        </div>
+      {{/unless}}
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Theme"}}</label>
+        <select name="theme">
+          {{#each themes}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Disposition"}}</label>
+        <select name="disposition">
+          {{#each dispositions}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="ef-col ef-col-right">
+      <div class="form-group">
+        <label>{{localize "ENCOUNTERFORGE.Dialog.Difficulty"}}</label>
+        <select name="difficulty">
+          {{#each difficulties}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="form-group solo-boss-group">
+        <div class="solo-boss-left">
+          <label title="{{localize 'ENCOUNTERFORGE.Dialog.CalibrateHint'}}">
+            {{localize "ENCOUNTERFORGE.Dialog.Calibrate"}}
+          </label>
+          <span class="solo-boss-hint">{{localize "ENCOUNTERFORGE.Dialog.CalibrateHint"}}</span>
+        </div>
+        <input type="checkbox" name="calibrate" value="1" {{#if calibrate}}checked{{/if}} />
+      </div>
+
+      <div class="ef-actor-picker {{#unless calibrate}}ef-collapsed{{/unless}}">
+        {{#if playerActors.length}}
+          <div class="ef-actor-list">
+            {{#each playerActors}}
+              <label class="ef-actor-row">
+                <input type="checkbox" name="partyActors" value="{{this.id}}" {{#if this.selected}}checked{{/if}} />
+                <img src="{{this.img}}" />
+                <span class="ef-actor-name">{{this.name}}</span>
+                <span class="ef-actor-owner">{{this.owner}}</span>
+              </label>
+            {{/each}}
+          </div>
+        {{else}}
+          <p class="ef-actor-empty">{{localize "ENCOUNTERFORGE.Dialog.NoPlayerActors"}}</p>
+        {{/if}}
+      </div>
+
+      <div class="ef-readout">
+        <div class="ef-readout-row">
+          <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.CR"}}</span>
+          <span class="ef-readout-value" data-readout="cr">{{readout.cr}}</span>
+        </div>
+        <div class="ef-readout-row">
+          <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Enemy"}}</span>
+          <span class="ef-readout-value" data-readout="enemy">{{readout.enemyDPR}} / {{readout.enemyHP}}</span>
+        </div>
+        <div class="ef-readout-row">
+          <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Party"}}</span>
+          <span class="ef-readout-value" data-readout="party">{{readout.partyDPR}} / {{readout.partyHP}}</span>
+        </div>
+        <div class="ef-readout-row">
+          <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Rounds"}}</span>
+          <span class="ef-readout-value" data-readout="rounds">{{readout.roundsDefeat}} / {{readout.roundsThreaten}}</span>
+        </div>
+        <div class="ef-readout-row ef-readout-outcome" data-outcome="{{readout.outcome}}">
+          <span class="ef-readout-label">{{localize "ENCOUNTERFORGE.Dialog.Readout.Outlook"}}</span>
+          <span class="ef-readout-value" data-readout="outcome">{{readout.outcomeLabel}}</span>
+        </div>
+      </div>
+
+      <div class="form-footer ef-footer-split">
+        <button type="button" data-action="closeDialog">
+          <i class="fas fa-times"></i> {{localize "ENCOUNTERFORGE.Dialog.Cancel"}}
+        </button>
+        <button type="submit">
+          <i class="fas fa-dice-d20"></i> {{localize "ENCOUNTERFORGE.Dialog.Generate"}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
