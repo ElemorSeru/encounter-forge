@@ -1,4 +1,8 @@
 # GM Tools: Encounter Forge
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/Elemor)
+[![Foundry Version](https://img.shields.io/badge/Foundry-v12-informational?style=for-the-badge)](https://foundryvtt.com)
+[![Module Version](https://img.shields.io/badge/Version-1.0.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
+<img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/lore-reference-board/latest/total">
 
 **Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
 
@@ -164,14 +168,10 @@ Have a feature request or found a balance edge case? Open an issue on GitHub or 
 
 ---
 
-## Links
+## About
 
-- **GitHub:** `<GITHUB_REPO_URL_PLACEHOLDER>`
-- **Foundry Package Page:** `<FOUNDRY_PACKAGE_PAGE_URL_PLACEHOLDER>`
-- **Patreon:** `<PATREON_URL_PLACEHOLDER>`
+Built and maintained by [Elemor](https://patreon.com/Elemor).
 
----
+If you find this useful and want to support continued development, the Patreon link above is the best way to do that.
 
-## License
-
-`<LICENSE_PLACEHOLDER>`
+Bug reports and feature requests are welcome via the Issues tab.
