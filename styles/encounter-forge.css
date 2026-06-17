@@ -591,3 +591,247 @@
   background: #3a2020 !important;
   color: #e88 !important;
 }
+
+/* Combat Calibration Dialog */
+.ef-calibration .ef-calibration-intro p {
+  font-size: 0.85em;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ef-calibration-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0 4px;
+}
+
+.ef-cal-step-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 3px;
+  font-size: 0.95em;
+  cursor: pointer;
+  background: #2a2a2a;
+  color: #aaa;
+  border: 1px solid #3a3a3a;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ef-cal-step-btn:hover:not(:disabled) {
+  background: #3a3a3a;
+  color: #ddd;
+}
+
+.ef-cal-step-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ef-cal-value {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ddd;
+  min-width: 2.5em;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.ef-cal-step-label {
+  text-align: center;
+  font-size: 0.82em;
+  color: #aaa;
+  font-style: italic;
+  margin: 0 0 8px;
+}
+
+.ef-footer-split {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.ef-footer-split button {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.ef-footer-close {
+  margin-left: auto;
+}
+
+.ef-cal-reset-btn {
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  color: #c0392b;
+  font-size: 0.85em;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ef-cal-reset-btn:hover {
+  background: #3a2020;
+  color: #e88;
+  border-color: #c0392b;
+}
+
+.ef-pip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  gap: 4px;
+}
+
+.ef-pip {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  border: 1px solid #3a3a3a;
+  background: #2a2a2a;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.ef-pip:hover {
+  border-color: #888;
+  background: #3a3a3a;
+}
+
+.ef-pip-active.ef-pip-neg {
+  background: #2a5a2a;
+  border-color: #4a8a4a;
+}
+
+.ef-pip-active.ef-pip-zero {
+  background: #4a4a4a;
+  border-color: #888;
+}
+
+.ef-pip-active.ef-pip-pos {
+  background: #5a2020;
+  border-color: #c0392b;
+}
+
+.ef-pip-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72em;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.ef-cal-preview {
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 10px 12px;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ef-cal-preview-title {
+  font-size: 0.78em;
+  color: #666;
+  font-style: italic;
+  margin: 0;
+}
+
+.ef-cal-legend {
+  display: flex;
+  gap: 16px;
+}
+
+.ef-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78em;
+  color: #888;
+}
+
+.ef-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ef-legend-dot-defeat { background: #3a8a3a; }
+.ef-legend-dot-drain  { background: #c0392b; }
+
+.ef-cal-diff-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ef-cal-diff-label {
+  width: 52px;
+  font-size: 0.75em;
+  color: #999;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ef-cal-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ef-bar-track {
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ef-bar-defeat {
+  height: 100%;
+  background: #3a8a3a;
+  border-radius: 4px;
+}
+
+.ef-bar-drain {
+  height: 100%;
+  background: #c0392b;
+  border-radius: 4px;
+}
+
+.ef-cal-stat {
+  width: 72px;
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ef-cal-rounds {
+  font-size: 0.78em;
+  color: #aaa;
+}
+
+.ef-cal-outcome {
+  font-size: 0.72em;
+}
+
+.ef-cal-stat[data-outcome="easy"]       .ef-cal-outcome { color: #7fc97f; }
+.ef-cal-stat[data-outcome="manageable"] .ef-cal-outcome { color: #9dc; }
+.ef-cal-stat[data-outcome="risky"]      .ef-cal-outcome { color: #e8b84a; }
+.ef-cal-stat[data-outcome="dangerous"]  .ef-cal-outcome { color: #c0392b; }

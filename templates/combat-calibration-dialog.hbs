@@ -1,0 +1,79 @@
+<div class="encounter-forge-form ef-calibration">
+
+  <div class="ef-calibration-intro">
+    <p>{{localize "ENCOUNTERFORGE.Calibration.Hint"}}</p>
+  </div>
+
+  <div class="ef-calibration-stepper">
+    <button type="button" class="ef-cal-step-btn" data-action="decrement"
+      {{#if atMin}}disabled{{/if}} title="Decrease">
+      <i class="fas fa-minus"></i>
+    </button>
+    <span class="ef-cal-value">{{offsetDisplay}}</span>
+    <button type="button" class="ef-cal-step-btn" data-action="increment"
+      {{#if atMax}}disabled{{/if}} title="Increase">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <p class="ef-cal-step-label">{{stepLabel}}</p>
+
+  <div class="ef-pip-row">
+    {{#each pips}}
+      <button type="button"
+        class="ef-pip {{#if this.active}}ef-pip-active ef-pip-{{this.colorClass}}{{/if}}"
+        data-action="setOffset"
+        data-step="{{this.step}}"
+        aria-label="Set intensity to {{this.step}}"></button>
+    {{/each}}
+  </div>
+  <div class="ef-pip-axis">
+    <span>{{localize "ENCOUNTERFORGE.Calibration.Forgiving"}}</span>
+    <span>{{localize "ENCOUNTERFORGE.Calibration.Standard"}}</span>
+    <span>{{localize "ENCOUNTERFORGE.Calibration.Brutal"}}</span>
+  </div>
+
+  <div class="ef-cal-preview">
+    <p class="ef-cal-preview-title">{{localize "ENCOUNTERFORGE.Calibration.PreviewLabel"}}</p>
+
+    <div class="ef-cal-legend">
+      <span class="ef-legend-item">
+        <span class="ef-legend-dot ef-legend-dot-defeat"></span>
+        {{localize "ENCOUNTERFORGE.Calibration.RoundsDefeat"}}
+      </span>
+      <span class="ef-legend-item">
+        <span class="ef-legend-dot ef-legend-dot-drain"></span>
+        {{localize "ENCOUNTERFORGE.Calibration.RoundsDrain"}}
+      </span>
+    </div>
+
+    {{#each diffRows}}
+      <div class="ef-cal-diff-row">
+        <span class="ef-cal-diff-label">{{this.label}}</span>
+        <div class="ef-cal-bars">
+          <div class="ef-bar-track" title="{{localize "ENCOUNTERFORGE.Calibration.RoundsDefeat"}}: {{this.defeat}}">
+            <div class="ef-bar-defeat" style="width: {{this.defeatWidth}}%;"></div>
+          </div>
+          <div class="ef-bar-track" title="{{localize "ENCOUNTERFORGE.Calibration.RoundsDrain"}}: {{this.drain}}">
+            <div class="ef-bar-drain" style="width: {{this.drainWidth}}%;"></div>
+          </div>
+        </div>
+        <div class="ef-cal-stat" data-outcome="{{this.outcome}}">
+          <span class="ef-cal-rounds">{{this.defeat}}r / {{this.drain}}r</span>
+          <span class="ef-cal-outcome">{{this.outcomeLabel}}</span>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="form-footer ef-footer-split">
+    {{#unless isDefault}}
+      <button type="button" class="ef-cal-reset-btn" data-action="resetOffset">
+        <i class="fas fa-rotate-left"></i> {{localize "ENCOUNTERFORGE.Calibration.Reset"}}
+      </button>
+    {{/unless}}
+    <button type="button" class="ef-footer-close" data-action="closeDialog">
+      <i class="fas fa-times"></i> {{localize "ENCOUNTERFORGE.Dialog.Close"}}
+    </button>
+  </div>
+
+</div>

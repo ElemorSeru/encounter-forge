@@ -33,7 +33,8 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
     : await estimatePartyGeneric(pCount, pLevel);
 
   // Sizes the whole encounter to the party and difficulty; targetCR is only used for picking a flavor tier per creature.
-  const envelope = computeEncounterEnvelope(partyEstimate, diff, count, isSolo);
+  const intensityOffset = game.settings.get("encounter-forge", "combatIntensity") ?? 0;
+  const envelope = computeEncounterEnvelope(partyEstimate, diff, count, isSolo, intensityOffset);
   const targetCR = await nearestCRForStats(envelope.perEnemyHP, envelope.perEnemyDPR);
 
   ui.notifications.info(

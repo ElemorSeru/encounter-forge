@@ -13,6 +13,7 @@ This wiki covers how to use the Encounter Forge dialog, how the balancing math w
 - [What's in a Generated Creature](#whats-in-a-generated-creature)
 - [Custom Content](#custom-content)
 - [Settings](#settings)
+- [Combat Intensity Calibration](#combat-intensity-calibration)
 - [API & Integration](#api--integration)
 - [Hooks](#hooks)
 - [Macro Examples](#macro-examples)
@@ -121,7 +122,7 @@ A party estimate is `{ dpr, hp }`:
 
 ### 2. The encounter envelope
 
-`computeEncounterEnvelope(partyEstimate, difficulty, enemyCount, isSolo)` sizes the **whole** encounter first, then splits it.
+`computeEncounterEnvelope(partyEstimate, difficulty, enemyCount, isSolo, intensityOffset)` sizes the **whole** encounter first, then splits it.
 
 Each difficulty maps to a target round count:
 
@@ -131,6 +132,8 @@ Each difficulty maps to a target round count:
 | Medium | 3 | 5.4 | Manageable |
 | Hard | 4 | 4.4 | Risky |
 | Deadly | 5 | 3.5 | Dangerous |
+
+The `roundsToThreaten` values above are **baseline defaults**. When `intensityOffset` is non-zero, they are scaled before the envelope is computed, see [Combat Intensity Calibration](#combat-intensity-calibration) below.
 
 ```
 groupHP  = party.dpr * roundsToDefeat
@@ -345,6 +348,52 @@ Found under **Configure Settings -> Module Settings -> GM Tools: Encounter Forge
 | **Remember Last Used** | Client | When enabled, the dialog pre-fills with your last-used values (Players, Level, Enemies, Difficulty, Theme, Solo, Disposition, Calibrate, selected actors). |
 | **Reset to Defaults** | Client (menu) | Clears your saved "last used values" after a confirmation prompt. |
 | **Custom Content** | World (menu) | Opens the [Custom Content manager](#the-custom-content-manager), enable/disable, ReSync, delete, export, or import custom traits, actions, and spells. |
+| **Combat Intensity Calibration** | World (menu) | Opens the [Combat Intensity Calibration](#combat-intensity-calibration) dialog. Adjusts how aggressively enemies are sized for all difficulty levels. Restricted to GMs. |
+
+---
+
+## Combat Intensity Calibration
+
+Found under **Configure Settings -> Module Settings -> GM Tools: Encounter Forge -> Combat Intensity Calibration** (GMs only).
+
+This setting lets you shift how aggressively enemies are sized across all difficulty levels, without changing the difficulty labels or the underlying math structure. It is intended for playtesting: leave it at 0 unless your table's fights consistently feel off in one direction.
+
+### What it changes
+
+The calibration offset is an integer from -3 to +3. It scales the `roundsToThreaten` target for every difficulty level by a factor of `1 / (1 + offset * 0.12)`:
+
+- **Positive offset (harder):** the denominator grows, so `roundsToThreaten` shrinks. Enemies are built to drain the party's HP faster. Fights are more attritional.
+- **Negative offset (easier):** `roundsToThreaten` grows. Enemies hit softer, fights resolve with fewer casualties.
+- **Zero (default):** the baseline targets in the table above are used as-is.
+
+`roundsToDefeat` (the green bars in the preview) is never affected, only how hard the enemy hits back changes.
+
+The step labels in the dialog describe each level:
+
+| Step | Label |
+|---|---|
+| -3 | Forgiving - fights resolve quickly, low casualty risk |
+| -2 | Easier - enemies are softer and less threatening |
+| -1 | Slightly easier than default |
+| 0 | Standard (default) |
+| +1 | Slightly harder than default |
+| +2 | Harder - enemies hit harder and last longer |
+| +3 | Brutal - extended attrition; death is a real possibility |
+
+### The live preview
+
+The dialog shows a real-time bar chart for all four difficulties using a fixed illustrative party (4 players, level 5, one enemy). Two bars are shown per difficulty:
+
+- **Green bar** - rounds to defeat the enemy group (party DPR vs. enemy HP). Constant regardless of offset.
+- **Red bar** - rounds to exhaust the party's HP (enemy DPR vs. party HP). This is what the offset changes: a larger positive offset makes this bar shorter.
+
+The preview uses a fixed party so the chart is comparable across tables and shareable between GMs. It is illustrative, not a simulation of your specific party.
+
+### Save behavior
+
+Changes are live/saved the moment you click a pip or the +/- stepper. No Save button is needed. The setting takes effect immediately for any encounter generated after that point. Closing the dialog does not discard changes.
+
+The **Reset to Default** button (bottom-left, visible only when the current value is not 0) immediately sets the offset back to 0.
 
 ---
 

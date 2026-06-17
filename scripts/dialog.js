@@ -30,7 +30,8 @@ async function computeReadout({ pCount, pLevel, eCount, diff, isSolo, calibrate,
   let partyEstimate = await estimatePartyGeneric(pCount, pLevel);
   if (actors.length) partyEstimate = await estimatePartyFromActors(actors);
 
-  const envelope = computeEncounterEnvelope(partyEstimate, diff, count, isSolo);
+  const intensityOffset = game.settings.get("encounter-forge", "combatIntensity") ?? 0;
+  const envelope = computeEncounterEnvelope(partyEstimate, diff, count, isSolo, intensityOffset);
   const targetCR = await nearestCRForStats(envelope.perEnemyHP, envelope.perEnemyDPR);
   const groupEstimate = { hp: envelope.groupHP, dpr: envelope.groupDPR };
 

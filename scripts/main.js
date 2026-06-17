@@ -3,6 +3,7 @@ import { generate } from "./generator.js";
 import { registerCustomContentSetting, exportCustomContent, importCustomContent } from "./custom-content.js";
 import EncounterForgeExportDialog from "./export-dialog.js";
 import EncounterForgeCustomContentDialog from "./custom-content-dialog.js";
+import EncounterForgeCombatCalibrationDialog from "./combat-calibration-dialog.js";
 
 // Allowed item types to export into Encounter Forge's custom content pools.
 const EXPORTABLE_ITEM_TYPES = ["feat", "weapon", "spell"];
@@ -27,6 +28,15 @@ class EncounterForgeCustomContentMenu extends FormApplication {
   render() {
     this.close();
     new EncounterForgeCustomContentDialog().render(true);
+  }
+  async _updateObject() {}
+  get template() { return ""; }
+}
+
+class EncounterForgeCombatCalibrationMenu extends FormApplication {
+  render() {
+    this.close();
+    new EncounterForgeCombatCalibrationDialog().render(true);
   }
   async _updateObject() {}
   get template() { return ""; }
@@ -74,6 +84,22 @@ Hooks.once("init", () => {
     hint: "ENCOUNTERFORGE.Settings.CustomContentHint",
     icon: "fas fa-list",
     type: EncounterForgeCustomContentMenu,
+    restricted: true
+  });
+
+  game.settings.register("encounter-forge", "combatIntensity", {
+    scope: "world",
+    config: false,
+    type: Number,
+    default: 0
+  });
+
+  game.settings.registerMenu("encounter-forge", "combatCalibrationMenu", {
+    name: "ENCOUNTERFORGE.Settings.CombatCalibrationName",
+    label: "ENCOUNTERFORGE.Settings.CombatCalibrationLabel",
+    hint: "ENCOUNTERFORGE.Settings.CombatCalibrationHint",
+    icon: "fas fa-sliders",
+    type: EncounterForgeCombatCalibrationMenu,
     restricted: true
   });
 });

@@ -5,13 +5,17 @@ export const HIT_CHANCE = 0.65;
 const PARTY_HP_BASE = 10;
 const PARTY_HP_PER_LEVEL = 6.5;
 
-// Ratio of roundsToThreaten/roundsToDefeat per difficulty sets the outcome
-const DIFFICULTY_TARGETS = {
+export const DEFAULT_DIFFICULTY_TARGETS = {
   easy: { roundsToDefeat: 2, roundsToThreaten: 6 },
   medium: { roundsToDefeat: 3, roundsToThreaten: 5.4 },
   hard: { roundsToDefeat: 4, roundsToThreaten: 4.4 },
   deadly: { roundsToDefeat: 5, roundsToThreaten: 3.5 }
 };
+
+const INTENSITY_STEP = 0.12;
+// hard floor: keep generation stable at extreme party configs
+const MIN_ENEMY_HP = 5;
+const MIN_ENEMY_DPR = 1;
 
 const ACTION_ECONOMY_STEP = 0.04;
 const ACTION_ECONOMY_CAP = 1.2;
@@ -92,9 +96,23 @@ export function estimateCreatureProfile(creature) {
   return { hp, ac, dpr: actionDPR + legendaryDPR + spellDPR };
 }
 
+export function getAdjustedDifficultyTargets(offset = 0) {
+  if (!offset) return DEFAULT_DIFFICULTY_TARGETS;
+  const factor = 1 + offset * INTENSITY_STEP;
+  const result = {};
+  for (const [diff, targets] of Object.entries(DEFAULT_DIFFICULTY_TARGETS)) {
+    result[diff] = {
+      roundsToDefeat: targets.roundsToDefeat,
+      roundsToThreaten: +(targets.roundsToThreaten / factor).toFixed(2)
+    };
+  }
+  return result;
+}
+
 // Size the whole encounter to the party and difficulty then split the total across count of enemies.
-export function computeEncounterEnvelope(party, difficulty, count, isSolo = false) {
-  const targets = DIFFICULTY_TARGETS[difficulty] ?? DIFFICULTY_TARGETS.medium;
+export function computeEncounterEnvelope(party, difficulty, count, isSolo = false, intensityOffset = 0) {
+  const adjusted = getAdjustedDifficultyTargets(intensityOffset);
+  const targets = adjusted[difficulty] ?? adjusted.medium;
   const n = Math.max(count, 1);
 
   const groupHPTotal = party.dpr * targets.roundsToDefeat;
@@ -108,6 +126,9 @@ export function computeEncounterEnvelope(party, difficulty, count, isSolo = fals
     perEnemyHP *= SOLO_HP_FACTOR;
     perEnemyDPR *= SOLO_DPR_FACTOR;
   }
+
+  perEnemyHP = Math.max(MIN_ENEMY_HP, perEnemyHP);
+  perEnemyDPR = Math.max(MIN_ENEMY_DPR, perEnemyDPR);
 
   return {
     groupHP: perEnemyHP * n,

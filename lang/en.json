@@ -54,7 +54,7 @@
   "ENCOUNTERFORGE.Dialog.Readout.CR": "Target CR",
   "ENCOUNTERFORGE.Dialog.Readout.Enemy": "Enemy DPR / HP",
   "ENCOUNTERFORGE.Dialog.Readout.Party": "Party DPR / HP",
-  "ENCOUNTERFORGE.Dialog.Readout.Rounds": "Rounds (defeat / threaten)",
+  "ENCOUNTERFORGE.Dialog.Readout.Rounds": "Rounds (defeat / threaten (drain))",
   "ENCOUNTERFORGE.Dialog.Readout.Outlook": "Outlook",
   "ENCOUNTERFORGE.Outcome.Easy": "Easy",
   "ENCOUNTERFORGE.Outcome.Manageable": "Manageable",
@@ -65,7 +65,6 @@
   "ENCOUNTERFORGE.Results.Party": "Party DPR / HP",
   "ENCOUNTERFORGE.Results.Group": "Group DPR / HP",
   "ENCOUNTERFORGE.Results.CR": "CR",
-
   "ENCOUNTERFORGE.Export.Title": "Export Custom Content",
   "ENCOUNTERFORGE.Export.Subtitle": "Export this item's stats into Encounter Forge's randomization pools.",
   "ENCOUNTERFORGE.Export.HeaderButton": "Export to Encounter Forge",
@@ -97,7 +96,6 @@
   "ENCOUNTERFORGE.Export.ReSync": "ReSync",
   "ENCOUNTERFORGE.Export.Exported": "Encounter Forge: Exported {name}.",
   "ENCOUNTERFORGE.Export.ReSynced": "Encounter Forge: ReSynced {name}.",
-
   "ENCOUNTERFORGE.Export.Hint.Kind": "Chooses whether this entry is drawn from the trait pool or the action pool when generating creatures.",
   "ENCOUNTERFORGE.Export.Hint.TraitCategory": "Groups this trait (e.g. Defensive, Movement, Legendary) so it's matched to creatures that need that kind of trait.",
   "ENCOUNTERFORGE.Export.Hint.ActionCategory": "Groups this action (e.g. Melee, Ranged, Special) so it's matched to creatures that need that kind of action.",
@@ -114,7 +112,6 @@
   "ENCOUNTERFORGE.Export.Hint.School": "The spell's school of magic, shown for reference and used when filtering spells.",
   "ENCOUNTERFORGE.Export.Hint.Cantrip": "Marks this as a cantrip, usable at any character level without expending a spell slot.",
   "ENCOUNTERFORGE.Export.Hint.SpellTier": "Limits which spell slot tiers can roll this spell.",
-
   "ENCOUNTERFORGE.Category.Defensive": "Defensive",
   "ENCOUNTERFORGE.Category.Offensive": "Offensive",
   "ENCOUNTERFORGE.Category.Movement": "Movement",
@@ -125,19 +122,16 @@
   "ENCOUNTERFORGE.Category.Melee": "Melee",
   "ENCOUNTERFORGE.Category.Ranged": "Ranged",
   "ENCOUNTERFORGE.Category.Special": "Special",
-
   "ENCOUNTERFORGE.LegendaryType.None": "None",
   "ENCOUNTERFORGE.LegendaryType.Action": "Legendary Action",
   "ENCOUNTERFORGE.LegendaryType.Lair": "Lair Action",
   "ENCOUNTERFORGE.LegendaryType.Resistance": "Legendary Resistance",
-
   "ENCOUNTERFORGE.ActionType.Mwak": "Melee Weapon Attack",
   "ENCOUNTERFORGE.ActionType.Rwak": "Ranged Weapon Attack",
   "ENCOUNTERFORGE.ActionType.Msak": "Melee Spell Attack",
   "ENCOUNTERFORGE.ActionType.Rsak": "Ranged Spell Attack",
   "ENCOUNTERFORGE.ActionType.Save": "Saving Throw",
   "ENCOUNTERFORGE.ActionType.Util": "Utility (No Damage)",
-
   "ENCOUNTERFORGE.DamageType.None": "None (no damage)",
   "ENCOUNTERFORGE.DamageType.Acid": "Acid",
   "ENCOUNTERFORGE.DamageType.Bludgeoning": "Bludgeoning",
@@ -152,7 +146,6 @@
   "ENCOUNTERFORGE.DamageType.Radiant": "Radiant",
   "ENCOUNTERFORGE.DamageType.Slashing": "Slashing",
   "ENCOUNTERFORGE.DamageType.Thunder": "Thunder",
-
   "ENCOUNTERFORGE.Chassis.Any": "Any",
   "ENCOUNTERFORGE.Chassis.Brute": "Brute",
   "ENCOUNTERFORGE.Chassis.Lurker": "Lurker",
@@ -160,7 +153,6 @@
   "ENCOUNTERFORGE.Chassis.Controller": "Controller",
   "ENCOUNTERFORGE.Chassis.Artillery": "Artillery",
   "ENCOUNTERFORGE.Chassis.Leader": "Leader",
-
   "ENCOUNTERFORGE.CustomContent.Title": "Custom Content",
   "ENCOUNTERFORGE.CustomContent.Subtitle": "Manage items exported into Encounter Forge's randomization pools.",
   "ENCOUNTERFORGE.CustomContent.Traits": "Traits",
@@ -182,8 +174,28 @@
   "ENCOUNTERFORGE.CustomContent.ImportSuccess": "Encounter Forge: Imported {count} custom content entries.",
   "ENCOUNTERFORGE.CustomContent.ImportEmpty": "Encounter Forge: The selected file contained no custom content entries.",
   "ENCOUNTERFORGE.CustomContent.ImportError": "Encounter Forge: Failed to import that file. Make sure it's a JSON file exported from Encounter Forge's Custom Content manager.",
-
   "ENCOUNTERFORGE.Settings.CustomContentName": "Custom Content",
   "ENCOUNTERFORGE.Settings.CustomContentLabel": "Manage Custom Content",
-  "ENCOUNTERFORGE.Settings.CustomContentHint": "View, enable/disable, ReSync, or delete items exported into Encounter Forge's randomization pools."
+  "ENCOUNTERFORGE.Settings.CustomContentHint": "View, enable/disable, ReSync, or delete items exported into Encounter Forge's randomization pools.",
+  "ENCOUNTERFORGE.Settings.CombatCalibrationName": "Combat Intensity Calibration",
+  "ENCOUNTERFORGE.Settings.CombatCalibrationLabel": "Open Calibration",
+  "ENCOUNTERFORGE.Settings.CombatCalibrationHint": "Adjust how aggressively enemies are sized relative to the party. Intended for playtesting. Leave at 0 unless you have a specific reason to change it.",
+  "ENCOUNTERFORGE.Calibration.Title": "Combat Intensity Calibration",
+  "ENCOUNTERFORGE.Calibration.Hint": "Adjusts how aggressively enemies are sized for all difficulty levels. Increase if fights feel too easy at your table; decrease if casualties are too frequent. Designed for playtesting calibration. Leave at 0 unless you have a specific reason to change it.",
+  "ENCOUNTERFORGE.Calibration.Reset": "Reset to Default",
+  "ENCOUNTERFORGE.Calibration.ResetDone": "Encounter Forge: Combat intensity reset to default.",
+  "ENCOUNTERFORGE.Calibration.Saved": "Encounter Forge: Combat intensity set to {value}.",
+  "ENCOUNTERFORGE.Calibration.Forgiving": "Forgiving",
+  "ENCOUNTERFORGE.Calibration.Standard": "Standard",
+  "ENCOUNTERFORGE.Calibration.Brutal": "Brutal",
+  "ENCOUNTERFORGE.Calibration.PreviewLabel": "Live preview - level 5 party of 4 (1 enemy)",
+  "ENCOUNTERFORGE.Calibration.RoundsDefeat": "Rounds to defeat enemies",
+  "ENCOUNTERFORGE.Calibration.RoundsDrain": "Rounds to exhaust party HP",
+  "ENCOUNTERFORGE.Calibration.Step.N3": "Forgiving - fights resolve quickly, low casualty risk",
+  "ENCOUNTERFORGE.Calibration.Step.N2": "Easier - enemies are softer and less threatening",
+  "ENCOUNTERFORGE.Calibration.Step.N1": "Slightly easier than default",
+  "ENCOUNTERFORGE.Calibration.Step.0": "Standard (default)",
+  "ENCOUNTERFORGE.Calibration.Step.P1": "Slightly harder than default",
+  "ENCOUNTERFORGE.Calibration.Step.P2": "Harder - enemies hit harder and last longer",
+  "ENCOUNTERFORGE.Calibration.Step.P3": "Brutal - extended attrition; death is a real possibility"
 }

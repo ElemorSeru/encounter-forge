@@ -37,6 +37,7 @@ Encounter Forge contains **no AI, no language model, and no network calls of any
 - **Calibrate to Party** - pull real HP/AC/saves/level from your players' actors instead of using generic class-average estimates.
 - **Solo Boss mode** - a single creature gets HP x1.5, DPR x1.3, AC +2, three guaranteed actions, and a draw from the legendary trait pool (legendary actions, lair actions, legendary resistance) so it can stand up to a full party alone.
 - **Live pre-generation readout** - as you adjust player count, level, enemy count, and difficulty, the dialog shows the target CR, projected enemy/party DPR and HP, rounds-to-defeat/threaten, and a color-coded outlook (Easy/Manageable/Risky/Dangerous) - *before* you generate anything.
+- **Combat Intensity Calibration** - a GM-only setting (Module Settings -> Combat Intensity Calibration) that shifts how aggressively enemies are sized across all difficulties, on a -3 to +3 scale. The live-preview chart in the calibration dialog shows how each step affects drain time across Easy/Medium/Hard/Deadly for a reference party. Intended for playtesting; leave at 0 for the baseline math.
 - **Post-generation results summary** - after generation, see each creature's actual rolled HP/AC/DPR and CR, plus the group's combined stats versus the party and the same outlook label, now based on real numbers.
 - **10 themes / creature types** - beast, undead, aberration, humanoid, elemental, fey, fiend, dragon, construct, monstrosity, or "any".
 - **6 chassis archetypes** - brute, lurker, skirmisher, controller, artillery, leader; each with its own stat spread, size progression, guaranteed skills, and action/spell affinities.
@@ -90,6 +91,16 @@ Every generated creature is then tuned to hit its envelope target exactly:
 - **Damage** is tuned in two passes: first an action may be swapped for a same-tier alternative closer to the target DPR, then any remaining gap is closed with a flat damage bonus/penalty spread across the creature's actions. It's solved so that, for Solo creatures, legendary "extra swings" land on target *together* with the base action damage rather than stacking on top of it.
 
 The result: the pre-generation readout and the post-generation results should track closely, regardless of party size, level, enemy count, or Solo Boss status.
+
+### 5. Combat Intensity Calibration (optional)
+
+A world setting (`combatIntensity`, integer -3 to +3, default 0) scales the `roundsToThreaten` target before the envelope is computed:
+
+```
+adjustedRoundsToThreaten = roundsToThreaten / (1 + offset * 0.12)
+```
+
+Positive offset = shorter drain time = enemies built to hit harder. Negative = longer drain = softer enemies. `roundsToDefeat` is never changed. Set from **Module Settings -> Combat Intensity Calibration**; changes take effect immediately for the next generation.
 
 ---
 
