@@ -13,6 +13,7 @@ Instead of pulling a stat block from a compendium and hoping the CR math works o
 ---
 
 ## Why Encounter Forge is different
+<img width="605" height="590" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_MainScreen_Generic.png" />
 
 Most CR generators (and most homebrew stat blocks) work backwards from the Dungeon Master's Guide CR/XP tables: pick a CR, look up its "expected" HP and damage, and build (or pull) a creature around those numbers. The problem is that those tables assume a "standard" party, and most parties aren't standard. A CR 5 monster can be a joke or a TPK depending on who's sitting at the table.
 
@@ -35,6 +36,7 @@ Encounter Forge contains **no AI, no language model, and no network calls of any
 ---
 
 ## Features
+<img width="605" height="590" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_MainScreenWParty.png" />
 
 - **Procedural creature assembly** - chassis (combat role), traits (defensive/offensive/passive/movement/senses/reactions/legendary), actions (melee/ranged/special), and spells are drawn from filterable (through code) content pools based on theme, CR tier, and chassis.
 - **Encounter envelope balancing** - the whole encounter is sized to the party and difficulty first, then split across enemies. See [The Math](#the-math) below.
@@ -96,8 +98,11 @@ Every generated creature is then tuned to hit its envelope target exactly:
 
 The result: the pre-generation readout and the post-generation results should track closely, regardless of party size, level, enemy count, or Solo Boss status.
 
-### 5. Combat Intensity Calibration (optional)
+<img width="387" height="368" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_GeneratedResults.png" />
 
+
+### 5. Combat Intensity Calibration (optional)
+<img width="676" height="590" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_ConfigurationSettings.png" />
 A world setting (`combatIntensity`, integer -3 to +3, default 0) scales the `roundsToThreaten` target before the envelope is computed:
 
 ```
@@ -124,6 +129,7 @@ Or find it on the Foundry package list: `(Not Officially Released Yet)`
 ---
 
 ## Quick Start
+<img alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_AccessButtons.png" />
 
 1. Open your **Actors** sidebar tab, you'll see a new **Generate** button (wizard hat icon) in the header.
 2. Set your party size/level (or enable **Calibrate to Party** and pick actors), pick a difficulty, theme, and number of enemies.
@@ -134,6 +140,7 @@ Or find it on the Foundry package list: `(Not Officially Released Yet)`
 ---
 
 ## Custom Content
+<img width="440" height="349" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_ItemExport.png" /><img width="466" height="590" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_ExportEditScreen.png" />
 
 Add your own homebrew feats, weapons, and spells to the randomization pools without editing JSON:
 
@@ -156,6 +163,11 @@ The API also exposes `exportCustomContent()` and `importCustomContent(payload)`,
 If you're building a module that could pair well with Encounter Forge, feel free to reach out, I'd be happy to help with integration or cross-promote.
 
 Full API reference, options tables, hook payloads, and code samples live in the [Wiki](docs/WIKI.md).
+
+---
+## Screenshots
+<img width="568" height="498" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_Settings.png" />
+<img width="453" height="320" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_CustomContent.png" />
 
 ---
 
