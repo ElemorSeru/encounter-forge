@@ -2,10 +2,10 @@
   "id": "encounter-forge",
   "title": "GM Tools: Encounter Forge",
   "description": "Generate balanced, dynamically assembled encounters for D&D 5e. Combines archetypes, traits, and actions into unique creatures at any challenge rating.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "compatibility": {
     "minimum": "12",
-    "verified": "12"
+    "verified": "14"
   },
   "authors": [
     {
@@ -36,8 +36,8 @@
         "id": "dnd5e",
         "type": "system",
         "compatibility": {
-          "minimum": "3.0.0",
-          "verified": "3.3.1"
+          "minimum": "4.0.0",
+          "verified": "5.3.3"
         }
       }
     ]

@@ -30,7 +30,10 @@
       "fiend",
       "undead"
     ],
-    "description": "Each creature of the creature's choice that is within 60 feet and aware of it must succeed on a DC {dc} Wisdom saving throw or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
+    "description": "Each creature of the creature's choice that is within 60 feet and aware of it must succeed on a DC {dc} Wisdom saving throw or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns.",
+    "action_type": "save",
+    "save_stat": "wis",
+    "activation_type": "action"
   },
   {
     "id": "wound_that_remembers",
@@ -113,7 +116,10 @@
       "undead",
       "fiend"
     ],
-    "description": "Once per combat as an action, the creature releases a sound that bypasses ears and resonates inside the mind. Creatures within 60 feet that can hear it must succeed on a DC {dc} Wisdom saving throw or be paralyzed until the end of their next turn."
+    "description": "Once per combat as an action, the creature releases a sound that bypasses ears and resonates inside the mind. Creatures within 60 feet that can hear it must succeed on a DC {dc} Wisdom saving throw or be paralyzed until the end of their next turn.",
+    "action_type": "save",
+    "save_stat": "wis",
+    "activation_type": "action"
   },
   {
     "id": "spite_burst",
@@ -366,7 +372,8 @@
     "tags": [
       "construct"
     ],
-    "description": "Once per combat as a bonus action, the creature pushes itself beyond design limits. Until the start of its next turn, it gains one additional attack when it takes the Attack action. After using this ability, its speed is halved until the end of its next turn."
+    "description": "Once per combat as a bonus action, the creature pushes itself beyond design limits. Until the start of its next turn, it gains one additional attack when it takes the Attack action. After using this ability, its speed is halved until the end of its next turn.",
+    "activation_type": "bonus"
   },
   {
     "id": "savage_rend",
@@ -413,7 +420,8 @@
       "undead",
       "aberration"
     ],
-    "description": "Once per combat as a bonus action, the creature lays a curse on a creature it can see within 30 feet. The cursed creature subtracts 1d4 from all saving throws it makes until the curse is removed by a remove curse spell or similar effect."
+    "description": "Once per combat as a bonus action, the creature lays a curse on a creature it can see within 30 feet. The cursed creature subtracts 1d4 from all saving throws it makes until the curse is removed by a remove curse spell or similar effect.",
+    "activation_type": "bonus"
   },
   {
     "id": "elemental_surge",

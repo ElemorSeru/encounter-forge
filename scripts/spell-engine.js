@@ -99,22 +99,11 @@ export async function selectSpells(theme, tier, chassisType, profBonus, mentalSt
 }
 
 export async function importSpellItem(spell) {
+  // Custom-exported spells carry a full clone so use it as-is.
   if (spell._fullClone) {
     return { source: "compendium", data: spell._fullClone };
   }
-
-  const index = await buildSpellIndex();
-  const key = spell.name.toLowerCase().trim();
-  const entry = index.get(key);
-
-  if (entry) {
-    try {
-      const pack = game.packs.get(entry.packId);
-      const item = await pack.getDocument(entry.itemId);
-      if (item) return { source: "compendium", data: item.toObject() };
-    } catch { /* fall through, fine */ }
-  }
-
+  // standard spells use the synthetic builder so they work as feat items without a spell slot configuration
   return { source: "synthetic", spell };
 }
 

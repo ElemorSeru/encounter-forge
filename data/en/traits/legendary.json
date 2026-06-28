@@ -35,7 +35,13 @@
     "description": "On initiative count 20 (losing ties), the creature can cause the ground in a 30-foot radius to shudder. Each creature in that area must succeed on a DC {dc} Dexterity saving throw or fall prone.",
     "activation_type": "",
     "activation_cost": null,
-    "legendary_type": "lair"
+    "legendary_type": "lair",
+    "action_type": "save",
+    "save_stat": "dex",
+    "damage_fallback": [
+      "0",
+      "bludgeoning"
+    ]
   },
   {
     "id": "legendary_lair_darkness",
@@ -110,7 +116,13 @@
     "activation_type": "",
     "activation_cost": null,
     "legendary_type": "action",
-    "legendary_cost": 1
+    "legendary_cost": 1,
+    "action_type": "save",
+    "save_stat": "wis",
+    "damage_fallback": [
+      "0",
+      "psychic"
+    ]
   },
   {
     "id": "legendary_regen",
@@ -148,7 +160,13 @@
     "activation_type": "",
     "activation_cost": null,
     "legendary_type": "action",
-    "legendary_cost": 2
+    "legendary_cost": 2,
+    "action_type": "save",
+    "save_stat": "int",
+    "damage_fallback": [
+      "4d6",
+      "psychic"
+    ]
   },
   {
     "id": "legendary_fey_vanish",
@@ -187,7 +205,12 @@
     "activation_type": "",
     "activation_cost": null,
     "legendary_type": "action",
-    "legendary_cost": 2
+    "legendary_cost": 2,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "2d8",
+      "slashing"
+    ]
   },
   {
     "id": "legendary_dragon_recharge",
@@ -223,7 +246,13 @@
     "description": "On initiative count 20 (losing ties), the creature floods the area with alien thought. Each creature within 60 feet must succeed on a DC {dc} Wisdom saving throw or take 2d6 psychic damage and be unable to use their reaction until the start of their next turn.",
     "activation_type": "",
     "activation_cost": null,
-    "legendary_type": "lair"
+    "legendary_type": "lair",
+    "action_type": "save",
+    "save_stat": "wis",
+    "damage_fallback": [
+      "2d6",
+      "psychic"
+    ]
   },
   {
     "id": "legendary_construct_rebuild",
@@ -259,7 +288,13 @@
     "description": "On initiative count 20 (losing ties), the creature causes flames or superheated air to burst from the ground in a 20-foot radius. Each creature in that area must succeed on a DC {dc} Dexterity saving throw or take 2d6 fire damage. The area becomes difficult terrain until the start of initiative count 20 on the next round.",
     "activation_type": "",
     "activation_cost": null,
-    "legendary_type": "lair"
+    "legendary_type": "lair",
+    "action_type": "save",
+    "save_stat": "dex",
+    "damage_fallback": [
+      "2d6",
+      "fire"
+    ]
   },
   {
     "id": "legendary_action_curse",
@@ -279,6 +314,11 @@
     "activation_type": "",
     "activation_cost": null,
     "legendary_type": "action",
-    "legendary_cost": 2
+    "legendary_cost": 2,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "1d8",
+      "necrotic"
+    ]
   }
 ]

@@ -9,6 +9,11 @@ const TRAIT_CATEGORIES = ["defensive", "offensive", "movement", "senses", "passi
 const ACTION_CATEGORIES = ["melee", "ranged", "special"];
 const ACTION_TYPES = ["mwak", "rwak", "msak", "rsak", "save", "util"];
 const LEGENDARY_TYPES = ["none", "action", "lair", "resistance"];
+const ABILITY_SCORES = ["str", "dex", "con", "int", "wis", "cha"];
+const TRAIT_ACTION_TYPES = ["none", "mwak", "rwak", "msak", "rsak", "save", "util"];
+const ACTIVATION_TYPES = ["action", "bonus", "reaction"];
+const RECHARGE_OPTIONS = ["none", "5-6", "6"];
+const SPELL_FALLBACK_TYPES = ["attack", "save", "util"];
 
 // Returns an item's activities as a plain array regardless of whether system.activities is a Foundry Collection, a Map, or a plain object.
 function getActivities(item) {
@@ -64,7 +69,26 @@ function extractRange(item) {
   return { value: null, long: null };
 }
 
-// Pulls everything export/ReSync needs from a live Foundry item
+function extractSaveStat(item) {
+  for (const activity of getActivities(item)) {
+    if (activity.type !== "save") continue;
+    const ability = activity.save?.ability;
+    if (ability instanceof Set) return [...ability][0] ?? null;
+    if (Array.isArray(ability)) return ability[0] ?? null;
+    if (typeof ability === "string" && ability) return ability;
+  }
+  return null;
+}
+
+function extractActivationType(item) {
+  for (const activity of getActivities(item)) {
+    const t = activity.activation?.type;
+    if (t === "bonus") return "bonus";
+    if (t === "reaction") return "reaction";
+  }
+  return "action";
+}
+
 function extractItemSnapshot(item) {
   const damageFallback = extractDamageFallback(item);
   const range = extractRange(item);
@@ -81,6 +105,8 @@ function extractItemSnapshot(item) {
     range_long: range.long,
     school: item.system?.school ?? null,
     cantrip: (item.system?.level ?? 0) === 0,
+    save_stat: extractSaveStat(item),
+    activation_type: extractActivationType(item),
     _fullClone: item.toObject()
   };
 }
@@ -107,6 +133,15 @@ function buildSchoolOptions(current) {
   return Object.entries(schools).map(([value, data]) => ({
     value,
     label: game.i18n.localize(data.label ?? value),
+    selected: value === current
+  }));
+}
+
+function buildAbilityOptions(current) {
+  const abilities = CONFIG.DND5E?.abilities ?? {};
+  return ABILITY_SCORES.map(value => ({
+    value,
+    label: abilities[value] ? game.i18n.localize(abilities[value].label) : value.toUpperCase(),
     selected: value === current
   }));
 }
@@ -176,6 +211,10 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
     const [damageFormula, damageType] = e.damage_fallback ?? s.damage_fallback ?? ["", "none"];
     const chassisAffinity = e.chassis_affinity ?? ["any"];
     const tags = e.tags ?? [];
+    const traitActionType = e.action_type ?? "none";
+    const saveStat = e.save_stat ?? s.save_stat ?? "wis";
+    const activationType = e.activation_type ?? s.activation_type ?? "action";
+    const spellFallbackType = e.fallback?.type ?? (s.action_type === "save" ? "save" : s.damage_fallback ? "attack" : "util");
 
     return {
       sourceMissing: this.sourceMissing,
@@ -199,6 +238,14 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
       legendaryCost: e.legendary_cost ?? 1,
       resistanceUses: e.resistance_uses ?? 1,
       actionTypeOptions: buildOptions(ACTION_TYPES, "ENCOUNTERFORGE.ActionType", actionType),
+      traitActionTypeOptions: buildOptions(TRAIT_ACTION_TYPES, "ENCOUNTERFORGE.ActionType", traitActionType),
+      traitActionType,
+      activationTypeOptions: buildOptions(ACTIVATION_TYPES, "ENCOUNTERFORGE.ActivationType", activationType),
+      activationType,
+      abilityOptions: buildAbilityOptions(saveStat),
+      saveStat,
+      spellFallbackTypeOptions: buildOptions(SPELL_FALLBACK_TYPES, "ENCOUNTERFORGE.SpellFallbackType", spellFallbackType),
+      spellFallbackType,
       range: e.range ?? s.range ?? "",
       rangeLong: e.range_long ?? s.range_long ?? "",
       damageFormula,
@@ -215,6 +262,8 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
       })),
       schoolOptions: buildSchoolOptions(e.school ?? s.school ?? "evo"),
       cantrip: e.cantrip ?? s.cantrip ?? false,
+      spellMelee: e.fallback?.melee ?? false,
+      rechargeOptions: buildOptions(RECHARGE_OPTIONS, "ENCOUNTERFORGE.Recharge", e.recharge ?? "none"),
       tierMin: e.tier_min ?? 1,
       tierMax: e.tier_max ?? 6
     };
@@ -227,6 +276,9 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
     const kindSelect = root.querySelector('[name="kind"]');
     const traitCategorySelect = root.querySelector('[data-section="trait-category"] select');
     const actionCategorySelect = root.querySelector('[data-section="action-category"] select');
+    const traitActionTypeSelect = root.querySelector('[name="traitActionType"]');
+    const actionTypeSelect = root.querySelector('[name="actionType"]');
+    const spellFallbackTypeSelect = root.querySelector('[name="spellFallbackType"]');
 
     const getKind = () => context.isSpell ? "spell" : (kindSelect?.value ?? context.kind);
     const getCategory = kind => {
@@ -254,11 +306,26 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
       setSection("trait-category", kind === "trait");
       setSection("action-category", kind === "action");
       setSection("legendary", kind === "trait" && category === "legendary");
+
+      const traitAt = traitActionTypeSelect?.value ?? context.traitActionType;
+      setSection("trait-activation", kind === "trait" && traitAt !== "none");
+      setSection("trait-save", kind === "trait" && traitAt === "save");
+      setSection("trait-damage", kind === "trait" && ["mwak", "rwak", "msak", "rsak", "save"].includes(traitAt));
+
+      const actionAt = actionTypeSelect?.value ?? context.actionType;
+      setSection("action-save", kind === "action" && actionAt === "save");
+
+      const spellFt = spellFallbackTypeSelect?.value ?? context.spellFallbackType;
+      setSection("spell-save", kind === "spell" && spellFt === "save");
+      setSection("spell-attack", kind === "spell" && spellFt === "attack");
     };
 
     kindSelect?.addEventListener("change", sync);
     traitCategorySelect?.addEventListener("change", sync);
     actionCategorySelect?.addEventListener("change", sync);
+    traitActionTypeSelect?.addEventListener("change", sync);
+    actionTypeSelect?.addEventListener("change", sync);
+    spellFallbackTypeSelect?.addEventListener("change", sync);
 
     sync();
   }
@@ -292,6 +359,16 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
     if (kind === "trait") {
       entry.category = data.categoryTrait || "passive";
       entry.cr_adjustment = Number(data.crAdjustment) || 0;
+      const traitAt = data.traitActionType;
+      if (traitAt && traitAt !== "none") {
+        entry.action_type = traitAt;
+        entry.activation_type = data.traitActivationType || "action";
+        if (traitAt === "save") entry.save_stat = data.traitSaveStat || "wis";
+        if (["mwak", "rwak", "msak", "rsak", "save"].includes(traitAt) && data.damageFormulaTrait) {
+          const traitDmgType = data.damageTypeTrait === "none" ? "force" : (data.damageTypeTrait || "force");
+          entry.damage_fallback = [data.damageFormulaTrait, traitDmgType];
+        }
+      }
       if (entry.category === "legendary" && data.legendaryType && data.legendaryType !== "none") {
         entry.legendary_type = data.legendaryType;
         entry.legendary_cost = Number(data.legendaryCost) || 1;
@@ -300,20 +377,26 @@ export default class EncounterForgeExportDialog extends HandlebarsApplicationMix
     } else if (kind === "action") {
       entry.category = data.categoryAction || "special";
       entry.action_type = data.actionType || "mwak";
+      if (entry.action_type === "save") entry.save_stat = data.actionSaveStat || "wis";
       entry.range = data.range !== "" && data.range !== undefined ? Number(data.range) : undefined;
       entry.range_long = data.rangeLong !== "" && data.rangeLong !== undefined ? Number(data.rangeLong) : undefined;
       const actionDamageType = data.damageTypeAction === "none" ? "force" : data.damageTypeAction;
       entry.damage_fallback = data.damageFormulaAction ? [data.damageFormulaAction, actionDamageType] : null;
       entry.chassis_affinity = chassisAffinity;
+      if (data.recharge && data.recharge !== "none") entry.recharge = data.recharge;
     } else if (kind === "spell") {
       entry.school = data.school || "evo";
       entry.cantrip = !!data.cantrip;
       entry.tier_min = Number(data.tierMin) || 1;
       entry.tier_max = Number(data.tierMax) || 6;
       const spellDamageType = data.damageTypeSpell === "none" ? "force" : data.damageTypeSpell;
+      const spellFt = data.spellFallbackType || "util";
+      entry.activation_type = data.spellActivationType || "action";
       entry.fallback = {
-        type: data.damageFormulaSpell ? (data.actionType === "save" ? "save" : "attack") : "util",
-        damage: data.damageFormulaSpell ? [data.damageFormulaSpell, spellDamageType] : ["0", "force"]
+        type: spellFt,
+        damage: data.damageFormulaSpell ? [data.damageFormulaSpell, spellDamageType] : ["0", "force"],
+        ...(spellFt === "save" ? { save_stat: data.spellSaveStat || "wis" } : {}),
+        ...(spellFt === "attack" && data.spellMelee ? { melee: true } : {})
       };
     }
 

@@ -3,6 +3,7 @@ import { loadTraitPool, loadLegendaryTraits, selectTraits } from "./trait-select
 import { loadJson } from "./utils.js";
 import { selectSpells } from "./spell-engine.js";
 import { getEnabledCustomEntries, registerCacheInvalidator } from "./custom-content.js";
+import { legendaryActionMultiplier, HIT_CHANCE, SAVE_HIT_CHANCE, RECHARGE_MULTIPLIERS } from "./combat-estimator.js";
 
 let _chassis = null;
 let _actions = null;
@@ -55,11 +56,38 @@ function getChassisStats(chassis, cr) {
   return chassis.tiers[key] || chassis.tiers[Object.keys(chassis.tiers)[0]];
 }
 
-function pickActions(cr, theme, chassisType, count) {
+function fisherYates(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const ATTACK_TYPES = new Set(["mwak", "rwak", "rsak"]);
+
+function computeDiceFromTarget(action, targetPerActionDPR) {
+  const fallback = action.damage_fallback;
+  if (!fallback) return null;
+  const match = String(fallback[0]).match(/^(\d+)d(\d+)/i);
+  if (!match) return fallback;
+  const sides = Number(match[2]);
+  const dieAvg = (sides + 1) / 2;
+  const chance = action.action_type === "save" ? SAVE_HIT_CHANCE : HIT_CHANCE;
+  const recharge = RECHARGE_MULTIPLIERS[action.recharge] ?? 1;
+  const aoe = action.aoe_targets ?? 1;
+  const effective = dieAvg * chance * recharge * aoe;
+  if (effective <= 0) return fallback;
+  const diceCount = Math.max(1, Math.round(targetPerActionDPR / effective));
+  return [`${diceCount}d${sides}`, fallback[1]];
+}
+
+function pickActions(cr, theme, chassisType, count, excludeIds = new Set(), perActionTargetDPR = undefined) {
   const crNum = crToNumber(cr);
   const tier = getCRTier(cr);
 
   const filtered = _actions.filter(a => {
+    if (excludeIds.has(a.id)) return false;
     if (a.cr_min !== undefined && crNum < a.cr_min) return false;
     if (a.cr_max !== undefined && crNum > a.cr_max) return false;
     if (a.chassis_affinity && !a.chassis_affinity.includes(chassisType) && !a.chassis_affinity.includes("any")) return false;
@@ -67,12 +95,63 @@ function pickActions(cr, theme, chassisType, count) {
     return true;
   });
 
-  const shuffled = [...filtered].sort(() => Math.random() - 0.5);
-  const actions = shuffled.slice(0, count);
+  // themed entries sort before generic "any" fallbacks
+  function themedFirst(pool) {
+    const themed = fisherYates(pool.filter(a => theme !== "any" && a.tags?.includes(theme)));
+    const generic = fisherYates(pool.filter(a => !(theme !== "any" && a.tags?.includes(theme))));
+    const result = [];
+    let t = [...themed], g = [...generic];
+    while (t.length || g.length) {
+      if (t.length && (!g.length || Math.random() < 0.75)) result.push(t.shift());
+      else result.push(g.shift());
+    }
+    return result;
+  }
+
+  const MELEE_TYPES = new Set(["mwak"]);
+  const isArtillery = chassisType === "artillery";
+  const meleePool = themedFirst(filtered.filter(a => MELEE_TYPES.has(a.action_type)));
+  const rangedPool = themedFirst(filtered.filter(a => ATTACK_TYPES.has(a.action_type) && !MELEE_TYPES.has(a.action_type)));
+  const specialPool = themedFirst(filtered.filter(a => !ATTACK_TYPES.has(a.action_type)));
+
+  // Artillery leads with ranged; all other chassis guarantee a melee attack first.
+  const primaryPool = isArtillery ? rangedPool : meleePool;
+  const secondaryPool = isArtillery ? meleePool : rangedPool;
+
+  const actions = [];
+  let firstPick = primaryPool.shift() ?? secondaryPool.shift();
+
+  if (!firstPick) {
+    const looseMelee = fisherYates(_actions.filter(a =>
+      !excludeIds.has(a.id) &&
+      (a.cr_min === undefined || crNum >= a.cr_min) &&
+      (a.cr_max === undefined || crNum <= a.cr_max) &&
+      MELEE_TYPES.has(a.action_type)
+    ));
+    const looseRanged = fisherYates(_actions.filter(a =>
+      !excludeIds.has(a.id) &&
+      (a.cr_min === undefined || crNum >= a.cr_min) &&
+      (a.cr_max === undefined || crNum <= a.cr_max) &&
+      ATTACK_TYPES.has(a.action_type) && !MELEE_TYPES.has(a.action_type)
+    ));
+    const [lp, ls] = isArtillery ? [looseRanged, looseMelee] : [looseMelee, looseRanged];
+    firstPick = lp.shift() ?? ls.shift();
+  }
+
+  if (firstPick) actions.push(firstPick);
+  const specialSlots = Math.min(count - 1, specialPool.length);
+  actions.push(...specialPool.slice(0, specialSlots));
+  const remaining = count - actions.length;
+  if (remaining > 0) actions.push(...primaryPool.slice(0, remaining));
+  if (actions.length < count) actions.push(...secondaryPool.slice(0, count - actions.length));
 
   for (const action of actions) {
-    const tierKey = `tier${tier}`;
-    action._resolvedDamage = action.damage_tiers?.[tierKey] || action.damage_fallback || null;
+    if (perActionTargetDPR !== undefined) {
+      action._resolvedDamage = computeDiceFromTarget(action, perActionTargetDPR) || action.damage_fallback || null;
+    } else {
+      const tierKey = `tier${tier}`;
+      action._resolvedDamage = action.damage_tiers?.[tierKey] || action.damage_fallback || null;
+    }
   }
 
   return actions;
@@ -244,7 +323,7 @@ function generateName(theme) {
   return `${pick(prefixPool)} ${noun}`;
 }
 
-async function assembleCreature(cr, theme, forceName, isSolo = false) {
+async function assembleCreature(cr, theme, forceName, isSolo = false, isSummon = false, targetDPR = undefined) {
   await loadStaticData();
 
   const traitPool = await loadTraitPool();
@@ -274,13 +353,26 @@ async function assembleCreature(cr, theme, forceName, isSolo = false) {
     }
   }
 
-  const actionCount = isSolo ? 3 : (tier <= 1 ? 1 : tier <= 3 ? 2 : 3);
-  const actions = pickActions(cr, theme, chassis.type, actionCount);
-
   const spellInfo = await selectSpells(
     theme, tier, chassis.type, profBonus,
     { int: stats.int, wis: stats.wis, cha: stats.cha }
   );
+
+  // Solo bosses and summoned companions dont have summon_lesser in their action pool.
+  const excludeIds = (isSolo || isSummon) ? new Set(["summon_lesser"]) : new Set();
+  const actionCount = isSolo ? 3 : (tier <= 1 ? 1 : tier <= 3 ? 2 : 3);
+
+  let perActionTargetDPR = undefined;
+  if (targetDPR !== undefined) {
+    const spellDPR = spellInfo ? (tier <= 1 ? 1 : tier <= 3 ? 2 : tier <= 5 ? 3 : 4) * 5 * HIT_CHANCE * 0.3 : 0;
+    const tempCreature = { solo: isSolo, traits };
+    const extraActions = legendaryActionMultiplier(tempCreature);
+    const legendaryFactor = 1 + (actionCount > 0 ? extraActions / actionCount : 0);
+    const targetActionTotal = Math.max(0, (targetDPR - spellDPR) / legendaryFactor);
+    perActionTargetDPR = actionCount > 0 ? targetActionTotal / actionCount : 0;
+  }
+
+  const actions = pickActions(cr, theme, chassis.type, actionCount, excludeIds, perActionTargetDPR);
 
   const name = (forceName && typeof forceName === "string" && forceName.trim()) ? forceName.trim() : generateName(theme);
 

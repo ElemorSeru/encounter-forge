@@ -108,7 +108,7 @@ All fields are optional. Omitted fields use their defaults.
 
 | Value | Description |
 |---|---|
-| `"any"` | No theme constraint — generates a monstrosity |
+| `"any"` | No theme constraint, generates a monstrosity |
 | `"beast"` | Natural predator or animal |
 | `"undead"` | Undead creature |
 | `"aberration"` | Alien or mind-bending entity |

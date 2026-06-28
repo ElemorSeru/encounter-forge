@@ -382,7 +382,8 @@
       "undead",
       "construct"
     ],
-    "description": "Once per day, when the creature is reduced to 0 hit points, its skeletal framework reassembles itself. The creature immediately returns to 1 hit point and stands."
+    "description": "Once per day, when the creature is reduced to 0 hit points, its skeletal framework reassembles itself. The creature immediately returns to 1 hit point and stands.",
+    "activation_type": "reaction"
   },
   {
     "id": "fey_veil",

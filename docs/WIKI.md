@@ -14,6 +14,7 @@ This wiki covers how to use the Encounter Forge dialog, how the balancing math w
 - [Custom Content](#custom-content)
 - [Settings](#settings)
 - [Combat Intensity Calibration](#combat-intensity-calibration)
+- [Precision Damage Scaling](#precision-damage-scaling)
 - [API & Integration](#api--integration)
 - [Hooks](#hooks)
 - [Macro Examples](#macro-examples)
@@ -169,7 +170,7 @@ CR is bucketed into 6 tiers, which gate content availability and scaling:
 | 3 | 5 - 7 | +3 |
 | 4 | 8 - 10 | +3 / +4 |
 | 5 | 11 - 13 | +4 / +5 |
-| 6 | 14 - 15 | +5 |
+| 6 | 14 - 30 | +5 to +9 |
 
 Tier affects: action damage scaling (`damage_tiers.tier1`-`tier6`), number of traits drawn, action count, skill expertise eligibility, size growth, and sense range scaling. The trait-draw CR-adjustment budget is 1 at tier 1-2, 2 at tier 3-4, 3 at tier 5-6.
 
@@ -214,7 +215,9 @@ Trait descriptions support two placeholders:
 
 ### Actions
 
-Each creature gets 1-3 actions based on tier (always 3 for Solo Bosses), drawn from **Melee**, **Ranged**, and **Special** pools, filtered by CR, chassis affinity, and theme. When a creature has more than one action, a **Multiattack** item is generated describing how they're used together. Damage scales automatically with tier via each action's `damage_tiers.tier1`-`tier6`, then is further adjusted by the calibration pass above.
+Each creature gets 1-3 actions based on tier (always 3 for Solo Bosses), drawn from **Melee**, **Ranged**, and **Special** pools, filtered by CR, chassis affinity, and theme. When a creature has more than one action, a **Multiattack** item is generated describing how they're used together. By default, damage scales with tier via each action's `damage_tiers.tier1`-`tier6`, then is further adjusted by the calibration pass above. When [Precision Damage Scaling](#precision-damage-scaling) is enabled, dice counts are instead derived from the creature's actual DPR target during assembly, using the die size from each action's `damage_fallback`.
+
+Actions that apply conditions (grappled, prone, poisoned, frightened, restrained, etc.) generate a Foundry **ActiveEffect** on the item and wire it to the action's activity. After rolling and hitting (or the target failing a save), a GM can apply the condition to the target with one click from the chat card rather than doing it manually.
 
 ### Legendary traits
 
@@ -349,6 +352,7 @@ Found under **Configure Settings -> Module Settings -> GM Tools: Encounter Forge
 | **Reset to Defaults** | Client (menu) | Clears your saved "last used values" after a confirmation prompt. |
 | **Custom Content** | World (menu) | Opens the [Custom Content manager](#the-custom-content-manager), enable/disable, ReSync, delete, export, or import custom traits, actions, and spells. |
 | **Combat Intensity Calibration** | World (menu) | Opens the [Combat Intensity Calibration](#combat-intensity-calibration) dialog. Adjusts how aggressively enemies are sized for all difficulty levels. Restricted to GMs. |
+| **Precision Damage Scaling (Playtest)** | World | When enabled, action dice counts are calculated from each creature's actual DPR target rather than a fixed tier table. See [Precision Damage Scaling](#precision-damage-scaling). Off by default. Restricted to GMs. |
 
 ---
 
@@ -394,6 +398,52 @@ The preview uses a fixed party so the chart is comparable across tables and shar
 Changes are live/saved the moment you click a pip or the +/- stepper. No Save button is needed. The setting takes effect immediately for any encounter generated after that point. Closing the dialog does not discard changes.
 
 The **Reset to Default** button (bottom-left, visible only when the current value is not 0) immediately sets the offset back to 0.
+
+---
+
+## Precision Damage Scaling
+
+Found under **Configure Settings -> Module Settings -> GM Tools: Encounter Forge -> Precision Damage Scaling (Playtest)** (GMs only). Off by default.
+
+This setting changes how action dice counts are assigned during creature assembly. It is a playtest tool. Leave it off unless you are specifically comparing balance outcomes or investigating high-variance damage results.
+
+### What it changes
+
+**Default (off), tier-based:** Every action has a `damage_tiers` table with a fixed dice formula per tier (e.g. `tier3: "3d10"` for a multi-hit melee action). The creature's tier is looked up at assembly time and that formula is used directly. The calibration pass then applies a flat bonus or penalty to close any gap between the tier formula's average and the envelope target.
+
+**Enabled, DPR-first:** Instead of looking up the tier table, the engine calculates how many dice of that action's type are needed to land on the creature's per-creature DPR target. The die *size* is taken from the action's `damage_fallback` (e.g. `d10` from `"1d10"`), and the die *count* is derived from the target DPR, the action's hit chance, any recharge reduction, and any AoE target multiplier. The calibration pass still runs afterward and corrects any residual gap.
+
+The practical effect: a high-variance action like Multi-Bite, whose tier-3 table entry might be `3d10` regardless of where in the CR 5-7 band the creature actually sits, instead uses the number of d10s that fits the creature's specific DPR budget. A creature sized for the lower end of that tier uses fewer dice than one sized for the upper end. The ceiling on a lucky roll is lower and more proportional to the encounter's actual target.
+
+### When to turn it on
+
+Turn it on when you notice patterns like:
+
+- A specific multi-hit or recharge action consistently producing higher-than-expected damage when it rolls well, even though the calibrated average looks right.
+- You want to test whether tighter per-attack variance reduces the frequency of "one creature wins/loses the fight on its own" results.
+- You are running a controlled playtest and want to compare calibrated-average-only encounters (off) versus DPR-first-derived encounters (on) for the same party and difficulty.
+
+Leave it off if you want the standard experience and are not specifically investigating variance.
+
+### Custom content behavior
+
+Custom actions exported through the Custom Content dialog do not have `damage_tiers` entries. The export dialog only captures one damage formula. In the default tier-based mode, this means custom actions always use their `damage_fallback` formula unchanged. In DPR-first mode, the die size from that same `damage_fallback` is used to derive a calibrated count, so custom actions are actually *better* served by this mode: their die count is calibrated to the creature's actual DPR target rather than sitting at whatever static formula you entered.
+
+For this to work, the `damage_fallback` field must be present and in standard `XdY` format (e.g. `2d8 fire`). If you entered a flat number or an unusual formula, DPR-first falls back to using the fallback formula as-is, the same as the tier-based path.
+
+### Comparing outcomes
+
+Both modes generate the same hook payloads. The `dprFirst` field on `encounterForge.generationStarted` and `encounterForge.encounterComplete` tells you which mode produced a given encounter, making it easy to log and compare post-generation results across sessions:
+
+```js
+Hooks.on("encounterForge.encounterComplete", (data) => {
+  console.log(
+    `[${data.dprFirst ? "DPR-first" : "tier-based"}] ` +
+    `CR ${data.targetCR} x${data.count} | outcome: ${data.outcome}, ` +
+    `group DPR: ${data.groupActual.dpr.toFixed(1)} (target: ${data.groupExpected.dpr.toFixed(1)})`
+  );
+});
+```
 
 ---
 
@@ -563,6 +613,7 @@ Hooks.on("encounterForge.generationStarted", (data) => {
   // data.targetCR     {number|string}
   // data.solo         {boolean}
   // data.calibrate    {boolean}
+  // data.dprFirst     {boolean}
 });
 ```
 
@@ -590,7 +641,7 @@ Fires once after the whole batch is created.
 
 ```js
 Hooks.on("encounterForge.encounterComplete", (data) => {
-  // data.actors, data.theme, data.targetCR, data.count, data.solo, data.calibrate
+  // data.actors, data.theme, data.targetCR, data.count, data.solo, data.calibrate, data.dprFirst
   // data.results, data.partyEstimate, data.groupActual, data.groupExpected
   // data.rounds, data.outcome
 });

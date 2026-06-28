@@ -37,7 +37,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "artillery",
@@ -47,12 +47,15 @@
       "dragon",
       "elemental",
       "any"
-    ]
+    ],
+    "save_stat": "dex",
+    "recharge": "5-6",
+    "aoe_targets": 2.0
   },
   {
     "id": "stench_aura",
     "name": "Stench",
-    "action_type": "util",
+    "action_type": "save",
     "range": 5,
     "uses_dex": false,
     "description": "The creature emits a nauseating odor. Any creature that starts its turn within 5 feet must succeed on a DC {dc} Constitution saving throw or be poisoned until the start of its next turn. On a success, the creature is immune to this effect for 24 hours.",
@@ -87,7 +90,7 @@
       ]
     },
     "cr_min": 0,
-    "cr_max": 10,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "any"
@@ -96,7 +99,9 @@
       "beast",
       "undead",
       "any"
-    ]
+    ],
+    "save_stat": "con",
+    "aoe_targets": 2.0
   },
   {
     "id": "spore_burst",
@@ -136,7 +141,7 @@
       ]
     },
     "cr_min": 2,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "artillery",
@@ -147,7 +152,9 @@
       "aberration",
       "elemental",
       "any"
-    ]
+    ],
+    "save_stat": "con",
+    "aoe_targets": 1.5
   },
   {
     "id": "wail_of_despair",
@@ -187,7 +194,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "leader",
@@ -198,7 +205,9 @@
       "fiend",
       "aberration",
       "fey"
-    ]
+    ],
+    "save_stat": "wis",
+    "aoe_targets": 1.5
   },
   {
     "id": "summon_lesser",
@@ -206,39 +215,9 @@
     "action_type": "util",
     "range": 30,
     "uses_dex": false,
-    "description": "The creature lets out a signal only its kind can hear. Roll a d6. On a 4 or higher, 1d4 lesser versions of the creature (CR 1/8 to CR 1) appear within 30 feet at the end of the creature's next turn. They act immediately.",
-    "damage_fallback": [
-      "1d4",
-      "bludgeoning"
-    ],
-    "damage_tiers": {
-      "tier1": [
-        "1d4",
-        "bludgeoning"
-      ],
-      "tier2": [
-        "1d4",
-        "bludgeoning"
-      ],
-      "tier3": [
-        "1d6",
-        "bludgeoning"
-      ],
-      "tier4": [
-        "1d8",
-        "bludgeoning"
-      ],
-      "tier5": [
-        "2d6",
-        "bludgeoning"
-      ],
-      "tier6": [
-        "2d8",
-        "bludgeoning"
-      ]
-    },
+    "description": "The creature lets out a signal only its kind can hear. Roll a d6. On a 4 or higher, 1d4 lesser versions of the creature (CR 1/8 to CR 1) appear within 30 feet at the end of the creature's next turn. They act immediately. A companion actor has been prepared in your actor list \u2014 place it on the canvas when this ability is used.",
     "cr_min": 5,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "leader",
       "controller",
@@ -289,7 +268,7 @@
       ]
     },
     "cr_min": 1,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "lurker",
@@ -339,7 +318,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "leader",
       "controller",
@@ -351,7 +330,9 @@
       "undead",
       "humanoid",
       "any"
-    ]
+    ],
+    "save_stat": "cha",
+    "aoe_targets": 1.5
   },
   {
     "id": "void_pulse",
@@ -391,7 +372,7 @@
       ]
     },
     "cr_min": 5,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "artillery",
@@ -401,7 +382,9 @@
       "aberration",
       "construct",
       "any"
-    ]
+    ],
+    "save_stat": "con",
+    "aoe_targets": 1.5
   },
   {
     "id": "breath_cold",
@@ -441,7 +424,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "artillery",
@@ -451,7 +434,10 @@
       "dragon",
       "elemental",
       "undead"
-    ]
+    ],
+    "save_stat": "con",
+    "recharge": "5-6",
+    "aoe_targets": 2.0
   },
   {
     "id": "breath_lightning",
@@ -491,7 +477,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "artillery",
@@ -501,7 +487,10 @@
       "dragon",
       "elemental",
       "construct"
-    ]
+    ],
+    "save_stat": "dex",
+    "recharge": "5-6",
+    "aoe_targets": 2.0
   },
   {
     "id": "breath_acid",
@@ -541,7 +530,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "artillery",
@@ -551,7 +540,10 @@
       "dragon",
       "aberration",
       "beast"
-    ]
+    ],
+    "save_stat": "dex",
+    "recharge": "5-6",
+    "aoe_targets": 2.0
   },
   {
     "id": "fey_glamour",
@@ -591,7 +583,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "leader",
@@ -601,7 +593,8 @@
       "fey",
       "fiend",
       "aberration"
-    ]
+    ],
+    "save_stat": "wis"
   },
   {
     "id": "earth_eruption",
@@ -641,7 +634,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "brute",
       "controller",
@@ -651,7 +644,9 @@
       "elemental",
       "monstrosity",
       "any"
-    ]
+    ],
+    "save_stat": "dex",
+    "aoe_targets": 1.5
   },
   {
     "id": "acid_pool",
@@ -691,7 +686,7 @@
       ]
     },
     "cr_min": 3,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "artillery",
@@ -701,7 +696,9 @@
       "aberration",
       "elemental",
       "beast"
-    ]
+    ],
+    "save_stat": "dex",
+    "aoe_targets": 1.5
   },
   {
     "id": "lashing_roots",
@@ -741,7 +738,7 @@
       ]
     },
     "cr_min": 2,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "brute",
@@ -752,7 +749,9 @@
       "elemental",
       "fey",
       "any"
-    ]
+    ],
+    "save_stat": "str",
+    "aoe_targets": 1.5
   },
   {
     "id": "fear_wave",
@@ -792,7 +791,7 @@
       ]
     },
     "cr_min": 4,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "leader",
       "controller",
@@ -803,7 +802,9 @@
       "monstrosity",
       "fiend",
       "beast"
-    ]
+    ],
+    "save_stat": "wis",
+    "aoe_targets": 1.5
   },
   {
     "id": "necrotic_wave",
@@ -843,7 +844,7 @@
       ]
     },
     "cr_min": 4,
-    "cr_max": 15,
+    "cr_max": 30,
     "chassis_affinity": [
       "controller",
       "leader",
@@ -853,6 +854,8 @@
       "undead",
       "fiend",
       "aberration"
-    ]
+    ],
+    "save_stat": "con",
+    "aoe_targets": 1.5
   }
 ]

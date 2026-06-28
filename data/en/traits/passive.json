@@ -86,7 +86,8 @@
     "tags": [
       "any"
     ],
-    "description": "Once per day, if the creature fails a saving throw, it can choose to succeed instead."
+    "description": "Once per day, if the creature fails a saving throw, it can choose to succeed instead.",
+    "activation_type": "reaction"
   },
   {
     "id": "timekeeper",

@@ -1,14 +1,15 @@
 # GM Tools: Encounter Forge
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/Elemor)
-[![Foundry Version](https://img.shields.io/badge/Foundry-v12-informational?style=for-the-badge)](https://foundryvtt.com)
-[![Module Version](https://img.shields.io/badge/Version-1.0.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
+[![Foundry Version](https://img.shields.io/badge/Foundry-v12--v14-informational?style=for-the-badge)](https://foundryvtt.com)
+[![dnd5e Version](https://img.shields.io/badge/dnd5e-4.0%2B-informational?style=for-the-badge)](https://github.com/foundryvtt/dnd5e)
+[![Module Version](https://img.shields.io/badge/Version-2.0.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
 <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/encounter-forge/latest/total">
 
 **Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
 
 Instead of pulling a stat block from a compendium and hoping the CR math works out, Encounter Forge assembles a creature from a chassis, traits, actions, and (optionally) spells, then tunes its HP, AC, and damage so the resulting encounter actually lands at the difficulty you asked for.
 
-> **Status:** Actively developed. Foundry v12, dnd5e system 3.0+ (verified on 3.3.1 & 4.4.4).
+> **Status:** Actively developed. Foundry v12–v14, dnd5e system 4.0+ (verified on 5.3.3).
 
 ---
 
@@ -42,10 +43,11 @@ Encounter Forge contains **no AI, no language model, and no network calls of any
 - **Solo Boss mode** - a single creature gets HP x1.5, DPR x1.3, AC +2, three guaranteed actions, and a draw from the legendary trait pool (legendary actions, lair actions, legendary resistance) so it can stand up to a full party alone.
 - **Live pre-generation readout** - as you adjust player count, level, enemy count, and difficulty, the dialog shows the target CR, projected enemy/party DPR and HP, rounds-to-defeat/threaten, and a color-coded outlook (Easy/Manageable/Risky/Dangerous) - *before* you generate anything.
 - **Combat Intensity Calibration** - a GM-only setting (Module Settings -> Combat Intensity Calibration) that shifts how aggressively enemies are sized across all difficulties, on a -3 to +3 scale. The live-preview chart in the calibration dialog shows how each step affects drain time across Easy/Medium/Hard/Deadly for a reference party. Intended for playtesting; leave at 0 for the baseline math.
+- **Precision Damage Scaling (Playtest)** - a GM only module setting that changes how action dice counts are assigned during creature assembly. Standard fixed dice is on by default (original v1.0 implementation). When enabled, dice counts are calculated from each creature's actual DPR target rather than a fixed tier table, which tightens the ceiling on high-variance attacks like multi-hit melee actions whose tier-based dice would otherwise spike above the intended damage budget. Enable from Module Settings to compare balance outcomes against the v1.0 approach.
 - **Post-generation results summary** - after generation, see each creature's actual rolled HP/AC/DPR and CR, plus the group's combined stats versus the party and the same outlook label, now based on real numbers.
 - **10 themes / creature types** - beast, undead, aberration, humanoid, elemental, fey, fiend, dragon, construct, monstrosity, or "any".
 - **6 chassis archetypes** - brute, lurker, skirmisher, controller, artillery, leader; each with its own stat spread, size progression, guaranteed skills, and action/spell affinities.
-- **Full Foundry actor output** - generated NPCs are written as real dnd5e actors with stats, skills, senses, resistances/immunities, items (traits, actions, multiattack, spells), and legendary resources fully configured and ready to drop on a scene.
+- **Full Foundry actor integration** - generated NPCs are written as dnd5e actors with stats, skills, senses, resistances/immunities, items (traits, actions, multiattack, spells), and legendary resources fully configured and ready to drop on a scene. Actions that apply conditions (grapple, prone, poisoned, frightened, etc.) include wired Foundry ActiveEffects so you can apply them after rolling.
 - **Disposition, folder, and naming controls** - set token disposition, target an actor folder, and override the generated name/portrait/token image.
 - **Public API + Hooks** - generate creatures from macros or other modules, open a pre-configured dialog for "generate me an NPC for this" workflows, and listen for generation lifecycle hooks. See the [Wiki](docs/WIKI.md) for full API docs and code samples.
 - **Remember last used** - the dialog remembers your last settings (per-client), with a one-click reset from module settings.
@@ -96,7 +98,11 @@ Every generated creature is then tuned to hit its envelope target exactly:
 
 The result: the pre-generation readout and the post-generation results should track closely, regardless of party size, level, enemy count, or Solo Boss status.
 
-### 5. Combat Intensity Calibration (optional)
+### 5. Precision Damage Scaling (optional)
+
+A world setting (`dprFirstDamage`, Boolean, default off) changes how action dice counts are assigned during creature assembly. In the default tier-based path, each action uses a fixed dice formula per tier (example, a multi-hit melee action always uses its tier 3 formula at CR 5-7, regardless of the creature's actual DPR target). When enabled, dice counts are instead derived from the per-creature DPR target values: the engine extracts the die size from the action's `damage_fallback` and computes how many dice of that size are needed to hit the target DPR. Calibration (step 4) still runs afterward and closes any gap. The effect is a closer ceiling on high-variance attacks. An action at tier 3 uses the number of dice appropriate for that creature's budget, not a tier-baked maximum. Intended for playtesting balance comparisons so I can get input on the better approach; leave off for the standard v 1.0 path if you prefer.
+
+### 6. Combat Intensity Calibration (optional)
 
 A world setting (`combatIntensity`, integer -3 to +3, default 0) scales the `roundsToThreaten` target before the envelope is computed:
 

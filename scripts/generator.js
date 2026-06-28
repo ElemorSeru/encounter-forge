@@ -1,4 +1,4 @@
-import { crToDisplay } from "./cr-engine.js";
+import { crToDisplay, crToNumber, halfCR } from "./cr-engine.js";
 import { assembleCreature } from "./creature-assembler.js";
 import { createActor } from "./actor-creator.js";
 import { calibrateCreature } from "./calibrator.js";
@@ -32,8 +32,9 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
     ? await estimatePartyFromActors(partyActors)
     : await estimatePartyGeneric(pCount, pLevel);
 
-  // Sizes the whole encounter to the party and difficulty; targetCR is only used for picking a flavor tier per creature.
+  // targetCR picks a tier, not to set final HP or DPR
   const intensityOffset = game.settings.get("encounter-forge", "combatIntensity") ?? 0;
+  const dprFirst = game.settings.get("encounter-forge", "dprFirstDamage") ?? false;
   const envelope = computeEncounterEnvelope(partyEstimate, diff, count, isSolo, intensityOffset);
   const targetCR = await nearestCRForStats(envelope.perEnemyHP, envelope.perEnemyDPR);
 
@@ -49,14 +50,15 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
     theme: faction,
     targetCR,
     solo: isSolo,
-    calibrate: isCalibrated
+    calibrate: isCalibrated,
+    dprFirst
   });
 
   const actors = [];
   const results = [];
   for (let i = 0; i < count; i++) {
     try {
-      const creature = await assembleCreature(targetCR, faction, name, isSolo);
+      const creature = await assembleCreature(targetCR, faction, name, isSolo, false, dprFirst ? envelope.perEnemyDPR : undefined);
       creature.img = img || null;
       creature.tokenImg = tokenImg || null;
       creature.solo = isSolo;
@@ -70,6 +72,27 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
       if (actor) {
         actors.push(actor);
         results.push({ name: creature.name, img: actor.img, cr: creature.cr, profile });
+
+        const hasSummon = creature.actions.some(a => a.id === "summon_lesser");
+        if (hasSummon) {
+          try {
+            const summonCR = halfCR(targetCR);
+            const summonCreature = await assembleCreature(summonCR, faction, null, false, true, dprFirst ? envelope.perEnemyDPR * 0.4 : undefined);
+            summonCreature.img = null;
+            summonCreature.tokenImg = null;
+            summonCreature.solo = false;
+            summonCreature.disposition = disposition ?? CONST.TOKEN_DISPOSITIONS.HOSTILE;
+            summonCreature.folder = folder ?? null;
+            await calibrateCreature(summonCreature, {
+              hp: envelope.perEnemyHP * 0.4,
+              dpr: envelope.perEnemyDPR * 0.4
+            });
+            summonCreature.name = `${creature.name}'s Summon`;
+            await createActor(summonCreature);
+          } catch (err) {
+            console.error("Encounter Forge | Failed to generate summon companion:", err);
+          }
+        }
       }
     } catch (err) {
       console.error("Encounter Forge | Error generating creature:", err);
@@ -95,6 +118,7 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
     count: actors.length,
     solo: isSolo,
     calibrate: isCalibrated,
+    dprFirst,
     results, partyEstimate, groupActual, groupExpected, rounds, outcome
   });
 

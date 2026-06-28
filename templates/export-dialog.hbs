@@ -92,6 +92,54 @@
           <input type="number" name="crAdjustment" value="{{crAdjustment}}" min="0" max="3" />
         </div>
 
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.TraitActionType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.TraitActionType'}}"></i></label>
+          <select name="traitActionType">
+            {{#each traitActionTypeOptions}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div data-section="trait-activation">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.ActivationType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ActivationType'}}"></i></label>
+            <select name="traitActivationType">
+              {{#each activationTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div data-section="trait-save">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.SaveAbility"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SaveAbility'}}"></i></label>
+            <select name="traitSaveStat">
+              {{#each abilityOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div data-section="trait-damage">
+          <div class="ef-grid">
+            <div class="form-group">
+              <label>{{localize "ENCOUNTERFORGE.Export.DamageFormula"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+              <input type="text" name="damageFormulaTrait" value="{{damageFormula}}" placeholder="2d6" />
+            </div>
+            <div class="form-group">
+              <label>{{localize "ENCOUNTERFORGE.Export.DamageType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
+              <select name="damageTypeTrait">
+                {{#each damageTypeOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div data-section="legendary">
           <div class="ef-grid">
             <div class="form-group">
@@ -130,6 +178,26 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label>{{localize "ENCOUNTERFORGE.Export.Recharge"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Recharge'}}"></i></label>
+          <select name="recharge">
+            {{#each rechargeOptions}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div data-section="action-save">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.SaveAbility"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SaveAbility'}}"></i></label>
+            <select name="actionSaveStat">
+              {{#each abilityOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
         <div class="ef-grid">
           <div class="form-group">
             <label>{{localize "ENCOUNTERFORGE.Export.DamageFormula"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.Damage'}}"></i></label>
@@ -159,6 +227,45 @@
       </div>
 
       <div data-section="spell">
+        <div class="ef-grid">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.FallbackType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.FallbackType'}}"></i></label>
+            <select name="spellFallbackType">
+              {{#each spellFallbackTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.ActivationType"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.ActivationType'}}"></i></label>
+            <select name="spellActivationType">
+              {{#each activationTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div data-section="spell-save">
+          <div class="form-group">
+            <label>{{localize "ENCOUNTERFORGE.Export.SaveAbility"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SaveAbility'}}"></i></label>
+            <select name="spellSaveStat">
+              {{#each abilityOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div data-section="spell-attack">
+          <div class="form-group solo-boss-group">
+            <div class="solo-boss-left">
+              <label>{{localize "ENCOUNTERFORGE.Export.SpellMelee"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.SpellMelee'}}"></i></label>
+            </div>
+            <input type="checkbox" name="spellMelee" value="1" {{#if spellMelee}}checked{{/if}} />
+          </div>
+        </div>
+
         <div class="ef-grid">
           <div class="form-group">
             <label>{{localize "ENCOUNTERFORGE.Export.School"}} <i class="fas fa-circle-info ef-field-hint" data-tooltip="{{localize 'ENCOUNTERFORGE.Export.Hint.School'}}"></i></label>
