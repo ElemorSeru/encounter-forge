@@ -9,7 +9,7 @@
 
 Instead of pulling a stat block from a compendium and hoping the CR math works out, Encounter Forge assembles a creature from a chassis, traits, actions, and (optionally) spells, then tunes its HP, AC, and damage so the resulting encounter actually lands at the difficulty you asked for.
 
-> **Status:** Actively developed. Foundry v12�v14, dnd5e system 4.0+ (verified on 5.3.3).
+> **Status:** Actively developed. Foundry v12-v14, dnd5e system 4.0+ (verified on 5.3.3).
 
 ---
 
