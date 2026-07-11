@@ -14,7 +14,6 @@ function registerCustomContentSetting() {
   });
 }
 
-// Other modules register a callback here to clear their cached pools whenever custom content changes.
 function registerCacheInvalidator(fn) {
   _invalidators.push(fn);
 }
@@ -69,7 +68,6 @@ async function setCustomEntryEnabled(kind, id, enabled) {
   return updateCustomEntry(kind, id, { enabled });
 }
 
-// Bundles every custom trait/action/spell entry into a portable JSON serializable object, so a GM can share their homebrew pools across worlds.
 function exportCustomContent() {
   const data = getCustomContent();
   const payload = {};
@@ -83,8 +81,6 @@ function exportCustomContent() {
   };
 }
 
-// Merges a previously exported bundle into this world's custom content pools. Imported entries are appended, never overwrite existing, and given
-// fresh IDs to avoid collisions. Returns the number of entries imported.
 async function importCustomContent(payload) {
   if (!payload || typeof payload !== "object" || !payload.data || typeof payload.data !== "object") {
     throw new Error("Not a valid Encounter Forge custom content file.");

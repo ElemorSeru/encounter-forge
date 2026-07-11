@@ -195,7 +195,12 @@
     ],
     "description": "When a creature successfully grapples this creature, the creature can use its reaction to make one melee attack against the grappling creature.",
     "activation_type": "reaction",
-    "activation_cost": 1
+    "activation_cost": 1,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "1d6",
+      "bludgeoning"
+    ]
   },
   {
     "id": "spell_deflect",
@@ -248,7 +253,12 @@
     ],
     "description": "When a creature within 5 feet hits this creature with a melee attack, it can use its reaction to immediately make one melee attack against the attacker.",
     "activation_type": "reaction",
-    "activation_cost": 1
+    "activation_cost": 1,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "1d8",
+      "slashing"
+    ]
   },
   {
     "id": "elemental_discharge",
@@ -266,7 +276,13 @@
     ],
     "description": "When this creature takes 10 or more damage from a single attack, it can use its reaction to release a burst of its elemental energy. Each creature within 10 feet must succeed on a DC {dc} Dexterity saving throw or take 2d6 damage of the creature's primary damage type.",
     "activation_type": "reaction",
-    "activation_cost": 1
+    "activation_cost": 1,
+    "action_type": "save",
+    "save_stat": "dex",
+    "damage_fallback": [
+      "2d6",
+      "fire"
+    ]
   },
   {
     "id": "spatial_fold",
@@ -300,7 +316,12 @@
     ],
     "description": "When a creature misses this creature with a melee attack, it can use its reaction to make one melee attack against the attacker with advantage.",
     "activation_type": "reaction",
-    "activation_cost": 1
+    "activation_cost": 1,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "1d8",
+      "slashing"
+    ]
   },
   {
     "id": "fey_vengeance",
@@ -334,6 +355,11 @@
     ],
     "description": "When this creature takes 15 or more damage from a single attack, it can use its reaction to make one melee attack against the attacker if it is within reach.",
     "activation_type": "reaction",
-    "activation_cost": 1
+    "activation_cost": 1,
+    "action_type": "mwak",
+    "damage_fallback": [
+      "2d8",
+      "slashing"
+    ]
   }
 ]

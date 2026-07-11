@@ -1,4 +1,4 @@
-import { CR_XP_MAP, crToNumber, crToDisplay } from "./cr-engine.js";
+﻿import { CR_XP_MAP, crToNumber, crToDisplay } from "./cr-engine.js";
 import { importSpellItem, buildSpellcastingDesc } from "./spell-engine.js";
 
 export const VALID_DAMAGE_TYPES = new Set([
@@ -56,7 +56,8 @@ function filePickerSource(folderPath) {
 async function browseFolderFiles(folderPath, depth = 0) {
   if (_folderCache.has(folderPath)) return _folderCache.get(folderPath);
   try {
-    const result = await FilePicker.browse(filePickerSource(folderPath), folderPath);
+    const FP = foundry.applications?.apps?.FilePicker?.implementation ?? FilePicker;
+    const result = await FP.browse(filePickerSource(folderPath), folderPath);
     let files = (result.files || []).filter(f => /\.(webp|png|svg|jpg)$/i.test(f));
 
     if (files.length === 0 && depth === 0 && result.dirs?.length > 0) {
@@ -119,19 +120,71 @@ function resolveDC(profBonus, statValue) {
   return 8 + profBonus + Math.floor((statValue - 10) / 2);
 }
 
+function buildConditionEffect(effectDef) {
+  const effectId = foundry.utils.randomID();
+  const label = effectDef.condition.charAt(0).toUpperCase() + effectDef.condition.slice(1);
+  const statusEntry = CONFIG.statusEffects?.find(s => s.id === effectDef.condition);
+  const img = statusEntry?.img ?? "icons/svg/mystery-man.svg";
+  return {
+    _id: effectId,
+    name: label,
+    img,
+    transfer: false,
+    disabled: false,
+    statuses: [effectDef.condition],
+    changes: [],
+    flags: {},
+    duration: {
+      rounds: effectDef.duration === "minute" ? 10 : 1,
+      turns: 0,
+      seconds: 0,
+      startRound: null,
+      startTime: null,
+      startTurn: null
+    }
+  };
+}
+
 function formatDesc(text, dc, profBonus) {
   return (text || "")
     .replace(/\{dc\}/g, dc)
     .replace(/\{prof\}/g, profBonus);
 }
 
-function damageTypeMap(typeStr) {
-  const obj = {};
-  if (typeStr && VALID_DAMAGE_TYPES.has(typeStr)) obj[typeStr] = true;
-  return obj;
+function damageTypeSet(typeStr) {
+  if (typeStr && VALID_DAMAGE_TYPES.has(typeStr)) return [typeStr];
+  return [];
 }
 
-function buildAttackActivity(action, creatureData) {
+const VALID_DENOMINATIONS = new Set([2, 3, 4, 6, 8, 10, 12, 20, 100]);
+
+function buildDamagePart(formula, damageType, includeModifier = false) {
+  const types = damageTypeSet(damageType);
+
+  const parsed = (formula ?? "").match(/^\s*(\d+)d(\d+)\s*$/i);
+  if (parsed && VALID_DENOMINATIONS.has(Number(parsed[2]))) {
+    return {
+      number: Number(parsed[1]),
+      denomination: Number(parsed[2]),
+      bonus: includeModifier ? "@mod" : "",
+      types,
+      custom: { enabled: false, formula: "" },
+      scaling: { mode: "", number: null, formula: "" }
+    };
+  }
+
+  const fullFormula = includeModifier ? `${formula} + @mod` : (formula || "");
+  return {
+    number: null,
+    denomination: null,
+    bonus: "",
+    types,
+    custom: { enabled: true, formula: fullFormula },
+    scaling: { mode: "", number: null, formula: "" }
+  };
+}
+
+function buildAttackActivity(action, creatureData, activationType = "action", activationValue = 1, effectRefs = []) {
   const actId = foundry.utils.randomID();
   const isRanged = ["rwak", "rsak"].includes(action.action_type);
   const isSpell = ["rsak", "msak"].includes(action.action_type);
@@ -144,11 +197,10 @@ function buildAttackActivity(action, creatureData) {
     [actId]: {
       _id: actId,
       type: "attack",
-      activation: { type: "action", cost: 1, condition: "" },
+      activation: { type: activationType, value: activationValue, condition: "" },
       duration: { value: "", units: "inst", special: "" },
       range: {
         value: action.range || (isRanged ? 60 : 5),
-        long: action.range_long || null,
         units: "ft",
         special: ""
       },
@@ -157,51 +209,41 @@ function buildAttackActivity(action, creatureData) {
         template: { count: "", contiguous: false, type: "", size: "", width: "", height: "", units: "" },
         prompt: true
       },
-      effects: [],
+      effects: effectRefs,
       uses: { spent: 0, max: "", recovery: [] },
       attack: {
         ability,
         bonus: "",
         flat: false,
-        critical: { threshold: null, damage: "" },
+        critical: { threshold: null },
         type: {
           value: isRanged ? "ranged" : "melee",
           classification: isSpell ? "spell" : "weapon"
         }
       },
       damage: {
-        onSave: "none",
-        critical: { allow: true, bonus: "" },
-        parts: [
-          {
-            base: {
-              formula: `${formula} + @mod`,
-              types: damageTypeMap(damageType),
-              custom: { enabled: false, formula: "" },
-              scaling: { mode: "none", number: null, formula: "" }
-            },
-            bonus: ""
-          }
-        ]
+        critical: { bonus: "" },
+        includeBase: true,
+        parts: [buildDamagePart(formula, damageType, true)]
       }
     }
   };
 }
 
-function buildSaveActivity(action, dc) {
+function buildSaveActivity(action, dc, saveAbility = "wis", activationType = "action", activationValue = 1, effectRefs = []) {
   const actId = foundry.utils.randomID();
-  const resolved = action._resolvedDamage || action.damage_fallback || ["2d6", "force"];
-  const [formula, damageType] = resolved;
+  const resolved = action._resolvedDamage || action.damage_fallback;
+  const [formula, damageType] = resolved || ["", ""];
+  const hasDamage = formula && formula !== "0";
 
   return {
     [actId]: {
       _id: actId,
       type: "save",
-      activation: { type: "action", cost: 1, condition: "" },
+      activation: { type: activationType, value: activationValue, condition: "" },
       duration: { value: "", units: "inst", special: "" },
       range: {
         value: action.range || 30,
-        long: null,
         units: "ft",
         special: ""
       },
@@ -210,40 +252,29 @@ function buildSaveActivity(action, dc) {
         template: { count: "", contiguous: false, type: "", size: "", width: "", height: "", units: "" },
         prompt: true
       },
-      effects: [],
+      effects: effectRefs,
       uses: { spent: 0, max: "", recovery: [] },
       save: {
-        ability: "wis",
+        ability: [saveAbility],
         dc: { calculation: "", formula: String(dc) }
       },
       damage: {
         onSave: "half",
-        critical: { allow: false, bonus: "" },
-        parts: [
-          {
-            base: {
-              formula: formula,
-              types: damageTypeMap(damageType),
-              custom: { enabled: false, formula: "" },
-              scaling: { mode: "none", number: null, formula: "" }
-            },
-            bonus: ""
-          }
-        ]
+        parts: hasDamage ? [buildDamagePart(formula, damageType, false)] : []
       }
     }
   };
 }
 
-function buildUtilityActivity() {
+function buildUtilityActivity(activationType = "action", activationValue = 1) {
   const actId = foundry.utils.randomID();
   return {
     [actId]: {
       _id: actId,
       type: "utility",
-      activation: { type: "action", cost: 1, condition: "" },
+      activation: { type: activationType, value: activationValue, condition: "" },
       duration: { value: "", units: "inst", special: "" },
-      range: { value: null, long: null, units: "", special: "" },
+      range: { value: null, units: "", special: "" },
       target: {
         affects: { count: "", type: "", choice: false, special: "" },
         template: { count: "", contiguous: false, type: "", size: "", width: "", height: "", units: "" },
@@ -261,9 +292,9 @@ function buildLegendaryActivity(cost = 1) {
     [actId]: {
       _id: actId,
       type: "utility",
-      activation: { type: "legendary", cost, condition: "" },
+      activation: { type: "legendary", value: cost, condition: "" },
       duration: { value: "", units: "inst", special: "" },
-      range: { value: null, long: null, units: "", special: "" },
+      range: { value: null, units: "", special: "" },
       target: {
         affects: { count: "", type: "", choice: false, special: "" },
         template: { count: "", contiguous: false, type: "", size: "", width: "", height: "", units: "" },
@@ -281,9 +312,9 @@ function buildLairActivity() {
     [actId]: {
       _id: actId,
       type: "utility",
-      activation: { type: "lair", cost: 1, condition: "" },
+      activation: { type: "lair", value: 1, condition: "" },
       duration: { value: "", units: "inst", special: "" },
-      range: { value: null, long: null, units: "", special: "" },
+      range: { value: null, units: "", special: "" },
       target: {
         affects: { count: "", type: "", choice: false, special: "" },
         template: { count: "", contiguous: false, type: "", size: "", width: "", height: "", units: "" },
@@ -297,15 +328,20 @@ function buildLairActivity() {
 
 async function buildActionItem(action, creatureData) {
   const { profBonus, stats } = creatureData;
-  const dc = resolveDC(profBonus, Math.max(stats.wis, stats.cha));
+  const dcStatKey = action.effect?.dc_stat;
+  const dcStatValue = dcStatKey ? (stats[dcStatKey] ?? Math.max(stats.wis, stats.cha)) : Math.max(stats.wis, stats.cha);
+  const dc = resolveDC(profBonus, dcStatValue);
   const desc = formatDesc(action.description, dc, profBonus);
 
   const isSave = action.action_type === "save";
   const isUtil = action.action_type === "util";
 
+  const builtEffect = action.effect?.condition ? buildConditionEffect(action.effect) : null;
+  const effectRefs = builtEffect ? [{ _id: builtEffect._id }] : [];
+
   const [activities, icon] = await Promise.all([
-    isSave ? buildSaveActivity(action, dc)
-    : !isUtil ? buildAttackActivity(action, creatureData)
+    isSave ? buildSaveActivity(action, dc, action.effect?.save_stat || action.save_stat || "wis", "action", 1, effectRefs)
+    : !isUtil ? buildAttackActivity(action, creatureData, "action", 1, effectRefs)
     : buildUtilityActivity(),
     getActionIcon(action)
   ]);
@@ -318,7 +354,8 @@ async function buildActionItem(action, creatureData) {
       description: { value: `<p>${desc}</p>` },
       type: { value: "monster", subtype: "" },
       activities
-    }
+    },
+    effects: builtEffect ? [builtEffect] : []
   };
 }
 
@@ -328,11 +365,24 @@ async function buildFeatureItem(trait, creatureData) {
   const desc = formatDesc(trait.description, dc, profBonus);
   const icon = await getTraitIcon(trait);
 
+  const legType = trait.legendary_type;
+  const legCost = trait.legendary_cost ?? 1;
+  const isAttack = ["mwak", "rwak", "msak", "rsak"].includes(trait.action_type);
+  const isSave = trait.action_type === "save";
+
+  let activationType = "action";
+  let activationValue = 1;
+  if (legType === "action") { activationType = "legendary"; activationValue = legCost; }
+  else if (legType === "lair") { activationType = "lair"; }
+  else if (trait.activation_type) { activationType = trait.activation_type; }
+
   let activities;
-  if (trait.legendary_type === "action") {
-    activities = buildLegendaryActivity(trait.legendary_cost ?? 1);
-  } else if (trait.legendary_type === "lair") {
-    activities = buildLairActivity();
+  if (isAttack) {
+    activities = buildAttackActivity(trait, creatureData, activationType, activationValue);
+  } else if (isSave) {
+    activities = buildSaveActivity(trait, dc, trait.save_stat || "wis", activationType, activationValue);
+  } else if (legType === "action" || legType === "lair" || trait.activation_type) {
+    activities = buildUtilityActivity(activationType, activationValue);
   }
 
   return {
@@ -347,9 +397,6 @@ async function buildFeatureItem(trait, creatureData) {
   };
 }
 
-// Deep-clones a stored item snapshot and regenerates its document ID along with
-// the IDs of any nested activities and Active Effects, so multiple generated
-// creatures sharing the same custom-content snapshot do not collide.
 function regenerateClonedItemIds(itemData) {
   const clone = foundry.utils.deepClone(itemData);
   delete clone._id;
@@ -370,8 +417,6 @@ function regenerateClonedItemIds(itemData) {
   return clone;
 }
 
-// Overwrites the primary damage part of a cloned item's first activity with the
-// creature's calibrated damage, so post-processing balance changes carry over.
 function applyResolvedDamageToClone(itemData, resolvedDamage) {
   if (!resolvedDamage) return;
   const [formula, damageType] = resolvedDamage;
@@ -379,24 +424,20 @@ function applyResolvedDamageToClone(itemData, resolvedDamage) {
   if (!activities) return;
 
   for (const activity of Object.values(activities)) {
-    const part = activity.damage?.parts?.[0];
-    if (!part) continue;
-    const suffix = activity.type === "attack" ? " + @mod" : "";
-    part.base.formula = `${formula}${suffix}`;
-    part.base.types = damageTypeMap(damageType);
+    const parts = activity.damage?.parts;
+    if (!parts?.length) continue;
+    const includeModifier = activity.type === "attack";
+    parts[0] = buildDamagePart(formula, damageType, includeModifier);
     break;
   }
 }
 
-// Builds an action item from a custom-content full-clone snapshot, substituting
-// the calibrated damage onto the clone's first activity.
 function buildActionItemFromClone(action) {
   const clone = regenerateClonedItemIds(action._fullClone);
   applyResolvedDamageToClone(clone, action._resolvedDamage);
   return clone;
 }
 
-// Builds a feature item from a custom-content full-clone snapshot.
 function buildFeatureItemFromClone(trait) {
   return regenerateClonedItemIds(trait._fullClone);
 }
@@ -406,26 +447,56 @@ async function buildSyntheticSpellItem(spell, creatureData) {
   const { spellDC } = spellInfo;
   const fb = spell.fallback || { type: "util" };
   const [formula, damageType] = fb.damage || ["0", "force"];
-  const usageLabel = spell.cantrip ? "At Will" : "1/Day";
+  const saveAbility = fb.save_stat || "wis";
+  const usageLabel = spell.cantrip ? "at will" : "1/day";
   const schoolLabel = spell.school
     ? spell.school.charAt(0).toUpperCase() + spell.school.slice(1)
     : "Magic";
 
+  const ABILITY_LABELS = {
+    str: "Strength", dex: "Dexterity", con: "Constitution",
+    int: "Intelligence", wis: "Wisdom", cha: "Charisma"
+  };
+
   let activities;
+  let descBody;
+
   if (fb.type === "attack" && formula !== "0") {
+    const attackType = fb.melee ? "msak" : "rsak";
+    const attackRange = fb.melee ? 5 : 60;
+    const defaultDesc = fb.melee
+      ? `Melee spell attack dealing ${formula} ${damageType} damage.`
+      : `Ranged spell attack dealing ${formula} ${damageType} damage.`;
     activities = buildAttackActivity(
-      { action_type: "rsak", uses_dex: true, range: 60, range_long: null,
+      { action_type: attackType, uses_dex: !fb.melee, range: attackRange, range_long: null,
         _resolvedDamage: [formula, damageType], damage_fallback: [formula, damageType] },
       creatureData
     );
-  } else if (fb.type === "save" && formula !== "0") {
+    descBody = fb.description
+      ? fb.description.replace("{damage}", `${formula} ${damageType}`)
+      : defaultDesc;
+  } else if (fb.type === "save") {
+    // saves with no damage still need a DC button on the sheet
     activities = buildSaveActivity(
-      { _resolvedDamage: [formula, damageType], damage_fallback: [formula, damageType], range: 30 },
-      spellDC
+      { _resolvedDamage: formula !== "0" ? [formula, damageType] : null, range: 30 },
+      spellDC,
+      saveAbility
     );
+    const abilityLabel = ABILITY_LABELS[saveAbility] || "Wisdom";
+    if (formula !== "0") {
+      const autoDesc = `Each creature must succeed on a DC ${spellDC} ${abilityLabel} saving throw`
+        + `, taking ${formula} ${damageType} damage on a failure (half on a success).`;
+      descBody = fb.description ? `${fb.description} (DC ${spellDC} ${abilityLabel}, ${formula} ${damageType} on a failure)` : autoDesc;
+    } else {
+      const autoDesc = `DC ${spellDC} ${abilityLabel} saving throw - `;
+      descBody = fb.description ? autoDesc + fb.description : `One or more creatures must succeed on a DC ${spellDC} ${abilityLabel} saving throw or be affected.`;
+    }
   } else {
-    activities = buildUtilityActivity();
+    activities = buildUtilityActivity(fb.activation_type || "action");
+    descBody = fb.description || `${schoolLabel} spell (${usageLabel}).`;
   }
+
+  const description = `<p><em>${schoolLabel} (${usageLabel === "at will" ? "At Will" : "1/Day"})</em></p><p>${descBody}</p>`;
 
   const icon = damageType && DAMAGE_FOLDERS[damageType]
     ? await pickIconFromFolders(DAMAGE_FOLDERS[damageType], "icons/svg/mystery-man.svg")
@@ -438,7 +509,7 @@ async function buildSyntheticSpellItem(spell, creatureData) {
     type: "feat",
     img: icon,
     system: {
-      description: { value: `<p><em>${schoolLabel} (${usageLabel})</em></p>` },
+      description: { value: description },
       type: { value: "monster", subtype: "" },
       activities
     }
@@ -449,6 +520,12 @@ const ALL_SKILLS = [
   "acr", "ani", "arc", "ath", "dec", "his", "ins", "itm", "inv",
   "med", "nat", "prc", "prf", "per", "rel", "slt", "ste", "sur"
 ];
+
+// dnd5e 5.3 reorganised the senses field; branch on version to keep 4.x and 5.x both working
+function dnd5eAtLeast(major, minor = 0) {
+  const [v0, v1] = (game.system.version ?? "0.0").split(".").map(Number);
+  return v0 > major || (v0 === major && v1 >= minor);
+}
 
 async function resolveFolder(name) {
   if (!name) return null;
@@ -511,14 +588,25 @@ async function createActor(creatureData) {
           hover: false,
           units: "ft"
         },
-        senses: {
-          darkvision: senses?.darkvision ?? 0,
-          blindsight: senses?.blindsight ?? 0,
-          tremorsense: senses?.tremorsense ?? 0,
-          truesight: senses?.truesight ?? 0,
-          units: "ft",
-          special: ""
-        }
+        senses: dnd5eAtLeast(5, 3)
+          ? {
+              ranges: {
+                darkvision: senses?.darkvision || null,
+                blindsight: senses?.blindsight || null,
+                tremorsense: senses?.tremorsense || null,
+                truesight: senses?.truesight || null
+              },
+              units: "ft",
+              special: ""
+            }
+          : {
+              darkvision: senses?.darkvision ?? 0,
+              blindsight: senses?.blindsight ?? 0,
+              tremorsense: senses?.tremorsense ?? 0,
+              truesight: senses?.truesight ?? 0,
+              units: "ft",
+              special: ""
+            }
       },
       skills: Object.fromEntries(
         ALL_SKILLS.map(s => [s, { value: skills?.[s] ?? 0 }])
@@ -531,7 +619,7 @@ async function createActor(creatureData) {
       resources: (hasLegActions || legresCount > 0 || hasLairActions) ? {
         legact: { value: hasLegActions ? 3 : 0, max: hasLegActions ? 3 : 0 },
         legres: { value: legresCount, max: legresCount },
-        lair: { value: hasLairActions ? 1 : 0, initiative: 20 }
+        lair: { value: hasLairActions, initiative: 20 }
       } : {},
       traits: {
         size: stats.size || "med",

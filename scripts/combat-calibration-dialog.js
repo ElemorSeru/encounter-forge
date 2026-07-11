@@ -12,9 +12,8 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const MODULE_ID = "encounter-forge";
 const SETTING_KEY = "combatIntensity";
 const MIN_OFFSET = -3;
-const MAX_OFFSET =  3;
+const MAX_OFFSET = 3;
 
-// Example party used for the live preview.
 const PREVIEW_PLAYER_COUNT = 4;
 const PREVIEW_PLAYER_LEVEL = 5;
 
@@ -62,7 +61,7 @@ async function buildDiffRows(offset) {
       defeat,
       drain,
       defeatWidth: Math.min(100, Math.round((defeat / MAX_BAR_ROUNDS) * 100)),
-      drainWidth:  Math.min(100, Math.round((drain  / MAX_BAR_ROUNDS) * 100)),
+      drainWidth: Math.min(100, Math.round((drain / MAX_BAR_ROUNDS) * 100)),
       outcome,
       outcomeLabel: game.i18n.localize(`ENCOUNTERFORGE.Outcome.${outcomeKey}`)
     };
@@ -80,9 +79,9 @@ export default class EncounterForgeCombatCalibrationDialog extends HandlebarsApp
     },
     position: { width: 480, height: "auto" },
     actions: {
-      increment:   EncounterForgeCombatCalibrationDialog._onIncrement,
-      decrement:   EncounterForgeCombatCalibrationDialog._onDecrement,
-      setOffset:   EncounterForgeCombatCalibrationDialog._onSetOffset,
+      increment: EncounterForgeCombatCalibrationDialog._onIncrement,
+      decrement: EncounterForgeCombatCalibrationDialog._onDecrement,
+      setOffset: EncounterForgeCombatCalibrationDialog._onSetOffset,
       resetOffset: EncounterForgeCombatCalibrationDialog._onReset,
       closeDialog: EncounterForgeCombatCalibrationDialog._onClose
     }
@@ -100,8 +99,8 @@ export default class EncounterForgeCombatCalibrationDialog extends HandlebarsApp
     const pips = [];
     for (let s = MIN_OFFSET; s <= MAX_OFFSET; s++) {
       pips.push({
-        step:       s,
-        active:     s === offset,
+        step: s,
+        active: s === offset,
         colorClass: s === offset ? pipColorClass(s) : ""
       });
     }
@@ -112,16 +111,16 @@ export default class EncounterForgeCombatCalibrationDialog extends HandlebarsApp
     const diffRows = adjustedRows.map((row, i) => ({
       ...row,
       defaultDefeat: defaultRows[i].defeat,
-      defaultDrain:  defaultRows[i].drain
+      defaultDrain: defaultRows[i].drain
     }));
 
     return {
       offset,
-      offsetDisplay:  offsetDisplay(offset),
-      stepLabel:      game.i18n.localize(stepLabelKey(offset)),
-      isDefault:      offset === 0,
-      atMin:          offset <= MIN_OFFSET,
-      atMax:          offset >= MAX_OFFSET,
+      offsetDisplay: offsetDisplay(offset),
+      stepLabel: game.i18n.localize(stepLabelKey(offset)),
+      isDefault: offset === 0,
+      atMin: offset <= MIN_OFFSET,
+      atMax: offset >= MAX_OFFSET,
       pips,
       diffRows
     };

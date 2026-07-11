@@ -1,4 +1,4 @@
-import { generate } from "./generator.js";
+﻿import { generate } from "./generator.js";
 import { crToDisplay } from "./cr-engine.js";
 import {
   estimatePartyGeneric, estimatePartyFromActors,
@@ -114,8 +114,7 @@ export default class EncounterForgeDialog extends HandlebarsApplicationMixin(App
     }
   };
 
-  // overrides optionals { name, img, tokenImg, lockEnemyCount, enemyCount } from openDialogFor()
-  // resolveFn resolves the openDialogFor() with the generate() result (or null on close).
+  // both injected by openDialogFor(); null when constructed standalone
   constructor(overrides = null, resolveFn = null, options = {}) {
     super(options);
     this.overrides = overrides;

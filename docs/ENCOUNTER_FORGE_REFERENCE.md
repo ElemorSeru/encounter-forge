@@ -11,7 +11,7 @@ When a GM generates an encounter, Encounter Forge:
 1. Sizes the **whole encounter** to the party's capability and the chosen difficulty (the "encounter envelope" (see Calibrate to Party)), then splits that into a per-creature HP/DPR target and finds the CR whose DMG baseline most closely matches it. That CR is used only to pick a flavor tier (chassis stats, traits, actions, spells, AC/save DC), not as the creature's final HP/DPR.
 2. Picks a **chassis** (the creature's combat archetype).
 3. Draws **traits** from the general pool, filtered by CR and theme.
-4. Picks **actions** (attacks and special moves), filtered by CR, chassis, and theme.
+4. Picks **actions** (attacks and special moves), filtered by CR, chassis, and theme. By default, damage uses a fixed dice formula per tier from each action's `damage_tiers` table. If **Precision Damage Scaling** is enabled (Module Settings), dice counts are instead derived from the per-creature DPR target at this step: the die size is taken from `damage_fallback` and the count is calculated to hit the target.
 5. Optionally selects **spells** for spellcasting chassis.
 6. Tunes the creature's HP, AC, and damage to hit its per-creature envelope target.
 7. Writes the creature to a Foundry NPC actor with all stats, items, and resources set.
@@ -31,7 +31,7 @@ CR drives filtering throughout. Most content has `cr_min` and `cr_max` values th
 | 3    | 5 - 7    | +3         |
 | 4    | 8 - 10   | +3 / +4    |
 | 5    | 11 - 13  | +4 / +5    |
-| 6    | 14 - 15  | +5         |
+| 6    | 14 - 30  | +5 to +9   |
 
 Tier affects: action damage scaling, number of traits drawn, action count, skill expertise eligibility, size growth, and sense range scaling.
 
@@ -115,8 +115,15 @@ Chassis also determines guaranteed skills:
 | `range_long`      | Long range for ranged attacks (disadvantage beyond normal range).                        |
 | `uses_dex`        | If true, Dex modifier is used for attack rolls instead of Str.                           |
 | `damage_tiers`    | Damage formula per tier (`tier1`-`tier6`). Scales automatically with CR tier.           |
-| `damage_fallback` | Used if no tier match is found.                                                          |
+| `damage_fallback` | Used if no tier match is found. In **Precision Damage Scaling** mode, the die size from this field (e.g. the `d8` from `"2d8"`) is also the source for calculating calibrated dice counts, so this field must be present and in `XdY` format for custom or built-in actions to work correctly in that mode. |
 | `chassis_affinity`| Which chassis types can receive this action. `any` means all chassis.                   |
+| `recharge`        | Optional. `"5-6"` or `"6"`. Ability recharges on that roll at the start of the creature's turn. Reduces the action's DPR contribution in calibration math to reflect limited availability. |
+| `aoe_targets`     | Optional. Estimated number of targets for AoE abilities. Multiplies effective DPR in calibration math. Defaults to 1 when absent. |
+| `effect`          | Optional. Object: `{ condition, dc_stat, save_stat, duration }`. Generates a Foundry ActiveEffect on the item and wires it to the action for one-click GM application. `condition` must be a valid dnd5e status ID (e.g. `"grappled"`, `"prone"`, `"poisoned"`, `"frightened"`). `dc_stat` sets which creature ability drives the `{dc}` formula (e.g. `"str"`, `"dex"`, `"con"`); omit to default to highest mental stat. `save_stat` notes which ability the target rolls to resist. Mechanical for `save`-type actions, informational for `mwak` attacks where the save is described in text. `duration` is `"turn"` (1 round) or `"minute"` (10 rounds). |
+
+**Placeholders in action descriptions:**
+- `{dc}` - `8 + proficiency bonus + modifier`. Which modifier depends on `effect.dc_stat` if present; otherwise uses the creature's highest mental stat (INT/WIS/CHA).
+- `{prof}` - creature's proficiency bonus
 
 ### Legendary Trait Fields
 
@@ -358,47 +365,127 @@ Each creature receives 1-3 actions based on tier, or always 3 for solo bosses. W
 
 ### Melee Actions
 
-| Name              | Type | Reach | CR Min | Chassis             | Tags                             | Damage      | Secondary Effect                              |
-|-------------------|------|-------|--------|---------------------|----------------------------------|-------------|-----------------------------------------------|
-| Slam              | mwak | 5     | 0      | brute, skirmisher, any | any                           | bludgeoning | -                                             |
-| Claw              | mwak | 5     | 0      | lurker, skirmisher, brute, any | beast, aberration, dragon, any | slashing | -                                     |
-| Bite              | mwak | 5     | 0      | brute, lurker, any  | beast, dragon, any               | piercing    | -                                             |
-| Necrotic Touch    | mwak | 5     | 1      | controller, leader, any | undead, fiend, aberration     | necrotic    | Extra necrotic can't be healed                |
-| Tendril Lash      | mwak | 10    | 1      | controller, brute, any | aberration, beast, any        | bludgeoning | 10 ft reach                                   |
-| Rending Claw      | mwak | 5     | 1      | lurker, skirmisher, brute | beast, aberration, any       | slashing    | AC -1 on hit                                  |
-| Grasping Limb     | mwak | 5     | 1      | brute, controller, any | any                           | bludgeoning | Grapple on hit (escape DC {dc})               |
-| Bone Spike        | mwak | 5     | 1      | lurker, skirmisher, any | undead, construct, beast      | piercing    | -                                             |
-| Tail Sweep        | mwak | 10    | 2      | brute, skirmisher, any | dragon, beast, any            | bludgeoning | Str save or prone; 10 ft reach                |
-| Numbing Touch     | mwak | 5     | 1      | any                 | undead, elemental                | cold        | Speed -10 ft                                  |
-| Ember Strike      | mwak | 5     | 1      | brute, skirmisher, any | elemental, dragon, fiend      | fire        | On-fire: 1d6 fire at start of next turn       |
-| Stone Fist        | mwak | 5     | 1      | brute, any          | elemental, construct             | bludgeoning | Str save or knocked back 10 ft                |
-| Glamour Touch     | mwak | 5     | 2      | controller, lurker, any | fey, fiend                    | psychic     | Wis save or charmed; can't attack creature    |
-| Acid Lash         | mwak | 5     | 1      | lurker, skirmisher, any | aberration, elemental, beast  | acid        | AC -1 per hit, stacks x3                     |
-| Savage Gore       | mwak | 5     | 1      | brute, skirmisher, any | monstrosity, beast, any       | piercing    | Must charge; Str save or prone                |
-| Rusted Blade      | mwak | 5     | 2      | skirmisher, lurker, any | humanoid, undead, construct   | piercing    | Bleeding 1d4/turn for 1 min                   |
-| Thunder Slam      | mwak | 5     | 2      | brute, any          | elemental, monstrosity, construct | thunder   | Con save or deafened + pushed 5 ft            |
-| Searing Strike    | mwak | 5     | 2      | controller, any     | fiend, humanoid, fey             | radiant     | Con save or blinded until start of next turn  |
-| Psychic Slam      | mwak | 5     | 3      | controller, any     | aberration, fiend                | psychic     | Int save or no reactions until next turn      |
+| Name                 | Type | Reach | CR Min | Chassis                        | Tags                                   | Damage      | Secondary Effect                                        |
+|----------------------|------|-------|--------|--------------------------------|----------------------------------------|-------------|--------------------------------------------------------|
+| Slam                 | mwak | 5     | 0      | brute, skirmisher, any         | any                                    | bludgeoning | -                                                      |
+| Claw                 | mwak | 5     | 0      | lurker, skirmisher, brute, any | beast, aberration, dragon, monstrosity | slashing    | -                                                      |
+| Bite                 | mwak | 5     | 0      | brute, lurker, any             | beast, dragon, monstrosity             | piercing    | -                                                      |
+| Necrotic Touch       | mwak | 5     | 0      | controller, leader, any        | undead, fiend, aberration              | necrotic    | Extra necrotic can't be healed until short rest        |
+| Tendril Lash         | mwak | 10    | 1      | controller, brute, any         | aberration, beast                      | bludgeoning | 10 ft reach                                            |
+| Rending Claw         | mwak | 5     | 1      | lurker, skirmisher, brute      | beast, aberration, monstrosity         | slashing    | AC -1 on hit                                           |
+| Grasping Limb        | mwak | 5     | 1      | brute, controller, any         | any                                    | bludgeoning | Grapple on hit (escape DC {dc})                        |
+| Bone Spike           | mwak | 5     | 0      | lurker, skirmisher, any        | undead, construct, beast               | piercing    | -                                                      |
+| Psychic Slam         | mwak | 5     | 2      | controller, any                | aberration, fiend                      | psychic     | Int save or no reactions until next turn               |
+| Tail Sweep           | mwak | 10    | 2      | brute, skirmisher, any         | dragon, beast                          | bludgeoning | Str save or prone; 10 ft reach                         |
+| Numbing Touch        | mwak | 5     | 0      | any                            | undead, elemental                      | cold        | Speed -10 ft until start of next turn                  |
+| Ember Strike         | mwak | 5     | 0      | brute, skirmisher, any         | elemental, dragon, fiend               | fire        | On-fire: 1d6 fire at start of next turn                |
+| Stone Fist           | mwak | 5     | 0      | brute, any                     | elemental, construct                   | bludgeoning | Str save or knocked back 10 ft                         |
+| Glamour Touch        | mwak | 5     | 0      | controller, lurker, any        | fey, fiend                             | psychic     | Wis save or charmed; can't attack creature             |
+| Acid Lash            | mwak | 5     | 0      | lurker, skirmisher, any        | aberration, elemental, beast           | acid        | AC -1 per hit, stacks x3                               |
+| Savage Gore          | mwak | 5     | 1      | brute, skirmisher, any         | monstrosity, beast                     | piercing    | Must charge; Str save or prone                         |
+| Rusted Blade         | mwak | 5     | 0      | skirmisher, lurker, any        | humanoid, undead, construct            | piercing    | Con save or bleeding 1d4/turn for 1 min                |
+| Thunder Slam         | mwak | 5     | 0      | brute, any                     | elemental, monstrosity, construct      | thunder     | Con save or deafened + pushed 5 ft                     |
+| Searing Strike       | mwak | 5     | 0      | controller, any                | fiend, humanoid, fey                   | radiant     | Con save or blinded until start of next turn           |
+| Corpse Grip          | mwak | 5     | 0      | brute, controller, any         | undead                                 | bludgeoning | Grapple on hit (escape DC {dc})                        |
+| Spectral Claw        | mwak | 5     | 0      | lurker, controller, any        | undead                                 | necrotic    | Wis save or frightened until end of next turn          |
+| Pixie Sting          | mwak | 5     | 0      | lurker, skirmisher             | fey                                    | poison      | Con save or poisoned until end of next turn            |
+| Crushing Bite        | mwak | 5     | 0      | brute, lurker                  | dragon, monstrosity, beast             | piercing    | Str save or restrained until end of next turn          |
+| Soul Rend            | mwak | 5     | 0      | controller, any                | fiend                                  | necrotic    | Wis save or frightened until end of next turn          |
+| Infernal Brand       | mwak | 5     | 0      | brute, skirmisher, any         | fiend                                  | fire        | Wis save or frightened 1 min; ends on damaging hit     |
+| Void Touch           | mwak | 5     | 0      | controller, any                | aberration                             | force       | Wis save or frightened until end of next turn          |
+| Mind Spike           | mwak | 5     | 5      | controller, any                | aberration                             | psychic     | Int save or stunned until end of next turn (CR 5+)     |
+| Frost Grasp          | mwak | 5     | 0      | controller, brute, any         | elemental, undead                      | cold        | Str save or restrained until end of next turn          |
+| Iron Grip            | mwak | 5     | 0      | brute, any                     | construct                              | bludgeoning | Grapple on hit (escape DC {dc})                        |
+| Piston Slam          | mwak | 5     | 0      | brute, any                     | construct                              | bludgeoning | Str save or knocked back 10 ft and prone               |
+| Constricting Coils   | mwak | 5     | 0      | brute, lurker, any             | beast, monstrosity                     | bludgeoning | Str save or restrained; deals damage each turn while restrained |
+| Venomous Bite        | mwak | 5     | 0      | lurker, brute, any             | beast, monstrosity                     | piercing    | Con save or poisoned until end of next turn            |
+| Pounce               | mwak | 5     | 0      | skirmisher, lurker, any        | beast, monstrosity, fey                | slashing    | Str save or prone (requires charge)                    |
+| Barbed Tail          | mwak | 10    | 0      | skirmisher, brute, any         | monstrosity, beast                     | piercing    | Con save or poisoned; 10 ft reach                      |
+| Crushing Coils       | mwak | 5     | 0      | brute, any                     | monstrosity, beast                     | bludgeoning | Str save or restrained; escape requires action         |
+| Stunning Blow        | mwak | 5     | 4      | brute, any                     | any                                    | bludgeoning | Con save or stunned until end of next turn (CR 4+)     |
+| Wing Buffet          | mwak | 10    | 0      | brute, skirmisher, any         | dragon, beast, monstrosity             | bludgeoning | Str save or prone; 10 ft reach                         |
+| Enchanted Strike     | mwak | 5     | 0      | controller, any                | fey, fiend, humanoid                   | force       | Wis save or charmed until end of next turn             |
+| Sand Scour           | mwak | 5     | 0      | skirmisher, brute, any         | elemental                              | slashing    | Con save or blinded until end of next turn             |
+| Maul                 | mwak | 5     | 0      | brute, any                     | any                                    | bludgeoning | -                                                      |
+| Shortsword Flurry    | mwak | 5     | 0      | skirmisher, lurker             | humanoid                               | slashing    | -                                                      |
+| Whip Crack           | mwak | 10    | 0      | skirmisher, controller, any    | humanoid, any                          | slashing    | 10 ft reach                                            |
+| Spear Thrust         | mwak | 10    | 0      | skirmisher, brute, any         | humanoid, any                          | piercing    | 10 ft reach                                            |
+| Executioner's Strike | mwak | 5     | 0      | brute, lurker                  | humanoid, undead, fiend                | slashing    | -                                                      |
+| Thorn Whip           | mwak | 10    | 0      | controller, skirmisher, any    | fey, beast, elemental                  | piercing    | 10 ft reach                                            |
+| Dream Blade          | mwak | 5     | 0      | controller, lurker, any        | fey, undead, aberration                | psychic     | Wis save or lose concentration on spells               |
+| Draining Grasp       | mwak | 5     | 0      | controller, brute, any         | undead, fiend                          | necrotic    | Heals creature for half damage dealt                   |
+| Withering Touch      | mwak | 5     | 0      | controller, any                | undead                                 | necrotic    | Speed -15 ft until end of next turn                    |
+| Wing Strike          | mwak | 10    | 0      | skirmisher, brute, any         | dragon, beast, monstrosity             | slashing    | 10 ft reach                                            |
+| Tail Spike           | mwak | 10    | 0      | skirmisher, brute, any         | dragon, monstrosity, beast             | piercing    | 10 ft reach                                            |
+| Corruption Touch     | mwak | 5     | 0      | controller, any                | fiend, undead                          | necrotic    | Target can't regain HP until end of next turn          |
+| Dissolving Touch     | mwak | 5     | 0      | controller, brute, any         | aberration, elemental                  | acid        | AC -1 until end of next turn, max 3 stacks             |
+| Lava Strike          | mwak | 5     | 0      | brute, skirmisher, any         | elemental, fiend                       | fire        | 1d6 fire at start of next turn; terrain becomes difficult |
+| Storm Punch          | mwak | 5     | 0      | brute, skirmisher, any         | elemental                              | lightning   | -                                                      |
+| Gear Grind           | mwak | 5     | 0      | brute, skirmisher              | construct                              | slashing    | -                                                      |
+| Grinding Mandibles   | mwak | 5     | 0      | brute, any                     | construct, aberration, monstrosity     | piercing    | -                                                      |
+| Horn Thrust          | mwak | 5     | 0      | skirmisher, brute, any         | beast, monstrosity                     | piercing    | -                                                      |
+| Rake                 | mwak | 5     | 0      | lurker, skirmisher, any        | beast, monstrosity, aberration         | slashing    | -                                                      |
+| Multi-Bite           | mwak | 5     | 0      | brute, any                     | monstrosity, aberration, dragon        | piercing    | -                                                      |
+| Death Roll           | mwak | 5     | 0      | brute, lurker                  | beast, monstrosity                     | piercing    | Deals maximum damage vs already-grappled target        |
+| Sweeping Strike      | mwak | 5     | 0      | skirmisher, brute, any         | any                                    | slashing    | One adjacent creature also takes damage on hit         |
+| Overhead Smash       | mwak | 5     | 0      | brute, any                     | any                                    | bludgeoning | -                                                      |
+| Pommel Crack         | mwak | 5     | 0      | skirmisher, lurker, any        | humanoid                               | bludgeoning | Target has disadvantage on next attack roll            |
+| Battering Rush       | mwak | 5     | 0      | brute, skirmisher, any         | any                                    | bludgeoning | Target pushed 10 ft on hit                             |
 
 ### Ranged Actions
 
-| Name              | Type | Range  | CR Min | Chassis                   | Tags                             | Damage    | Secondary Effect                              |
-|-------------------|------|--------|--------|---------------------------|----------------------------------|-----------|-----------------------------------------------|
-| Spine Shot        | rwak | 60/120 | 0      | artillery, lurker, skirmisher | beast, any                   | piercing  | -                                             |
-| Venom Spit        | rwak | 30/60  | 1      | artillery, lurker, any    | beast, aberration, any           | poison    | Con save or poisoned until end of next turn   |
-| Cinder Spit       | rwak | 40/80  | 1      | artillery, any            | elemental, dragon, fiend, any    | fire      | Ignited: 1d6 fire at start of next turn       |
-| Bone Shard        | rwak | 30/60  | 1      | artillery, lurker, any    | undead, construct, any           | piercing  | Speed -5 ft until shard removed               |
-| Thorn Dart        | rwak | 40/80  | 1      | artillery, skirmisher, any | fey, any                        | piercing  | Wis save or disadvantage on next attack       |
-| Acid Spit         | rwak | 30/60  | 1      | artillery, lurker, any    | aberration, beast, elemental, any| acid      | Extra 1d4 acid at start of next turn          |
-| Poison Dart       | rwak | 30/60  | 1      | lurker, artillery, any    | humanoid, beast, any             | poison    | Con save or speed 0 until end of next turn (CR 0-10) |
-| Arcane Bolt       | rsak | 60/120 | 2      | artillery, controller, any | aberration, fiend, construct, any| force     | -                                             |
-| Necrotic Bolt     | rsak | 60     | 2      | artillery, controller, any | undead, fiend, aberration        | necrotic  | Can't regain HP until this creature's next turn|
-| Ice Shard         | rsak | 60     | 2      | artillery, controller, any | elemental, dragon, undead        | cold      | Speed -10 ft until end of next turn           |
-| Shadow Needle     | rsak | 60     | 2      | lurker, artillery, any    | undead, fey, fiend               | necrotic  | Can't benefit from Help or ally assistance    |
-| Thunder Shot      | rsak | 30     | 2      | artillery, controller, any | elemental, monstrosity, any      | thunder   | Con save or deafened + pushed 5 ft            |
-| Radiant Burst     | rsak | 60     | 2      | artillery, controller, any | humanoid, fey, fiend             | radiant   | Vs undead/construct: disadvantage on all rolls |
-| Lightning Strike  | rsak | 60     | 3      | artillery, controller, any | elemental, construct, dragon, any| lightning | Con save or drop held item                    |
-| Psychic Lance     | rsak | 60     | 4      | controller, artillery     | aberration, fiend                | psychic   | Wis save or incapacitated until end of next turn|
+| Name                | Type | Range   | CR Min | Chassis                            | Tags                                    | Damage      | Secondary Effect                                        |
+|---------------------|------|---------|--------|------------------------------------|-----------------------------------------|-------------|--------------------------------------------------------|
+| Spine Shot          | rwak | 60/120  | 0      | artillery, lurker, skirmisher, any | beast, any                              | piercing    | -                                                      |
+| Venom Spit          | rwak | 30/60   | 1      | artillery, lurker, any             | beast, aberration, any                  | poison      | Con save or poisoned until end of next turn            |
+| Arcane Bolt         | rsak | 60/120  | 2      | artillery, controller, any         | aberration, fiend, construct, any       | force       | -                                                      |
+| Necrotic Bolt       | rsak | 60      | 0      | artillery, controller, any         | undead, fiend, aberration               | necrotic    | Target can't regain HP until start of next turn        |
+| Psychic Lance       | rsak | 60      | 2      | controller, artillery              | aberration, fiend                       | psychic     | Wis save or incapacitated until end of next turn       |
+| Cinder Spit         | rwak | 40/80   | 1      | artillery, any                     | elemental, dragon, fiend, any           | fire        | On-fire: 1d6 fire at start of next turn                |
+| Bone Shard          | rwak | 30/60   | 1      | artillery, lurker, any             | undead, construct, any                  | piercing    | Speed -5 ft until shard removed (action)               |
+| Lightning Strike    | rsak | 60      | 3      | artillery, controller, any         | elemental, construct, dragon, any       | lightning   | Con save or drop held item                             |
+| Thorn Dart          | rwak | 40/80   | 1      | artillery, skirmisher, any         | fey, any                                | piercing    | Wis save or disadvantage on next attack roll           |
+| Ice Shard           | rsak | 60      | 0      | artillery, controller, any         | elemental, dragon, undead               | cold        | Speed -10 ft until end of next turn                    |
+| Acid Spit           | rwak | 30/60   | 1      | artillery, lurker, any             | aberration, beast, elemental, any       | acid        | Extra 1d4 acid at start of next turn                   |
+| Shadow Needle       | rsak | 60      | 0      | lurker, artillery, any             | undead, fey, fiend                      | necrotic    | Can't benefit from Help or ally assistance             |
+| Thunder Shot        | rsak | 30      | 2      | artillery, controller, any         | elemental, monstrosity, any             | thunder     | Con save or deafened + pushed 5 ft                     |
+| Poison Dart         | rwak | 30/60   | 1      | lurker, artillery, any             | humanoid, beast, any                    | poison      | Con save or speed 0 until end of next turn             |
+| Radiant Burst       | rsak | 60      | 0      | artillery, controller, any         | humanoid, fey, fiend                    | radiant     | -                                                      |
+| Hex Bolt            | rsak | 60      | 0      | controller, artillery, any         | fiend, aberration, undead               | necrotic    | Wis save or frightened until end of next turn          |
+| Frost Bolt          | rsak | 60      | 0      | controller, artillery, any         | elemental, undead, dragon               | cold        | Str save or restrained until end of next turn          |
+| Entangling Shot     | rwak | 40/80   | 0      | controller, lurker, any            | fey, beast, monstrosity                 | piercing    | Str save or restrained until end of next turn          |
+| Sleep Dart          | rwak | 30/60   | 0      | lurker, artillery, any             | humanoid, fey, beast                    | poison      | Con save or incapacitated until end of next turn       |
+| Gale Shot           | rwak | 40/80   | 0      | artillery, controller, any         | elemental                               | bludgeoning | Str save or prone and pushed 10 ft                     |
+| Blinding Flash      | rsak | 60      | 0      | artillery, controller, any         | fiend, humanoid, fey, elemental         | radiant     | Con save or blinded until end of next turn             |
+| Dread Bolt          | rsak | 60      | 0      | artillery, controller, any         | undead, fiend, aberration               | psychic     | Wis save or frightened until end of next turn          |
+| Paralytic Sting     | rwak | 30/60   | 5      | lurker, artillery, any             | beast, aberration, monstrosity          | poison      | Con save or paralyzed until end of next turn (CR 5+)   |
+| Web Shot            | rwak | 30/60   | 0      | lurker, controller, any            | beast, monstrosity, aberration          | piercing    | Str save or restrained until end of next turn          |
+| Sonic Lance         | rsak | 60      | 0      | artillery, controller, any         | elemental, construct, any               | thunder     | Con save or deafened + disadvantage on Con checks      |
+| Sapping Ray         | rsak | 60      | 0      | controller, artillery, any         | undead, fiend, aberration               | necrotic    | Con save or Str reduced by 1d4 until short rest        |
+| Ice Lance           | rsak | 90      | 0      | artillery, controller, any         | elemental, dragon                       | cold        | Str save or restrained until end of next turn          |
+| Mesmer Shot         | rwak | 30/60   | 0      | lurker, controller, any            | fey, fiend, humanoid                    | psychic     | Wis save or charmed until end of next turn             |
+| Void Bolt           | rsak | 60      | 0      | controller, artillery, any         | aberration                              | force       | Wis save or frightened until end of next turn          |
+| Corrupting Arrow    | rwak | 60/120  | 0      | lurker, skirmisher, any            | undead, humanoid, fiend                 | necrotic    | Con save or poisoned and can't regain HP for 1 min     |
+| Fire Bolt           | rsak | 120     | 0      | artillery, controller, any         | any                                     | fire        | -                                                      |
+| Rock Hurl           | rwak | 30/60   | 0      | brute, artillery, any              | beast, monstrosity, construct, elemental| bludgeoning | -                                                      |
+| Arrow Volley        | rwak | 80/160  | 0      | artillery, skirmisher, any         | humanoid, any                           | piercing    | -                                                      |
+| Cursed Bolt         | rsak | 60      | 0      | controller, artillery, any         | undead, humanoid, fiend                 | necrotic    | -                                                      |
+| Spectral Beam       | rsak | 90      | 0      | artillery, controller, any         | undead, fey                             | necrotic    | -                                                      |
+| Magma Glob          | rwak | 30/60   | 0      | artillery, brute, any              | elemental, fiend                        | fire        | Speed -10 ft until target uses action to clean off     |
+| Death Ray           | rsak | 60      | 5      | artillery, controller, any         | undead, fiend, aberration               | necrotic    | Con save or take maximum damage instead (CR 5+)        |
+| Crystal Flechette   | rsak | 60      | 0      | artillery, skirmisher, any         | construct, aberration, elemental        | piercing    | -                                                      |
+| Bone Arrow          | rwak | 60/120  | 0      | artillery, lurker, any             | undead, humanoid                        | piercing    | -                                                      |
+| Eldritch Blast      | rsak | 120     | 0      | artillery, controller, any         | aberration, fiend, humanoid             | force       | -                                                      |
+| Ember Shot          | rwak | 40/80   | 0      | artillery, skirmisher, any         | dragon, elemental, fiend                | fire        | 1d6 fire at start of next turn                         |
+| Chain Bolt          | rsak | 60      | 0      | artillery, controller, any         | elemental, construct, dragon            | lightning   | Jumps to one adjacent creature for half lightning damage|
+| Radiant Arrow       | rsak | 120     | 0      | artillery, controller, any         | humanoid, fey, fiend                    | radiant     | -                                                      |
+| Toxic Breath        | rwak | 30/60   | 0      | artillery, lurker, any             | beast, monstrosity, aberration          | poison      | 1d6 poison/turn until Con save at start of turn        |
+| Shadow Bolt         | rsak | 60      | 0      | lurker, artillery, any             | undead, fey, fiend                      | necrotic    | Area within 5 ft lightly obscured until end of next turn|
+| Force Bolt          | rsak | 120     | 0      | artillery, controller, any         | construct, fiend, aberration, any       | force       | Target pushed 5 ft on hit                              |
+| Frost Arrow         | rwak | 60/120  | 0      | artillery, skirmisher, any         | elemental, undead, dragon               | cold        | -                                                      |
+| Static Discharge    | rwak | 30/60   | 0      | skirmisher, artillery, any         | elemental, construct                    | lightning   | -                                                      |
+| Holy Javelin        | rwak | 30/60   | 0      | skirmisher, artillery, any         | humanoid, fey                           | radiant     | -                                                      |
+| Virulent Spit       | rwak | 20/40   | 0      | lurker, artillery, any             | beast, monstrosity                      | poison      | Con save or poisoned until end of next turn            |
 
 ### Special Actions
 
@@ -513,7 +600,7 @@ Every generated creature is adjusted to hit its per-creature envelope target bef
 
 - **HP** is set directly to the target (rounded, minimum 1).
 - **AC** is nudged by at most +/-2: +/-1 when the HP target is more than 30% above/below the chassis baseline, and another +/-1 when the DPR target deviates from the chassis baseline by more than 15%.
-- **Damage** is tuned in two passes. First, if the DPR target deviates from the chassis baseline by more than 15%, one of the creature's actions is swapped for a same-tier, theme/chassis-compatible action from the action pool whose damage-per-round is closest to the target. Second, whatever gap remains between the creature's action DPR and its target is closed by adding a flat damage bonus (or penalty) across all of its actions. The action pool's dice tiers alone usually can't reach the envelope's DPR targets, so this step makes sure the final DPR lands on target regardless of what's available. For **Solo** creatures, the action-DPR target is solved so that the boosted action damage *and* the legendary actions' extra "swings" (which scale off per-action DPR) land on the overall target together, rather than the legendary bonus compounding on top of an already-boosted action DPR.
+- **Damage** is tuned in two passes. First, if the DPR target deviates from the chassis baseline by more than 15%, one of the creature's actions is swapped for a same-tier, theme/chassis-compatible action from the action pool whose damage-per-round is closest to the target. Second, whatever gap remains between the creature's action DPR and its target is closed by adding a flat damage bonus (or penalty) across all of its actions. The action pool's dice tiers alone usually can't reach the envelope's DPR targets, so this step makes sure the final DPR lands on target regardless of what's available. For **Solo** creatures, the action-DPR target is solved so that the boosted action damage *and* the legendary actions' extra "swings" (which scale off per-action DPR) land on the overall target together, rather than the legendary bonus compounding on top of an already-boosted action DPR. When **Precision Damage Scaling** is enabled, dice counts were pre-calibrated to the DPR target during assembly, so these two passes correct smaller residual gaps rather than the full gap.
 
 ### Post-generation results
 
@@ -705,6 +792,7 @@ Hooks.on("encounterForge.generationStarted", (data) => {
   // data.targetCR     {number|string}  the flavor CR ("1/4", 5, etc.) for the per-creature envelope target
   // data.solo         {boolean}
   // data.calibrate    {boolean}
+  // data.dprFirst     {boolean}  whether Precision Damage Scaling (playtest) was active
 });
 ```
 
@@ -748,6 +836,7 @@ Hooks.on("encounterForge.encounterComplete", (data) => {
   // data.count         {number}       actual number created (may be less than requested on error)
   // data.solo          {boolean}
   // data.calibrate     {boolean}
+  // data.dprFirst      {boolean}      whether Precision Damage Scaling (playtest) was active
   // data.results       {Array}        per-creature { name, img, cr, profile: { hp, ac, dpr } }
   // data.partyEstimate {object}        { dpr, hp } for the party (real actors if calibrated, else generic)
   // data.groupActual   {object}        { hp, ac, dpr } summed/averaged across the generated creatures

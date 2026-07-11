@@ -2,6 +2,9 @@ import { loadJson } from "./utils.js";
 import { getCRTier } from "./cr-engine.js";
 
 export const HIT_CHANCE = 0.65;
+export const SAVE_HIT_CHANCE = 0.5;
+export const RECHARGE_MULTIPLIERS = { "5-6": 0.4, "5": 0.5, "6": 0.35 };
+
 const PARTY_HP_BASE = 10;
 const PARTY_HP_PER_LEVEL = 6.5;
 
@@ -63,11 +66,13 @@ function spellDiceCount(tier) {
 function estimateActionDPR(actions) {
   return (actions || []).reduce((sum, action) => {
     if (!action._resolvedDamage) return sum;
-    return sum + diceAverage(action._resolvedDamage[0]);
+    const chance = action.action_type === "save" ? SAVE_HIT_CHANCE : HIT_CHANCE;
+    const recharge = RECHARGE_MULTIPLIERS[action.recharge] ?? 1;
+    const aoe = action.aoe_targets ?? 1;
+    return sum + diceAverage(action._resolvedDamage[0]) * chance * recharge * aoe;
   }, 0);
 }
 
-// Extra DPR from a solo creature's legendary actions as a multiple of its normal action DPR
 export function legendaryActionMultiplier(creature) {
   if (!creature.solo) return 0;
   const legendaryActions = (creature.traits || []).filter(t => t.legendary_type === "action");
@@ -89,7 +94,7 @@ export function estimateSpellDPR(creature) {
 export function estimateCreatureProfile(creature) {
   const hp = creature.stats?.hp ?? 0;
   const ac = creature.stats?.ac ?? 0;
-  const actionDPR = estimateActionDPR(creature.actions) * HIT_CHANCE;
+  const actionDPR = estimateActionDPR(creature.actions);
   const perActionDPR = creature.actions?.length ? actionDPR / creature.actions.length : 0;
   const legendaryDPR = creature.solo ? estimateLegendaryDPR(creature, perActionDPR) : 0;
   const spellDPR = estimateSpellDPR(creature);
@@ -109,7 +114,6 @@ export function getAdjustedDifficultyTargets(offset = 0) {
   return result;
 }
 
-// Size the whole encounter to the party and difficulty then split the total across count of enemies.
 export function computeEncounterEnvelope(party, difficulty, count, isSolo = false, intensityOffset = 0) {
   const adjusted = getAdjustedDifficultyTargets(intensityOffset);
   const targets = adjusted[difficulty] ?? adjusted.medium;
@@ -138,7 +142,6 @@ export function computeEncounterEnvelope(party, difficulty, count, isSolo = fals
   };
 }
 
-// Find the CR whose baseline hp/dpr is closest and use to pick a flavor tier
 export async function nearestCRForStats(hp, dpr) {
   const baseline = await loadCRBaseline();
   let bestCR = "0";

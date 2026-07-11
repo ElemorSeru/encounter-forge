@@ -94,6 +94,16 @@ Hooks.once("init", () => {
     default: 0
   });
 
+  game.settings.register("encounter-forge", "dprFirstDamage", {
+    name: "ENCOUNTERFORGE.Settings.DprFirstName",
+    hint: "ENCOUNTERFORGE.Settings.DprFirstHint",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+    restricted: true
+  });
+
   game.settings.registerMenu("encounter-forge", "combatCalibrationMenu", {
     name: "ENCOUNTERFORGE.Settings.CombatCalibrationName",
     label: "ENCOUNTERFORGE.Settings.CombatCalibrationLabel",

@@ -10,7 +10,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Concentration, up to 1 minute. Whenever a creature makes an attack roll against you before the spell ends, the attacker subtracts 1d4 from the attack roll."
     }
   },
   {
@@ -24,7 +25,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Touch a willing creature. Once before the spell ends, it can roll a d4 and add it to one saving throw."
     }
   },
   {
@@ -38,7 +40,9 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "activation_type": "reaction",
+      "description": "You gain resistance to the triggering damage type until the start of your next turn, and the next creature you hit takes an extra 1d6 of that damage type."
     }
   },
   {
@@ -52,7 +56,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A willing creature's AC becomes 13 + its Dexterity modifier if it wears no armor."
     }
   },
   {
@@ -66,7 +71,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target is protected against aberrations, celestials, elementals, fey, fiends, and undead. They have disadvantage on attack rolls and cannot charm, frighten, or possess the target."
     }
   },
   {
@@ -78,7 +84,9 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "activation_type": "reaction",
+      "description": "You gain +5 to AC, including against the triggering attack, until the start of your next turn. Also blocks magic missile."
     }
   },
   {
@@ -92,7 +100,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Hostile creatures must succeed on a Wisdom saving throw to attack the warded creature. The spell ends if the warded creature attacks or casts an offensive spell."
     }
   },
   {
@@ -105,7 +114,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "End one disease or one condition (blinded, deafened, paralyzed, or poisoned) afflicting the target."
     }
   },
   {
@@ -118,7 +128,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target gains +1 to AC and saving throws, and resistance to all damage. The caster takes the same amount of damage the target takes."
     }
   },
   {
@@ -131,7 +142,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Magically lock a door, window, or container. Only those with the password or the caster can open it normally."
     }
   },
   {
@@ -146,7 +158,9 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "activation_type": "reaction",
+      "description": "The spellcasting creature makes a Constitution saving throw. On a failed save, the spell dissipates with no effect and, if cast with a slot, the slot is not expended by the caster."
     }
   },
   {
@@ -158,7 +172,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "End one magical effect on a target. Effects of 4th level or higher require an ability check (DC 10 + spell level) to dispel."
     }
   },
   {
@@ -172,7 +187,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A 10-foot-radius, 20-foot-tall cylinder bars one creature type from entering voluntarily and prevents them from charming, frightening, or possessing creatures inside."
     }
   },
   {
@@ -186,7 +202,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target has resistance to one chosen damage type (acid, cold, fire, lightning, or thunder) for the duration."
     }
   },
   {
@@ -205,7 +222,8 @@
       "damage": [
         "0",
         "force"
-      ]
+      ],
+      "description": "On a failed Charisma save, the target is banished to a harmless demiplane. If concentration is held for 1 minute, the banishment becomes permanent."
     }
   },
   {
@@ -219,7 +237,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Once before the spell ends, if the target would drop to 0 HP it instead drops to 1 HP and the spell ends."
     }
   },
   {
@@ -233,7 +252,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target gains resistance to nonmagical bludgeoning, piercing, and slashing damage for the duration."
     }
   },
   {
@@ -247,7 +267,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Spells of 5th level or lower cast from outside the 10-foot sphere cannot affect creatures or objects within it."
     }
   },
   {
@@ -261,7 +282,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "An invisible, forceful wall springs into existence. It is immune to all damage and cannot be dispelled except by disintegrate or wish."
     }
   },
   {
@@ -275,12 +297,13 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target is immune to psychic damage and cannot be charmed, frightened, sensed, or targeted by divination magic for 24 hours."
     }
   },
   {
     "name": "acid splash",
-    "school": "conjuration",
+    "school": "evocation",
     "cantrip": true,
     "tier_min": 1,
     "tags": [
@@ -327,7 +350,8 @@
       "beast"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A 20-foot-radius sphere of fog heavily obscures all creatures inside. The fog can be dispersed by a strong wind."
     }
   },
   {
@@ -346,7 +370,8 @@
       "damage": [
         "0",
         "bludgeoning"
-      ]
+      ],
+      "description": "The 10-foot square becomes difficult terrain. Creatures entering or starting their turn there make a Dexterity save or fall prone."
     }
   },
   {
@@ -360,7 +385,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "An invisible, mindless force performs simple tasks (carry, clean, pour, hold) within 60 feet at your command."
     }
   },
   {
@@ -374,7 +400,9 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "activation_type": "bonus",
+      "description": "Teleport up to 30 feet to an unoccupied space you can see."
     }
   },
   {
@@ -393,7 +421,8 @@
       "damage": [
         "0",
         "bludgeoning"
-      ]
+      ],
+      "description": "A 20-foot Cube fills with sticky webbing (Difficult Terrain). On a failed Dexterity save, creatures are Restrained while in the webs. A Restrained creature can take an action to make a Strength (Athletics) check against your spell save DC to break free. Webs are flammable."
     }
   },
   {
@@ -450,7 +479,8 @@
       "damage": [
         "0",
         "cold"
-      ]
+      ],
+      "description": "A 20-foot-tall, 40-foot-radius cylinder fills with freezing rain. The area is heavily obscured and difficult terrain. Creatures starting there make a Dexterity save or fall prone."
     }
   },
   {
@@ -469,7 +499,8 @@
       "damage": [
         "0",
         "poison"
-      ]
+      ],
+      "description": "A 20-foot-radius sphere of nauseating gas appears. On a failed Constitution save, a creature wastes its action on its turn (no movement, actions, or bonus actions)."
     }
   },
   {
@@ -482,7 +513,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "An undead spirit (ghost, skeleton, or zombie form) appears and obeys your verbal commands for the duration."
     }
   },
   {
@@ -496,7 +528,13 @@
       "elemental"
     ],
     "fallback": {
-      "type": "util"
+      "type": "save",
+      "save_stat": "dex",
+      "damage": [
+        "3d10",
+        "slashing"
+      ],
+      "description": "A Large pack of spectral animals appears at a point within range. Creatures within 10 feet of the pack make a Dexterity save or take 3d10 Slashing damage. You can move the pack 30 feet per turn as part of your move. A creature makes this save only once per turn."
     }
   },
   {
@@ -510,7 +548,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Teleport yourself to any location within 500 feet. You can bring one willing creature of your size or smaller."
     }
   },
   {
@@ -541,7 +580,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "An elemental appears and obeys your verbal commands. If you lose concentration, it is no longer bound and may become hostile."
     }
   },
   {
@@ -574,7 +614,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A glowing 10-foot circle appears. Creatures inside are transported to a permanent circle whose sigil sequence you know."
     }
   },
   {
@@ -593,7 +634,8 @@
       "damage": [
         "0",
         "force"
-      ]
+      ],
+      "description": "On a failed Charisma save, the target is transported to a random location on another plane of existence."
     }
   },
   {
@@ -607,7 +649,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "You conjure a portal to a named plane. A named extraplanar creature within 60 feet must succeed on a Charisma saving throw or be drawn through the portal."
     }
   },
   {
@@ -621,7 +664,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Touch a willing creature. Once before the spell ends, it can roll a d4 and add it to one ability check."
     }
   },
   {
@@ -635,7 +679,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Make one weapon attack using your spellcasting modifier instead of Strength or Dexterity. On a hit, add 1d6 radiant damage."
     }
   },
   {
@@ -647,7 +692,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Sense the presence of magic within 30 feet. See a faint aura around magical objects and creatures, and know the school of each."
     }
   },
   {
@@ -661,7 +707,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Learn the properties of a magic item, how to use them, and whether any spells are affecting it."
     }
   },
   {
@@ -675,7 +722,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Understand the literal meaning of any spoken language heard or any written language seen for 1 hour."
     }
   },
   {
@@ -689,7 +737,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Read the surface thoughts of creatures within 30 feet. Probing deeper requires the target to succeed on a Wisdom save."
     }
   },
   {
@@ -703,7 +752,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "See invisible creatures and objects as if they were visible, and see into the Ethereal Plane up to 60 feet."
     }
   },
   {
@@ -717,7 +767,8 @@
       "beast"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Sense the direction of a known object within 1,000 feet, or the nearest object of a specified kind."
     }
   },
   {
@@ -731,7 +782,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Sense the presence (but not location or nature) of any trap within 120 feet."
     }
   },
   {
@@ -745,7 +797,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "An invisible magical eye appears. See through it with darkvision up to 30 feet; move it 30 feet per turn."
     }
   },
   {
@@ -759,7 +812,8 @@
       "undead"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Create a sensor at any location within 1 mile you know. See or hear through it as if you were standing there."
     }
   },
   {
@@ -773,7 +827,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Imbue a corpse with a semblance of life. It can answer up to 5 questions about its knowledge and experiences."
     }
   },
   {
@@ -787,7 +842,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Sense the direction and distance of a specific creature you describe or a familiar creature within 1,000 feet."
     }
   },
   {
@@ -801,7 +857,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Receive an omen about the outcome of a specific action you plan within the next 30 minutes."
     }
   },
   {
@@ -815,7 +872,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target gains truesight (120 ft radius), sees through magical darkness, invisible creatures, illusions, and into the Ethereal Plane."
     }
   },
   {
@@ -829,7 +887,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Learn the most noteworthy lore about a legendary person, place, or object; including any spells, weaknesses, or significant abilities."
     }
   },
   {
@@ -848,7 +907,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save (with bonuses based on familiarity), you see and hear through a sensor near the target for up to 10 minutes."
     }
   },
   {
@@ -862,7 +922,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "You always know the most direct physical route to a specific location you are familiar with on the same plane."
     }
   },
   {
@@ -876,7 +937,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target cannot be surprised; has advantage on attack rolls, ability checks, and saving throws; and attacks against it have disadvantage."
     }
   },
   {
@@ -890,7 +952,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Your astral body enters the Astral Plane, leaving your physical body behind in suspended animation on the plane you left."
     }
   },
   {
@@ -904,7 +967,9 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "save",
+      "save_stat": "wis",
+      "description": "Target makes a Wisdom saving throw or has the Charmed condition for the duration. The spell ends early if the target takes damage or if you make an attack roll, deal damage, or force anyone to make a saving throw. The target knows it was Charmed by you when the spell ends."
     }
   },
   {
@@ -923,7 +988,8 @@
       "damage": [
         "1d6",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Intelligence save, the target takes 1d6 Psychic damage and subtracts 1d4 from the next saving throw it makes before the end of your next turn."
     }
   },
   {
@@ -942,7 +1008,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "Up to 3 creatures subtract 1d4 from all attack rolls and saving throws for the duration."
     }
   },
   {
@@ -961,7 +1028,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is charmed and regards you as a friendly acquaintance. It knows it was charmed when the spell ends."
     }
   },
   {
@@ -980,7 +1048,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target obeys a one-word command (Approach, Drop, Flee, Grovel, Halt) on its next turn."
     }
   },
   {
@@ -999,7 +1068,8 @@
       "damage": [
         "3d6",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far away from you as it can via the safest route. On a success, half damage only, no forced movement."
     }
   },
   {
@@ -1018,7 +1088,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the creature has disadvantage on Perception checks to notice anyone other than you for 1 minute."
     }
   },
   {
@@ -1037,7 +1108,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is paralyzed. It repeats the save at the end of each of its turns."
     }
   },
   {
@@ -1056,7 +1128,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target follows a reasonable suggestion for up to 8 hours, until completed, or until harmed."
     }
   },
   {
@@ -1075,7 +1148,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "Creatures in a 30-foot cone make a Wisdom save or become frightened and must use their movement to flee, dropping anything held."
     }
   },
   {
@@ -1094,7 +1168,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "Creatures in a 30-foot cube make a Wisdom save or are incapacitated and have 0 speed for the duration. Being shaken or taking damage ends the effect."
     }
   },
   {
@@ -1113,7 +1188,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Intelligence save, the target loses the ability to distinguish friend from foe, treating all creatures as enemies until the spell ends."
     }
   },
   {
@@ -1132,7 +1208,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save (with advantage if the creature is hostile), the target is charmed for 1 hour or until harmed."
     }
   },
   {
@@ -1151,7 +1228,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, you can force the target to move in a direction on each of its turns, using its movement toward a location."
     }
   },
   {
@@ -1170,7 +1248,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is dominated. It obeys your mental commands and is incapacitated when told to act against its nature."
     }
   },
   {
@@ -1189,7 +1268,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is paralyzed. It repeats the save at the end of each of its turns."
     }
   },
   {
@@ -1208,7 +1288,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is dominated. It obeys your mental commands and takes actions you dictate."
     }
   },
   {
@@ -1227,7 +1308,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "A glyph triggers one effect (hopelessness, insanity, pain, sleep, stunning, discord, fear, or death) on creatures that fail a saving throw appropriate to the chosen effect."
     }
   },
   {
@@ -1246,7 +1328,8 @@
       "damage": [
         "4d6",
         "psychic"
-      ]
+      ],
+      "description": "The target must succeed on an Intelligence saving throw or its Intelligence and Charisma scores become 1. The target can't cast spells, activate magic items, understand language, or communicate intelligibly. The target can repeat the save every 30 days."
     }
   },
   {
@@ -1260,7 +1343,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "If the target has 150 Hit Points or fewer, it has the Stunned condition and makes a Constitution save at the end of each turn to end it. If it has more than 150 HP, its Speed is 0 until the start of your next turn instead."
     }
   },
   {
@@ -1314,7 +1398,8 @@
       "damage": [
         "1d8",
         "cold"
-      ]
+      ],
+      "description": "On a hit, takes 1d8 Cold damage and its Speed is reduced by 10 feet until the start of your next turn."
     }
   },
   {
@@ -1407,7 +1492,10 @@
       "damage": [
         "1d8",
         "force"
-      ]
+      ],
+      "activation_type": "bonus",
+      "description": "Bonus Action to cast. A spectral weapon appears within range and makes an immediate melee spell attack for 1d8 Force damage. Concentration, up to 1 minute. As a Bonus Action on later turns, move it 20 feet and attack again.",
+      "melee": true
     }
   },
   {
@@ -1616,7 +1704,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "The target must succeed on a Constitution saving throw or be wracked with agony. While in pain, the target's Speed is 0, it can't take Reactions, and it has Disadvantage on attack rolls and ability checks. The target can repeat the save at the end of each of its turns, ending the effect on a success."
     }
   },
   {
@@ -1649,7 +1738,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Create a sound or image (up to 5 feet) within range. Creatures can use an action to make an Investigation check to disbelieve."
     }
   },
   {
@@ -1663,7 +1753,8 @@
       "any"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Up to 4 torch-sized lights appear and can move 60 feet per turn. They shed dim light but reveal your location."
     }
   },
   {
@@ -1677,7 +1768,8 @@
       "undead"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Create a 15-foot cube image with no sound, smell, or other sensory effects. Creatures may use an action to disbelieve."
     }
   },
   {
@@ -1691,7 +1783,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Alter your appearance (height \u00b11 foot, weight, facial features). A creature touching you or succeeding on an Investigation check sees through the disguise."
     }
   },
   {
@@ -1710,7 +1803,8 @@
       "damage": [
         "0",
         "radiant"
-      ]
+      ],
+      "description": "Each creature in a 15-foot Cone must succeed on a Constitution saving throw or have the Blinded condition until the end of your next turn. No HP threshold, all creatures are affected."
     }
   },
   {
@@ -1724,7 +1818,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Three illusory duplicates appear. When targeted, roll to determine whether the attack hits a duplicate (which then disappears) or you."
     }
   },
   {
@@ -1738,7 +1833,8 @@
       "elemental"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Attackers have disadvantage on attack rolls against you for the duration."
     }
   },
   {
@@ -1752,7 +1848,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target becomes invisible until the spell ends, it attacks, or it casts a spell."
     }
   },
   {
@@ -1769,9 +1866,10 @@
       "type": "save",
       "save_stat": "int",
       "damage": [
-        "1d6",
+        "2d8",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Intelligence save, the target perceives a phantasmal object or creature only it can see. If the phantasm represents a threat, it can deal 2d8 Psychic damage per turn. The target can use a Study action (Intelligence Investigation vs. DC) to disbelieve and end the spell."
     }
   },
   {
@@ -1790,7 +1888,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "On a failed Dexterity save, creatures in a 20-foot cube are affected by a random magical effect: blinded, poisoned, incapacitated, or beset by flashes of light."
     }
   },
   {
@@ -1804,7 +1903,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Create a 20-foot cube image with sound, smell, and temperature. Creatures may use an action to disbelieve with an Investigation check."
     }
   },
   {
@@ -1818,26 +1918,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
-    }
-  },
-  {
-    "name": "enemies abound",
-    "school": "illusion",
-    "cantrip": false,
-    "tier_min": 3,
-    "tags": [
-      "fey",
-      "aberration",
-      "fiend"
-    ],
-    "fallback": {
-      "type": "save",
-      "save_stat": "int",
-      "damage": [
-        "0",
-        "psychic"
-      ]
+      "type": "util",
+      "description": "A Large quasi-real horse-like creature appears with 100-foot speed and can carry one rider. It disappears after 1 hour or if it drops to 0 HP."
     }
   },
   {
@@ -1851,7 +1933,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target becomes invisible for the duration. This invisibility does not end when it attacks or casts spells."
     }
   },
   {
@@ -1865,7 +1948,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Up to a 150-foot cube of terrain is disguised as different terrain. Creatures physically interacting with it may make an Investigation check to disbelieve."
     }
   },
   {
@@ -1898,7 +1982,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Change the appearance of any number of creatures within range. Each can look like any creature of similar size for 8 hours."
     }
   },
   {
@@ -1912,7 +1997,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "You become invisible and simultaneously create an illusory copy of yourself that you can move and speak through for 1 hour."
     }
   },
   {
@@ -1945,7 +2031,8 @@
       "undead"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Create an illusory copy of yourself at any location you know within 500 miles. You see and hear through it and can cast spells from its location."
     }
   },
   {
@@ -1961,9 +2048,11 @@
     "fallback": {
       "type": "attack",
       "damage": [
-        "1d8",
+        "1d10",
         "necrotic"
-      ]
+      ],
+      "description": "Melee spell attack. On a hit, takes 1d10 Necrotic damage and can't regain Hit Points until the end of your next turn.",
+      "melee": true
     }
   },
   {
@@ -1982,7 +2071,8 @@
       "damage": [
         "1d8",
         "necrotic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, takes 1d8 Necrotic damage or 1d12 Necrotic damage if the target is missing any Hit Points."
     }
   },
   {
@@ -1996,11 +2086,13 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "attack",
+      "type": "save",
+      "save_stat": "con",
       "damage": [
-        "3d10",
+        "2d10",
         "necrotic"
-      ]
+      ],
+      "description": "The target makes a Constitution saving throw, taking 2d10 Necrotic damage on a failed save or half as much on a successful one."
     }
   },
   {
@@ -2014,7 +2106,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "You gain 2d4 + 4 Temporary Hit Points."
     }
   },
   {
@@ -2032,7 +2125,8 @@
       "damage": [
         "2d8",
         "poison"
-      ]
+      ],
+      "description": "On a hit, takes 2d8 Poison damage and has the Poisoned condition until the end of your next turn. No additional saving throw required."
     }
   },
   {
@@ -2051,7 +2145,8 @@
       "damage": [
         "0",
         "necrotic"
-      ]
+      ],
+      "description": "On a failed Constitution save, the target is blinded or deafened (your choice) until the spell ends. It repeats the save at the end of each of its turns."
     }
   },
   {
@@ -2065,11 +2160,13 @@
       "aberration"
     ],
     "fallback": {
-      "type": "attack",
+      "type": "save",
+      "save_stat": "con",
       "damage": [
         "0",
         "necrotic"
-      ]
+      ],
+      "description": "On a failed Constitution save, target has Disadvantage on Strength-based D20 Tests and subtracts 1d8 from all its damage rolls for the duration. Repeats save at end of each turn. On a successful save, only has Disadvantage on its next attack roll."
     }
   },
   {
@@ -2082,7 +2179,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Ward a corpse from decay and from being raised as undead for 10 days."
     }
   },
   {
@@ -2095,7 +2193,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Animate up to 3 piles of bones or corpses as undead (skeletons or zombies). They obey your spoken commands."
     }
   },
   {
@@ -2114,7 +2213,8 @@
       "damage": [
         "0",
         "necrotic"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target is cursed. Options: disadvantage on all checks with one ability; disadvantage on saves against your spells; waste action on Wisdom check or do nothing; take extra 1d8 necrotic from your attacks."
     }
   },
   {
@@ -2132,7 +2232,9 @@
       "damage": [
         "3d6",
         "necrotic"
-      ]
+      ],
+      "melee": true,
+      "description": "Melee spell attack, dealing {damage} damage. The caster regains HP equal to half the damage dealt."
     }
   },
   {
@@ -2165,7 +2267,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Flames of darkness surround you. Creatures that hit you take 2d8 necrotic damage. All nonmagical light within 10 feet of you is extinguished."
     }
   },
   {
@@ -2178,7 +2281,8 @@
       "fiend"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Animate up to 5 corpses as skeletons or zombies that obey your verbal commands for the duration."
     }
   },
   {
@@ -2196,7 +2300,9 @@
       "damage": [
         "0",
         "poison"
-      ]
+      ],
+      "description": "On a hit with a melee spell attack, the target becomes poisoned. After 3 failed Constitution saves, it succumbs to a disease (Blinding Sickness, Filth Fever, Flesh Rot, Mindfire, Seizure, or Slimy Doom).",
+      "melee": true
     }
   },
   {
@@ -2210,7 +2316,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A shimmering barrier prevents living creatures (not undead or constructs) from entering within 10 feet of you."
     }
   },
   {
@@ -2243,11 +2350,12 @@
       "aberration"
     ],
     "fallback": {
-      "type": "attack",
+      "type": "save",
       "damage": [
         "14d6",
         "necrotic"
-      ]
+      ],
+      "save_stat": "con"
     }
   },
   {
@@ -2271,7 +2379,7 @@
   },
   {
     "name": "power word kill",
-    "school": "necromancy",
+    "school": "enchantment",
     "cantrip": false,
     "tier_min": 6,
     "tags": [
@@ -2280,7 +2388,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "If the target has 100 Hit Points or fewer, it dies instantly. If it has more than 100 HP, it takes 12d12 Psychic damage. No saving throw."
     }
   },
   {
@@ -2298,7 +2407,9 @@
       "damage": [
         "1d8",
         "bludgeoning"
-      ]
+      ],
+      "melee": true,
+      "description": "Melee spell attack, dealing {damage} damage. The weapon is empowered by nature magic and uses the caster's spellcasting modifier for attack and damage rolls."
     }
   },
   {
@@ -2350,7 +2461,9 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "activation_type": "bonus",
+      "description": "Take the Dash action as a bonus action on each of your turns for the duration."
     }
   },
   {
@@ -2364,7 +2477,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target's jumping distance triples for the duration."
     }
   },
   {
@@ -2378,7 +2492,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target's speed increases by 10 feet for the duration."
     }
   },
   {
@@ -2392,7 +2507,8 @@
       "humanoid"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Transform to gain one of: different appearance, natural weapons (2d6 bludgeoning, +3 to hit), or the ability to breathe water."
     }
   },
   {
@@ -2406,7 +2522,8 @@
       "dragon"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "On a failed Constitution save, the target grows to Large size (advantage on Strength, +1d4 to weapon damage) or shrinks to Tiny size (disadvantage on Strength, -1d4 to weapon damage)."
     }
   },
   {
@@ -2420,7 +2537,8 @@
       "construct"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target can climb difficult surfaces including ceilings without ability checks for the duration."
     }
   },
   {
@@ -2434,7 +2552,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "Transform into a cloud of mist with a fly speed of 10 feet. Immune to nonmagical B/P/S damage, resistant to all other damage, and can't speak."
     }
   },
   {
@@ -2448,7 +2567,8 @@
       "elemental"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target gains a flying speed of 60 feet for the duration."
     }
   },
   {
@@ -2462,7 +2582,8 @@
       "fey"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "The target's speed doubles, it gains +2 to AC and advantage on Dexterity saves, and it can take one additional action each turn."
     }
   },
   {
@@ -2481,7 +2602,8 @@
       "damage": [
         "0",
         "psychic"
-      ]
+      ],
+      "description": "Up to six creatures in a 40-foot Cube make a Wisdom save. On a failure: Speed halved, -2 to AC and Dexterity saves, no Reactions, only an action or bonus action per turn (not both), and only one attack per Attack action. Somatic spells have a 25% failure chance. Target repeats the save at end of each turn."
     }
   },
   {
@@ -2500,7 +2622,8 @@
       "damage": [
         "0",
         "force"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target transforms into a Beast with CR equal to or less than its own CR (or challenge rating). It assumes the Beast's statistics."
     }
   },
   {
@@ -2519,7 +2642,8 @@
       "damage": [
         "0",
         "bludgeoning"
-      ]
+      ],
+      "description": "Up to a 40-foot cube of rock becomes thick, flowing mud (or mud becomes rock) with no saving throw. Creatures in mud must make a Dexterity save or be restrained."
     }
   },
   {
@@ -2533,7 +2657,8 @@
       "elemental"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "A passage up to 20 feet deep, 5 feet wide, and 8 feet tall appears through a wooden, plaster, or stone wall for 1 hour."
     }
   },
   {
@@ -2571,7 +2696,8 @@
       "damage": [
         "0",
         "force"
-      ]
+      ],
+      "description": "On 3 failed Constitution saves (made once per turn), the target is restrained (1 failure), petrified (2 failures), fully petrified (3 failures)."
     }
   },
   {
@@ -2585,7 +2711,8 @@
       "aberration"
     ],
     "fallback": {
-      "type": "util"
+      "type": "util",
+      "description": "You step into the Border Ethereal. You can see and hear the material plane but cannot affect or be affected by it."
     }
   },
   {
@@ -2604,7 +2731,8 @@
       "damage": [
         "0",
         "force"
-      ]
+      ],
+      "description": "On a failed Wisdom save, the target permanently transforms into a Beast, creature, or Object. Concentration for 1 hour makes the effect permanent."
     }
   }
 ]

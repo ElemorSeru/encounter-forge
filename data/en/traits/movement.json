@@ -117,7 +117,8 @@
       "fey",
       "fiend"
     ],
-    "description": "As a bonus action, the creature can teleport up to 30 feet to an unoccupied space it can see that is in dim light or darkness. It may make one attack immediately after teleporting."
+    "description": "As a bonus action, the creature can teleport up to 30 feet to an unoccupied space it can see that is in dim light or darkness. It may make one attack immediately after teleporting.",
+    "activation_type": "bonus"
   },
   {
     "id": "phase_stride",
@@ -134,7 +135,8 @@
       "undead",
       "construct"
     ],
-    "description": "As a bonus action once per round, the creature can step partially out of phase with reality and teleport up to 15 feet to an unoccupied space it can see. This movement does not provoke opportunity attacks."
+    "description": "As a bonus action once per round, the creature can step partially out of phase with reality and teleport up to 15 feet to an unoccupied space it can see. This movement does not provoke opportunity attacks.",
+    "activation_type": "bonus"
   },
   {
     "id": "mud_form",
@@ -236,7 +238,8 @@
       "aberration",
       "fey"
     ],
-    "description": "Once per day, as a reaction when the creature would be hit by an attack, it briefly skips forward in time. The attack misses, and the creature reappears at the end of its next turn in the same space or the nearest available space. It is incapacitated until it reappears."
+    "description": "Once per day, as a reaction when the creature would be hit by an attack, it briefly skips forward in time. The attack misses, and the creature reappears at the end of its next turn in the same space or the nearest available space. It is incapacitated until it reappears.",
+    "activation_type": "reaction"
   },
   {
     "id": "mistform_travel",
@@ -252,7 +255,8 @@
       "fey",
       "elemental"
     ],
-    "description": "As a bonus action, the creature can transform into a cloud of mist until the start of its next turn. While in mist form, it cannot attack or use abilities, but it is immune to all damage and can move through any gap, door, or crack without squeezing."
+    "description": "As a bonus action, the creature can transform into a cloud of mist until the start of its next turn. While in mist form, it cannot attack or use abilities, but it is immune to all damage and can move through any gap, door, or crack without squeezing.",
+    "activation_type": "bonus"
   },
   {
     "id": "dream_walk",

@@ -1,9 +1,11 @@
 import { loadJson } from "./utils.js";
 import { getCRTier, crToNumber } from "./cr-engine.js";
 import {
-  estimateCreatureProfile, findCandidates, pickRandom, diceAverage, HIT_CHANCE,
+  estimateCreatureProfile, findCandidates, pickRandom, diceAverage,
+  HIT_CHANCE, SAVE_HIT_CHANCE, RECHARGE_MULTIPLIERS,
   estimateSpellDPR, legendaryActionMultiplier
 } from "./combat-estimator.js";
+import { getEnabledCustomEntries, registerCacheInvalidator } from "./custom-content.js";
 
 const AC_NUDGE_MAX = 2;
 const DPR_TOLERANCE = 0.15;
@@ -12,6 +14,8 @@ const HP_RATIO_NUDGE = 0.3;
 const ACTION_DPR_TOLERANCE = 0.5;
 
 let _actionPool = null;
+
+registerCacheInvalidator(() => { _actionPool = null; });
 
 async function loadActionPool() {
   if (_actionPool) return _actionPool;
@@ -25,13 +29,17 @@ async function loadActionPool() {
       console.error(`Encounter Forge | Could not load actions/${cat}.json:`, err);
     }
   }
+  _actionPool.push(...getEnabledCustomEntries("actions"));
   return _actionPool;
 }
 
 function actionDPR(action, tierKey) {
   const dmg = action.damage_tiers?.[tierKey] || action._resolvedDamage;
   if (!dmg) return 0;
-  return diceAverage(dmg[0]) * HIT_CHANCE;
+  const chance = action.action_type === "save" ? SAVE_HIT_CHANCE : HIT_CHANCE;
+  const recharge = RECHARGE_MULTIPLIERS[action.recharge] ?? 1;
+  const aoe = action.aoe_targets ?? 1;
+  return diceAverage(dmg[0]) * chance * recharge * aoe;
 }
 
 async function swapActionForDPR(creature, targetDPR) {
@@ -41,7 +49,18 @@ async function swapActionForDPR(creature, targetDPR) {
   const crNum = crToNumber(creature.cr);
   const usedIds = new Set(creature.actions.map(a => a.id));
 
-  const candidates = pool.filter(a => {
+  let replaceIdx = 0;
+  let worstDPR = Infinity;
+  creature.actions.forEach((a, idx) => {
+    const d = actionDPR(a, tierKey);
+    if (d < worstDPR) { worstDPR = d; replaceIdx = idx; }
+  });
+
+  // If we'd be removing the only melee attack, only consider melee replacements.
+  const meleeCount = creature.actions.filter(a => a.action_type === "mwak").length;
+  const replacingLastMelee = meleeCount === 1 && creature.actions[replaceIdx].action_type === "mwak";
+
+  const allCandidates = pool.filter(a => {
     if (usedIds.has(a.id)) return false;
     if (!a.damage_tiers?.[tierKey]) return false;
     if (a.cr_min !== undefined && crNum < a.cr_min) return false;
@@ -50,6 +69,11 @@ async function swapActionForDPR(creature, targetDPR) {
     if (creature.theme !== "any" && a.tags?.length > 0 && !a.tags.includes(creature.theme) && !a.tags.includes("any")) return false;
     return true;
   });
+
+  const candidates = replacingLastMelee
+    ? allCandidates.filter(a => a.action_type === "mwak")
+    : allCandidates;
+
   if (!candidates.length) return;
 
   const valueFn = a => actionDPR(a, tierKey);
@@ -61,18 +85,21 @@ async function swapActionForDPR(creature, targetDPR) {
     pool2 = candidates.filter(c => Math.abs(valueFn(c) - targetDPR) <= bestDiff + 0.01);
   }
 
-  const chosen = pickRandom(pool2);
+  // prefer themed candidates; fall back to closest-DPR themed before touching generic pool
+  const themedCandidates = candidates.filter(a => creature.theme !== "any" && a.tags?.includes(creature.theme));
+  const themedPool2 = pool2.filter(a => creature.theme !== "any" && a.tags?.includes(creature.theme));
+  let chosen;
+  if (themedPool2.length) {
+    chosen = pickRandom(themedPool2);
+  } else if (themedCandidates.length) {
+    // widen tolerance to 40% and pick randomly - avoids always funnelling to one action
+    const wideTolerance = targetDPR * 0.4;
+    const wideThemed = themedCandidates.filter(a => Math.abs(valueFn(a) - targetDPR) <= wideTolerance);
+    chosen = pickRandom(wideThemed.length ? wideThemed : themedCandidates);
+  } else {
+    chosen = pickRandom(pool2);
+  }
   chosen._resolvedDamage = chosen.damage_tiers[tierKey];
-
-  let replaceIdx = 0;
-  let worstDPR = Infinity;
-  creature.actions.forEach((a, idx) => {
-    const d = actionDPR(a, tierKey);
-    if (d < worstDPR) {
-      worstDPR = d;
-      replaceIdx = idx;
-    }
-  });
 
   creature.actions[replaceIdx] = chosen;
 }
@@ -80,45 +107,46 @@ async function swapActionForDPR(creature, targetDPR) {
 function actionsDPR(actions) {
   return (actions || []).reduce((sum, a) => {
     if (!a._resolvedDamage) return sum;
-    return sum + diceAverage(a._resolvedDamage[0]);
-  }, 0) * HIT_CHANCE;
+    const chance = a.action_type === "save" ? SAVE_HIT_CHANCE : HIT_CHANCE;
+    const recharge = RECHARGE_MULTIPLIERS[a.recharge] ?? 1;
+    const aoe = a.aoe_targets ?? 1;
+    return sum + diceAverage(a._resolvedDamage[0]) * chance * recharge * aoe;
+  }, 0);
 }
 
-// Add flat modifier to a "XdY" or "XdY+Z" formula (e.g. "2d6", 3 -> "2d6+3"), average never drops below 1.
-function addFlatModifier(formula, delta) {
+function scaleDamage(formula, delta) {
   if (!delta) return formula;
-  const match = String(formula).trim().match(/^(\d+d\d+)\s*([+-]\s*\d+)?$/i);
+  const match = String(formula).trim().match(/^(\d+)d(\d+)\s*([+-]\s*\d+)?$/i);
   if (!match) return formula;
-
-  const dice = match[1];
-  const existing = match[2] ? parseInt(match[2].replace(/\s+/g, ""), 10) : 0;
-  const diceAvg = diceAverage(dice);
-
-  let mod = existing + delta;
-  mod = Math.max(mod, Math.ceil(1 - diceAvg));
-
-  if (mod === 0) return dice;
-  return `${dice}${mod > 0 ? "+" : ""}${mod}`;
+  const count = Number(match[1]);
+  const sides = Number(match[2]);
+  const existing = match[3] ? parseInt(match[3].replace(/\s+/g, ""), 10) : 0;
+  const faceAvg = (sides + 1) / 2;
+  const total = count * faceAvg + existing + delta;
+  const newCount = Math.max(1, Math.round(total / faceAvg));
+  const remainder = Math.round(total - newCount * faceAvg);
+  if (remainder === 0) return `${newCount}d${sides}`;
+  return `${newCount}d${sides}${remainder > 0 ? "+" : ""}${remainder}`;
 }
 
-// Closes the DPR gap remainder after swapActionForDPR to spread a flat damage bonus across all actions.
-function applyFlatDamageBonus(actions, totalDeltaDPR) {
+function applyDamageScale(actions, totalDeltaDPR) {
   if (!actions?.length) return;
-
   const perActionDPR = totalDeltaDPR / actions.length;
-  const diceDelta = Math.round(perActionDPR / HIT_CHANCE);
-  if (!diceDelta) return;
-
   for (const action of actions) {
     if (!action._resolvedDamage) continue;
+    const chance = action.action_type === "save" ? SAVE_HIT_CHANCE : HIT_CHANCE;
+    const recharge = RECHARGE_MULTIPLIERS[action.recharge] ?? 1;
+    const aoe = action.aoe_targets ?? 1;
+    const effective = chance * recharge * aoe;
+    const diceDelta = effective > 0 ? Math.round(perActionDPR / effective) : 0;
+    if (!diceDelta) continue;
     action._resolvedDamage = [
-      addFlatModifier(action._resolvedDamage[0], diceDelta),
+      scaleDamage(action._resolvedDamage[0], diceDelta),
       action._resolvedDamage[1]
     ];
   }
 }
 
-// Set this creature's HP/DPR to the targets from computeEncounterEnvelope. Nudging AC based on how far it moved from its chassis baseline.
 export async function calibrateCreature(creature, targets) {
   const profile = estimateCreatureProfile(creature);
 
@@ -149,10 +177,9 @@ export async function calibrateCreature(creature, targets) {
       await swapActionForDPR(creature, targetActionTotal / creature.actions.length);
     }
 
-    // Close whatever gap is left over with a flat damage bonus across the creature's actions.
     const remaining = targetActionTotal - actionsDPR(creature.actions);
     if (Math.abs(remaining) > ACTION_DPR_TOLERANCE) {
-      applyFlatDamageBonus(creature.actions, remaining);
+      applyDamageScale(creature.actions, remaining);
     }
   }
 

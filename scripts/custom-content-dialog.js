@@ -10,8 +10,7 @@ const KIND_LABELS = {
 };
 
 function capitalize(str) {
-  // Older exports could store category as an array if the form briefly
-  // submitted duplicate-named fields; fall back to the first usable value.
+  // older exports could serialize category as an array; take first string
   if (Array.isArray(str)) str = str.find(value => typeof value === "string" && value) ?? str[0];
   if (typeof str !== "string" || !str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -105,8 +104,6 @@ export default class EncounterForgeCustomContentDialog extends HandlebarsApplica
     });
   }
 
-  // Downloads the world's entire custom content pool as a JSON file, so it can
-  // be shared with, and imported into, another world.
   static _onExport(_event, _target) {
     const payload = exportCustomContent();
     const totalEntries = Object.values(payload.data).reduce((sum, list) => sum + list.length, 0);
@@ -124,8 +121,6 @@ export default class EncounterForgeCustomContentDialog extends HandlebarsApplica
     URL.revokeObjectURL(url);
   }
 
-  // Opens a file picker for a previously exported JSON file and merges its
-  // entries into this world's custom content pools as new entries.
   static _onImport(_event, _target) {
     const input = document.createElement("input");
     input.type = "file";
