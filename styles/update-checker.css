@@ -1,0 +1,62 @@
+.header-control.ef-update-badge {
+  color: #f2c14e;
+}
+
+.header-control.ef-update-badge::before {
+  filter: drop-shadow(0 0 3px rgba(242, 193, 78, 0.65));
+}
+
+.header-control.ef-update-badge:hover {
+  color: #ffd772;
+}
+
+.ef-update-dialog .ef-update-changelog {
+  font-size: 13px;
+  color: #ddd;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 4px;
+}
+
+.ef-update-release {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.ef-update-release:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.ef-update-release-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ef-update-version { font-size: 14px; font-weight: 700; color: #eee; }
+.ef-update-date { font-size: 11px; color: #999; }
+
+.ef-update-changelog h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5dade2;
+  margin: 8px 0 4px;
+}
+
+.ef-update-changelog ul { margin: 0 0 6px; padding-left: 18px; }
+.ef-update-changelog li { margin-bottom: 3px; line-height: 1.45; }
+.ef-update-changelog p { margin: 0 0 6px; line-height: 1.45; }
+
+.ef-update-foot {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.ef-update-foot a {
+  font-size: 11px;
+  color: #5dade2;
+  text-decoration: none;
+}
+
+.ef-update-foot a:hover { text-decoration: underline; }

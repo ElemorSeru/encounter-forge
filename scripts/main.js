@@ -4,6 +4,7 @@ import { registerCustomContentSetting, exportCustomContent, importCustomContent 
 import EncounterForgeExportDialog from "./export-dialog.js";
 import EncounterForgeCustomContentDialog from "./custom-content-dialog.js";
 import EncounterForgeCombatCalibrationDialog from "./combat-calibration-dialog.js";
+import { registerUpdateChecker } from "./update-checker.js";
 
 // Allowed item types to export into Encounter Forge's custom content pools.
 const EXPORTABLE_ITEM_TYPES = ["feat", "weapon", "spell"];
@@ -44,6 +45,7 @@ class EncounterForgeCombatCalibrationMenu extends FormApplication {
 
 Hooks.once("init", () => {
   registerCustomContentSetting();
+  registerUpdateChecker();
   game.settings.registerMenu("encounter-forge", "resetLastUsed", {
     name: "ENCOUNTERFORGE.Settings.ResetName",
     label: "ENCOUNTERFORGE.Settings.ResetLabel",

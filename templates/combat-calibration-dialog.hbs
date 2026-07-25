@@ -6,12 +6,12 @@
 
   <div class="ef-calibration-stepper">
     <button type="button" class="ef-cal-step-btn" data-action="decrement"
-      {{#if atMin}}disabled{{/if}} title="Decrease">
+      {{#if atMin}}disabled{{/if}} title="{{localize "ENCOUNTERFORGE.Calibration.Decrease"}}">
       <i class="fas fa-minus"></i>
     </button>
     <span class="ef-cal-value">{{offsetDisplay}}</span>
     <button type="button" class="ef-cal-step-btn" data-action="increment"
-      {{#if atMax}}disabled{{/if}} title="Increase">
+      {{#if atMax}}disabled{{/if}} title="{{localize "ENCOUNTERFORGE.Calibration.Increase"}}">
       <i class="fas fa-plus"></i>
     </button>
   </div>
@@ -23,7 +23,7 @@
         class="ef-pip {{#if this.active}}ef-pip-active ef-pip-{{this.colorClass}}{{/if}}"
         data-action="setOffset"
         data-step="{{this.step}}"
-        aria-label="Set intensity to {{this.step}}"></button>
+        aria-label="{{localize "ENCOUNTERFORGE.Calibration.SetIntensity" step=this.step}}"></button>
     {{/each}}
   </div>
   <div class="ef-pip-axis">

@@ -40,11 +40,11 @@ Opens the same dialog, pre-configured for "generate one named NPC for me" use ca
 const ef = game.modules.get("encounter-forge");
 if (ef?.active && ef.api) {
   const actors = await ef.api.openDialogFor({
-    name:           "Bandit Captain Vex",
-    img:            "modules/lore-reference-board/art/bandit-captain-vex.webp",
-    tokenImg:       "modules/lore-reference-board/tokens/bandit-captain-vex.webp",
+    name: "Bandit Captain Vex",
+    img: "modules/lore-reference-board/art/bandit-captain-vex.webp",
+    tokenImg: "modules/lore-reference-board/tokens/bandit-captain-vex.webp",
     lockEnemyCount: true,
-    enemyCount:     1
+    enemyCount: 1
   });
 
   if (actors) {
@@ -78,13 +78,13 @@ const ef = game.modules.get("encounter-forge");
 if (ef?.active && ef.api) {
   const actors = await ef.api.generate({
     playerCount: 4,
-    playerLevel:  5,
-    enemyCount:   2,
-    difficulty:  "hard",
-    theme:       "undead",
-    name:        "The Pale Warden",
-    img:         "modules/my-module/art/pale-warden.webp",
-    tokenImg:    "modules/my-module/tokens/pale-warden-token.webp"
+    playerLevel: 5,
+    enemyCount: 2,
+    difficulty: "hard",
+    theme: "undead",
+    name: "The Pale Warden",
+    img: "modules/my-module/art/pale-warden.webp",
+    tokenImg: "modules/my-module/tokens/pale-warden-token.webp"
   });
 }
 ```

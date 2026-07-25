@@ -2,7 +2,7 @@
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/Elemor)
 [![Foundry Version](https://img.shields.io/badge/Foundry-v12--v14-informational?style=for-the-badge)](https://foundryvtt.com)
 [![dnd5e Version](https://img.shields.io/badge/dnd5e-4.0%2B-informational?style=for-the-badge)](https://github.com/foundryvtt/dnd5e)
-[![Module Version](https://img.shields.io/badge/Version-2.1.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
+[![Module Version](https://img.shields.io/badge/Version-2.2.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
 <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/encounter-forge/latest/total">
 
 **Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
@@ -106,10 +106,8 @@ A world setting (`dprFirstDamage`, Boolean, default off) changes how action dice
 
 ### 6. Combat Intensity Calibration (optional)
 <img width="387" height="368" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_GeneratedResults.png" />
-
-
-### 5. Combat Intensity Calibration (optional)
 <img width="676" height="590" alt="image" src="https://github.com/ElemorSeru/encounter-forge/blob/master/assets/screenshots/EF_ConfigurationSettings.png" />
+
 A world setting (`combatIntensity`, integer -3 to +3, default 0) scales the `roundsToThreaten` target before the envelope is computed:
 
 ```
@@ -141,7 +139,7 @@ Or find it on the Foundry package list: `(Not Officially Released Yet)`
 1. Open your **Actors** sidebar tab, you'll see a new **Generate** button (wizard hat icon) in the header.
 2. Set your party size/level (or enable **Calibrate to Party** and pick actors), pick a difficulty, theme, and number of enemies.
 3. Watch the live readout to see the projected outlook before you commit.
-4. Click **Generate**. New NPC actor(s) appear in your Actors directory, ready to drag onto a scene. Dumped into the root, or into a specific folder if you set on in the module settings.
+4. Click **Generate**. New NPC actor(s) appear in your Actors directory, ready to drag onto a scene. Dumped into the root, or into a specific folder if you set one in the module settings.
 5. Review the results summary to see how the actual creature(s) compare to the initial projection.
 
 ---

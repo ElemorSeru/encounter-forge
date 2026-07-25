@@ -39,7 +39,7 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
   const targetCR = await nearestCRForStats(envelope.perEnemyHP, envelope.perEnemyDPR);
 
   ui.notifications.info(
-    `${game.i18n.localize("ENCOUNTERFORGE.Notify.Generating")} (CR ${crToDisplay(targetCR)})`
+    game.i18n.format("ENCOUNTERFORGE.Notify.Generating", { cr: crToDisplay(targetCR) })
   );
 
   Hooks.callAll("encounterForge.generationStarted", {

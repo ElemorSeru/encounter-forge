@@ -448,14 +448,16 @@ async function buildSyntheticSpellItem(spell, creatureData) {
   const fb = spell.fallback || { type: "util" };
   const [formula, damageType] = fb.damage || ["0", "force"];
   const saveAbility = fb.save_stat || "wis";
-  const usageLabel = spell.cantrip ? "at will" : "1/day";
+  const isAtWill = !!spell.cantrip;
+  const usageLabel = game.i18n.localize(isAtWill ? "ENCOUNTERFORGE.Generated.UsageAtWill" : "ENCOUNTERFORGE.Generated.UsageOncePerDay");
+  const usageHeader = game.i18n.localize(isAtWill ? "ENCOUNTERFORGE.Generated.UsageAtWillHeader" : "ENCOUNTERFORGE.Generated.UsageOncePerDayHeader");
   const schoolLabel = spell.school
     ? spell.school.charAt(0).toUpperCase() + spell.school.slice(1)
-    : "Magic";
+    : game.i18n.localize("ENCOUNTERFORGE.Generated.SchoolFallback");
 
-  const ABILITY_LABELS = {
-    str: "Strength", dex: "Dexterity", con: "Constitution",
-    int: "Intelligence", wis: "Wisdom", cha: "Charisma"
+  const ABILITY_KEYS = {
+    str: "ENCOUNTERFORGE.Generated.Ability.Str", dex: "ENCOUNTERFORGE.Generated.Ability.Dex", con: "ENCOUNTERFORGE.Generated.Ability.Con",
+    int: "ENCOUNTERFORGE.Generated.Ability.Int", wis: "ENCOUNTERFORGE.Generated.Ability.Wis", cha: "ENCOUNTERFORGE.Generated.Ability.Cha"
   };
 
   let activities;
@@ -464,9 +466,10 @@ async function buildSyntheticSpellItem(spell, creatureData) {
   if (fb.type === "attack" && formula !== "0") {
     const attackType = fb.melee ? "msak" : "rsak";
     const attackRange = fb.melee ? 5 : 60;
-    const defaultDesc = fb.melee
-      ? `Melee spell attack dealing ${formula} ${damageType} damage.`
-      : `Ranged spell attack dealing ${formula} ${damageType} damage.`;
+    const defaultDesc = game.i18n.format(
+      fb.melee ? "ENCOUNTERFORGE.Generated.MeleeSpellAttackDesc" : "ENCOUNTERFORGE.Generated.RangedSpellAttackDesc",
+      { formula, damageType }
+    );
     activities = buildAttackActivity(
       { action_type: attackType, uses_dex: !fb.melee, range: attackRange, range_long: null,
         _resolvedDamage: [formula, damageType], damage_fallback: [formula, damageType] },
@@ -482,21 +485,24 @@ async function buildSyntheticSpellItem(spell, creatureData) {
       spellDC,
       saveAbility
     );
-    const abilityLabel = ABILITY_LABELS[saveAbility] || "Wisdom";
+    const abilityLabel = game.i18n.localize(ABILITY_KEYS[saveAbility] ?? "ENCOUNTERFORGE.Generated.Ability.Wis");
     if (formula !== "0") {
-      const autoDesc = `Each creature must succeed on a DC ${spellDC} ${abilityLabel} saving throw`
-        + `, taking ${formula} ${damageType} damage on a failure (half on a success).`;
-      descBody = fb.description ? `${fb.description} (DC ${spellDC} ${abilityLabel}, ${formula} ${damageType} on a failure)` : autoDesc;
+      const autoDesc = game.i18n.format("ENCOUNTERFORGE.Generated.SaveWithDamageDesc", { dc: spellDC, ability: abilityLabel, formula, damageType });
+      descBody = fb.description
+        ? fb.description + game.i18n.format("ENCOUNTERFORGE.Generated.SaveDamageSuffix", { dc: spellDC, ability: abilityLabel, formula, damageType })
+        : autoDesc;
     } else {
-      const autoDesc = `DC ${spellDC} ${abilityLabel} saving throw - `;
-      descBody = fb.description ? autoDesc + fb.description : `One or more creatures must succeed on a DC ${spellDC} ${abilityLabel} saving throw or be affected.`;
+      const autoDesc = game.i18n.format("ENCOUNTERFORGE.Generated.SaveNoDamagePrefix", { dc: spellDC, ability: abilityLabel });
+      descBody = fb.description
+        ? autoDesc + fb.description
+        : game.i18n.format("ENCOUNTERFORGE.Generated.SaveNoDamageDesc", { dc: spellDC, ability: abilityLabel });
     }
   } else {
     activities = buildUtilityActivity(fb.activation_type || "action");
-    descBody = fb.description || `${schoolLabel} spell (${usageLabel}).`;
+    descBody = fb.description || game.i18n.format("ENCOUNTERFORGE.Generated.UtilityFallbackDesc", { school: schoolLabel, usage: usageLabel });
   }
 
-  const description = `<p><em>${schoolLabel} (${usageLabel === "at will" ? "At Will" : "1/Day"})</em></p><p>${descBody}</p>`;
+  const description = `<p><em>${schoolLabel} (${usageHeader})</em></p><p>${descBody}</p>`;
 
   const icon = damageType && DAMAGE_FOLDERS[damageType]
     ? await pickIconFromFolders(DAMAGE_FOLDERS[damageType], "icons/svg/mystery-man.svg")
@@ -635,11 +641,11 @@ async function createActor(creatureData) {
   if (!actor) return null;
 
   const multiattackItem = actions.length > 1 ? {
-    name: "Multiattack",
+    name: game.i18n.localize("ENCOUNTERFORGE.Generated.MultiattackName"),
     type: "feat",
     img: await pickIconFromFolders(["icons/weapons/swords", "icons/weapons"], "icons/svg/combat.svg"),
     system: {
-      description: { value: `<p>The creature makes a ${actions.map(a => a.name).join(" and ")} attack.</p>` },
+      description: { value: `<p>${game.i18n.format("ENCOUNTERFORGE.Generated.MultiattackDesc", { actions: actions.map(a => a.name).join(" and ") })}</p>` },
       type: { value: "monster", subtype: "" },
       activities: buildUtilityActivity()
     }
@@ -661,7 +667,9 @@ async function createActor(creatureData) {
 
     const optionLines = legActionTraits.map(t => {
       const cost = t.legendary_cost ?? 1;
-      const costStr = cost > 1 ? `Costs ${cost} Actions` : "Costs 1 Action";
+      const costStr = cost > 1
+        ? game.i18n.format("ENCOUNTERFORGE.Generated.LegendaryActionCost", { cost })
+        : game.i18n.localize("ENCOUNTERFORGE.Generated.LegendaryActionCostSingle");
       const summary = formatDesc(t.description, dc, profBonus)
         .replace(/<[^>]+>/g, "").trim().slice(0, 120);
       const ellipsis = summary.length === 120 ? "..." : "";
@@ -673,12 +681,12 @@ async function createActor(creatureData) {
       : "";
 
     legendaryIntroItem = {
-      name: "Legendary Actions",
+      name: game.i18n.localize("ENCOUNTERFORGE.Generated.LegendaryActionsName"),
       type: "feat",
       img: await pickIconFromFolders(CATEGORY_FOLDERS.legendary, "icons/svg/mystery-man.svg"),
       system: {
         description: {
-          value: `<p>The creature can take 3 legendary actions per round, choosing from the options listed below. Only one legendary action can be used at a time and only at the end of another creature's turn. Spent legendary actions are regained at the start of each turn.</p>${optionBlock}`
+          value: `<p>${game.i18n.localize("ENCOUNTERFORGE.Generated.LegendaryActionsIntro")}</p>${optionBlock}`
         },
         type: { value: "monster", subtype: "" }
       }
@@ -710,7 +718,7 @@ async function createActor(creatureData) {
       "icons/svg/mystery-man.svg"
     );
     const spellcastingFeature = {
-      name: "Spellcasting",
+      name: game.i18n.localize("ENCOUNTERFORGE.Generated.SpellcastingName"),
       type: "feat",
       img: spellcastingIcon,
       system: {

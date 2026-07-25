@@ -463,17 +463,17 @@ Generates one or more NPC actors and returns them. All options are optional.
 const actors = await forge.generate({
   playerCount: 4,
   playerLevel: 5,
-  enemyCount:  3,
-  difficulty:  "hard",
-  theme:       "undead",
-  solo:        false,
-  name:        "",       // leave blank to use a generated name
-  img:         "",       // leave blank to use a theme-matched portrait
-  tokenImg:    "",       // leave blank to use a theme-matched token
-  disposition: -1,       // -1 Hostile (default), 0 Neutral, 1 Friendly, -2 Secret
-  folder:        "",     // actor folder name; overrides Default Folder setting
-  calibrate:     false,  // tune toward partyActorIds (or generic party if none given)
-  partyActorIds: []      // actor IDs of the real party, used when calibrate is true
+  enemyCount: 3,
+  difficulty: "hard",
+  theme: "undead",
+  solo: false,
+  name: "", // leave blank to use a generated name
+  img: "", // leave blank to use a theme-matched portrait
+  tokenImg: "", // leave blank to use a theme-matched token
+  disposition: -1, // -1 Hostile (default), 0 Neutral, 1 Friendly, -2 Secret
+  folder: "", // actor folder name; overrides Default Folder setting
+  calibrate: false, // tune toward partyActorIds (or generic party if none given)
+  partyActorIds: [] // actor IDs of the real party, used when calibrate is true
 });
 ```
 
@@ -520,10 +520,10 @@ await forge.generate({ playerCount: 5, playerLevel: 8, theme: "undead", solo: tr
 await forge.generate({
   playerCount: 4,
   playerLevel: 10,
-  enemyCount:  3,
-  difficulty:  "deadly",
-  theme:       "fiend",
-  name:        "Infernal Warden"
+  enemyCount: 3,
+  difficulty: "deadly",
+  theme: "fiend",
+  name: "Infernal Warden"
 });
 ```
 
@@ -541,11 +541,11 @@ Opens the same dialog, pre-configured for a single-NPC use case (e.g. "generate 
 
 ```js
 const actors = await forge.openDialogFor({
-  name:           "Bandit Captain Vex",
-  img:            "modules/lore-reference-board/art/bandit-captain-vex.webp",
-  tokenImg:       "modules/lore-reference-board/tokens/bandit-captain-vex.webp",
+  name: "Bandit Captain Vex",
+  img: "modules/lore-reference-board/art/bandit-captain-vex.webp",
+  tokenImg: "modules/lore-reference-board/tokens/bandit-captain-vex.webp",
   lockEnemyCount: true,
-  enemyCount:     1
+  enemyCount: 1
 });
 ```
 
@@ -571,9 +571,9 @@ Returns this world's entire custom content pool as a plain object, the same payl
   formatVersion: 1,
   exportedAt: "2026-06-14T00:00:00.000Z",
   data: {
-    traits:  [ /* ... */ ],
+    traits: [ /* ... */ ],
     actions: [ /* ... */ ],
-    spells:  [ /* ... */ ]
+    spells: [ /* ... */ ]
   }
 }
 ```

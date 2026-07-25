@@ -16,7 +16,11 @@ const SPELL_COUNT = {
   6: { cantrips: 2, leveled: 3 }
 };
 
-const CASTING_STAT_LABEL = { int: "Intelligence", wis: "Wisdom", cha: "Charisma" };
+const CASTING_STAT_KEY = {
+  int: "ENCOUNTERFORGE.Generated.Ability.Int",
+  wis: "ENCOUNTERFORGE.Generated.Ability.Wis",
+  cha: "ENCOUNTERFORGE.Generated.Ability.Cha"
+};
 
 let _spellPool = null;
 let _spellIndex = null; // Map<normalised name, { packId, itemId }>
@@ -109,20 +113,26 @@ export async function importSpellItem(spell) {
 
 export function buildSpellcastingDesc(spellInfo, creatureName) {
   const { cantrips, leveled, castingStat, spellDC, spellBonus } = spellInfo;
-  const statLabel = CASTING_STAT_LABEL[castingStat] ?? "Intelligence";
+  const statLabel = game.i18n.localize(CASTING_STAT_KEY[castingStat] ?? "ENCOUNTERFORGE.Generated.Ability.Int");
   const bonusStr = spellBonus >= 0 ? `+${spellBonus}` : String(spellBonus);
+  const noSpells = game.i18n.localize("ENCOUNTERFORGE.Generated.NoSpells");
   const cantripStr = cantrips.length
     ? cantrips.map(s => s.name.charAt(0).toUpperCase() + s.name.slice(1)).join(", ")
-    : "None";
+    : noSpells;
   const leveledStr = leveled.length
     ? leveled.map(s => s.name.charAt(0).toUpperCase() + s.name.slice(1)).join(", ")
-    : "None";
+    : noSpells;
+
+  const label = game.i18n.localize("ENCOUNTERFORGE.Generated.SpellcastingLabel");
+  const body = game.i18n.format("ENCOUNTERFORGE.Generated.SpellcastingBody", {
+    ability: statLabel, dc: spellDC, bonus: bonusStr
+  });
+  const cantripsHeading = game.i18n.localize("ENCOUNTERFORGE.Generated.SpellcastingCantrips");
+  const spellsHeading = game.i18n.localize("ENCOUNTERFORGE.Generated.SpellcastingSpells");
 
   return [
-    `<p><strong>Spellcasting.</strong> The creature is an innate spellcaster. `,
-    `Its spellcasting ability is ${statLabel} `,
-    `(spell save DC ${spellDC}, ${bonusStr} to hit with spell attacks).</p>`,
-    `<p><em>Cantrips (at will):</em> ${cantripStr}</p>`,
-    `<p><em>Spells (1/day each):</em> ${leveledStr}</p>`
+    `<p><strong>${label}</strong> ${body}</p>`,
+    `<p><em>${cantripsHeading}</em> ${cantripStr}</p>`,
+    `<p><em>${spellsHeading}</em> ${leveledStr}</p>`
   ].join("");
 }
