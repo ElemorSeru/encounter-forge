@@ -158,6 +158,33 @@ function damageTypeSet(typeStr) {
 
 const VALID_DENOMINATIONS = new Set([2, 3, 4, 6, 8, 10, 12, 20, 100]);
 
+const SPELL_SCHOOL_CODES = {
+  abjuration: "abj", conjuration: "con", divination: "div", enchantment: "enc",
+  evocation: "evo", illusion: "ill", necromancy: "nec", transmutation: "trs"
+};
+
+// dnd5e authors monster attacks as natural weapons carrying their own base damage
+function buildNaturalWeaponItem({ name, icon, desc, activities, builtEffect }) {
+  const activity = Object.values(activities)[0];
+  const parts = activity?.damage?.parts;
+  const base = Array.isArray(parts) && parts.length ? parts.shift() : null;
+
+  return {
+    name,
+    type: "weapon",
+    img: icon,
+    system: {
+      description: { value: `<p>${desc}</p>` },
+      type: { value: "natural", baseItem: "" },
+      equipped: true,
+      proficient: 1,
+      ...(base ? { damage: { base } } : {}),
+      activities
+    },
+    effects: builtEffect ? [builtEffect] : []
+  };
+}
+
 function buildDamagePart(formula, damageType, includeModifier = false) {
   const types = damageTypeSet(damageType);
 
@@ -346,6 +373,10 @@ async function buildActionItem(action, creatureData) {
     getActionIcon(action)
   ]);
 
+  if (["mwak", "rwak"].includes(action.action_type)) {
+    return buildNaturalWeaponItem({ name: action.name, icon, desc, activities, builtEffect });
+  }
+
   return {
     name: action.name,
     type: "feat",
@@ -512,11 +543,14 @@ async function buildSyntheticSpellItem(spell, creatureData) {
 
   return {
     name: displayName,
-    type: "feat",
+    type: "spell",
     img: icon,
     system: {
       description: { value: description },
-      type: { value: "monster", subtype: "" },
+      level: isAtWill ? 0 : Math.min(Math.max(spell.tier_min ?? 1, 1), 9),
+      school: SPELL_SCHOOL_CODES[String(spell.school ?? "").toLowerCase()] ?? "evo",
+      method: isAtWill ? "atwill" : "innate",
+      prepared: 1,
       activities
     }
   };

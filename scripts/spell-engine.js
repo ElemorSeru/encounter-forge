@@ -107,7 +107,7 @@ export async function importSpellItem(spell) {
   if (spell._fullClone) {
     return { source: "compendium", data: spell._fullClone };
   }
-  // standard spells use the synthetic builder so they work as feat items without a spell slot configuration
+  // standard spells are built as at-will spell items which don't need slot configuration
   return { source: "synthetic", spell };
 }
 

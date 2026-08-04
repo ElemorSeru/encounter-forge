@@ -310,7 +310,7 @@
   font-style: italic;
 }
 
-.ef-actor-empty {
+.encounter-forge-form .ef-actor-empty {
   font-size: 0.8em;
   color: #888;
   font-style: italic;
@@ -455,13 +455,13 @@
   border-color: #2a2a2a;
 }
 
-[data-section] {
+.encounter-forge-form [data-section] {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-[data-section].ef-collapsed {
+.encounter-forge-form [data-section].ef-collapsed {
   display: none;
 }
 
@@ -589,11 +589,11 @@
   color: #ddd;
 }
 
-.ef-custom-delete {
+.encounter-forge-form .ef-custom-delete {
   color: #c0392b !important;
 }
 
-.ef-custom-delete:hover {
+.encounter-forge-form .ef-custom-delete:hover {
   background: #3a2020 !important;
   color: #e88 !important;
 }
@@ -615,7 +615,7 @@
   padding: 10px 0 4px;
 }
 
-.ef-cal-step-btn {
+.encounter-forge-form .ef-cal-step-btn {
   width: 28px;
   height: 28px;
   padding: 0;
@@ -631,12 +631,12 @@
   justify-content: center;
 }
 
-.ef-cal-step-btn:hover:not(:disabled) {
+.encounter-forge-form .ef-cal-step-btn:hover:not(:disabled) {
   background: #3a3a3a;
   color: #ddd;
 }
 
-.ef-cal-step-btn:disabled {
+.encounter-forge-form .ef-cal-step-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
@@ -650,7 +650,7 @@
   flex-shrink: 0;
 }
 
-.ef-cal-step-label {
+.encounter-forge-form .ef-cal-step-label {
   text-align: center;
   font-size: 0.82em;
   color: #aaa;
@@ -670,11 +670,11 @@
   width: auto;
 }
 
-.ef-footer-close {
+.encounter-forge-form .ef-footer-close {
   margin-left: auto;
 }
 
-.ef-cal-reset-btn {
+.encounter-forge-form .ef-cal-reset-btn {
   background: #1e1e1e;
   border: 1px solid #3a3a3a;
   color: #c0392b;
@@ -685,7 +685,7 @@
   white-space: nowrap;
 }
 
-.ef-cal-reset-btn:hover {
+.encounter-forge-form .ef-cal-reset-btn:hover {
   background: #3a2020;
   color: #e88;
   border-color: #c0392b;
@@ -699,7 +699,7 @@
   gap: 4px;
 }
 
-.ef-pip {
+.encounter-forge-form .ef-pip {
   flex: 1;
   height: 8px;
   border-radius: 4px;
@@ -710,22 +710,22 @@
   transition: background 0.12s, border-color 0.12s;
 }
 
-.ef-pip:hover {
+.encounter-forge-form .ef-pip:hover {
   border-color: #888;
   background: #3a3a3a;
 }
 
-.ef-pip-active.ef-pip-neg {
+.encounter-forge-form .ef-pip-active.ef-pip-neg {
   background: #2a5a2a;
   border-color: #4a8a4a;
 }
 
-.ef-pip-active.ef-pip-zero {
+.encounter-forge-form .ef-pip-active.ef-pip-zero {
   background: #4a4a4a;
   border-color: #888;
 }
 
-.ef-pip-active.ef-pip-pos {
+.encounter-forge-form .ef-pip-active.ef-pip-pos {
   background: #5a2020;
   border-color: #c0392b;
 }
@@ -748,7 +748,7 @@
   gap: 8px;
 }
 
-.ef-cal-preview-title {
+.encounter-forge-form .ef-cal-preview-title {
   font-size: 0.78em;
   color: #666;
   font-style: italic;
