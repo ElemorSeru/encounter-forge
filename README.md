@@ -124,12 +124,12 @@ Positive offset = shorter drain time = enemies built to hit harder. Negative = l
 2. Paste the manifest URL:
 
    ```
-   (Not Officially Released Yet)
+   https://github.com/ElemorSeru/encounter-forge/releases/latest/download/module.json
    ```
 
 3. Enable **GM Tools: Encounter Forge** in your world's module list.
 
-Or find it on the Foundry package list: `(Not Officially Released Yet)`
+Or find it on the Foundry package list: `GM Tools: Encounter Forge`
 
 ---
 
