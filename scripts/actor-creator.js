@@ -215,7 +215,9 @@ function buildAttackActivity(action, creatureData, activationType = "action", ac
   const actId = foundry.utils.randomID();
   const isRanged = ["rwak", "rsak"].includes(action.action_type);
   const isSpell = ["rsak", "msak"].includes(action.action_type);
-  const ability = (action.uses_dex || isRanged) ? "dex" : "str";
+  // spells set their own ability and damage rule
+  const ability = action.attack_ability ?? ((action.uses_dex || isRanged) ? "dex" : "str");
+  const addModifier = action.add_modifier ?? true;
 
   const resolved = action._resolvedDamage || action.damage_fallback || ["1d6", "bludgeoning"];
   const [formula, damageType] = resolved;
@@ -251,7 +253,7 @@ function buildAttackActivity(action, creatureData, activationType = "action", ac
       damage: {
         critical: { bonus: "" },
         includeBase: true,
-        parts: [buildDamagePart(formula, damageType, true)]
+        parts: [buildDamagePart(formula, damageType, addModifier)]
       }
     }
   };
@@ -432,20 +434,37 @@ function regenerateClonedItemIds(itemData) {
   const clone = foundry.utils.deepClone(itemData);
   delete clone._id;
 
+  const ids = new Map();
+  for (const key of Object.keys(clone.system?.activities ?? {})) ids.set(key, foundry.utils.randomID());
+  for (const effect of Array.isArray(clone.effects) ? clone.effects : []) {
+    if (effect._id) ids.set(effect._id, foundry.utils.randomID());
+  }
+
   if (clone.system?.activities) {
     const newActivities = {};
-    for (const activity of Object.values(clone.system.activities)) {
-      const newId = foundry.utils.randomID();
-      newActivities[newId] = { ...activity, _id: newId };
+    for (const [key, activity] of Object.entries(clone.system.activities)) {
+      const newId = ids.get(key);
+      newActivities[newId] = { ...remapIds(activity, ids), _id: newId };
     }
     clone.system.activities = newActivities;
   }
 
   if (Array.isArray(clone.effects)) {
-    clone.effects = clone.effects.map(effect => ({ ...effect, _id: foundry.utils.randomID() }));
+    clone.effects = clone.effects.map(effect => ({ ...remapIds(effect, ids), _id: ids.get(effect._id) ?? foundry.utils.randomID() }));
   }
+  if (clone.flags) clone.flags = remapIds(clone.flags, ids);
 
   return clone;
+}
+
+// only swap exact ids, uuids point outside the item
+function remapIds(value, ids) {
+  if (typeof value === "string") return ids.get(value) ?? value;
+  if (Array.isArray(value)) return value.map(v => remapIds(v, ids));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, remapIds(v, ids)]));
+  }
+  return value;
 }
 
 function applyResolvedDamageToClone(itemData, resolvedDamage) {
@@ -503,6 +522,7 @@ async function buildSyntheticSpellItem(spell, creatureData) {
     );
     activities = buildAttackActivity(
       { action_type: attackType, uses_dex: !fb.melee, range: attackRange, range_long: null,
+        attack_ability: "spellcasting", add_modifier: fb.add_modifier === true,
         _resolvedDamage: [formula, damageType], damage_fallback: [formula, damageType] },
       creatureData
     );
@@ -535,6 +555,8 @@ async function buildSyntheticSpellItem(spell, creatureData) {
 
   const description = `<p><em>${schoolLabel} (${usageHeader})</em></p><p>${descBody}</p>`;
 
+  castInnately(activities, isAtWill);
+
   const icon = damageType && DAMAGE_FOLDERS[damageType]
     ? await pickIconFromFolders(DAMAGE_FOLDERS[damageType], "icons/svg/mystery-man.svg")
     : await pickIconFromFolders(CATEGORY_FOLDERS.passive, "icons/svg/mystery-man.svg");
@@ -549,11 +571,51 @@ async function buildSyntheticSpellItem(spell, creatureData) {
       description: { value: description },
       level: isAtWill ? 0 : Math.min(Math.max(spell.tier_min ?? 1, 1), 9),
       school: SPELL_SCHOOL_CODES[String(spell.school ?? "").toLowerCase()] ?? "evo",
-      method: isAtWill ? "atwill" : "innate",
-      prepared: 1,
+      ...innateSpellSystem(isAtWill),
       activities
     }
   };
+}
+
+// leveled spells once a day and cantrips at will
+function innateSpellSystem(isAtWill) {
+  return {
+    ...spellPreparation(isAtWill),
+    ...(isAtWill ? {} : { uses: { max: "1", spent: 0, recovery: [{ period: "day", type: "recoverAll", formula: "" }] } })
+  };
+}
+
+// innate spells spend the daily use instead of a slot
+function castInnately(activities, isAtWill) {
+  for (const activity of Object.values(activities ?? {})) {
+    activity.consumption = {
+      spellSlot: false,
+      targets: isAtWill ? [] : [{ type: "itemUses", target: "", value: "1", scaling: { mode: "", formula: "" } }],
+      scaling: { allowed: false, max: "" }
+    };
+  }
+}
+
+// an exported spell keeps its own rules but casts like the generated ones
+function buildSpellItemFromClone(spell) {
+  const clone = regenerateClonedItemIds(spell._fullClone);
+  const isAtWill = !!spell.cantrip;
+  clone.system ??= {};
+  // exports can carry either the 4.x or the 5.1+ casting field
+  delete clone.system.preparation;
+  delete clone.system.method;
+  delete clone.system.prepared;
+  Object.assign(clone.system, innateSpellSystem(isAtWill));
+  castInnately(clone.system.activities, isAtWill);
+  return clone;
+}
+
+// dnd5e 5.1 replaced preparation.mode with method
+function spellPreparation(isAtWill) {
+  const method = isAtWill ? "atwill" : "innate";
+  return CONFIG.Item?.dataModels?.spell?.schema?.getField?.("method")
+    ? { method, prepared: 1 }
+    : { preparation: { mode: method, prepared: true } };
 }
 
 const ALL_SKILLS = [
@@ -561,10 +623,31 @@ const ALL_SKILLS = [
   "med", "nat", "prc", "prf", "per", "rel", "slt", "ste", "sur"
 ];
 
-// dnd5e 5.3 reorganised the senses field; branch on version to keep 4.x and 5.x both working
+// a skill saved without an ability defaults to dex to have something as a default
+function skillAbility(key) {
+  return CONFIG.DND5E?.skills?.[key]?.ability ?? "dex";
+}
+
+// dnd5e 5.3 reorganized the senses field; branch on version to keep 4.x and 5.x both working
 function dnd5eAtLeast(major, minor = 0) {
   const [v0, v1] = (game.system.version ?? "0.0").split(".").map(Number);
   return v0 > major || (v0 === major && v1 >= minor);
+}
+
+// dnd5e 6 movement.speeds and an AC override
+function npcHasField(path) {
+  return !!CONFIG.Actor?.dataModels?.npc?.schema?.getField?.(path);
+}
+
+function npcSpeeds(speeds) {
+  const values = {
+    walk: speeds.walk || 30,
+    fly: speeds.fly || 0,
+    swim: speeds.swim || 0,
+    burrow: speeds.burrow || 0,
+    climb: speeds.climb || 0
+  };
+  return npcHasField("attributes.movement.speeds") ? { speeds: values } : values;
 }
 
 async function resolveFolder(name) {
@@ -618,13 +701,10 @@ async function createActor(creatureData) {
       },
       attributes: {
         hp: { value: stats.hp, max: stats.hp, formula: "" },
-        ac: { flat: stats.ac, calc: "flat" },
+        spellcasting: spellInfo?.castingStat ?? "",
+        ac: npcHasField("attributes.ac.calcs") ? { flat: stats.ac, override: stats.ac } : { flat: stats.ac, calc: "flat" },
         movement: {
-          walk: stats.speeds.walk || 30,
-          fly: stats.speeds.fly || 0,
-          swim: stats.speeds.swim || 0,
-          burrow: stats.speeds.burrow || 0,
-          climb: stats.speeds.climb || 0,
+          ...npcSpeeds(stats.speeds),
           hover: false,
           units: "ft"
         },
@@ -649,7 +729,7 @@ async function createActor(creatureData) {
             }
       },
       skills: Object.fromEntries(
-        ALL_SKILLS.map(s => [s, { value: skills?.[s] ?? 0 }])
+        ALL_SKILLS.map(s => [s, { value: skills?.[s] ?? 0, ability: skillAbility(s) }])
       ),
       details: {
         cr: crNum,
@@ -742,7 +822,7 @@ async function createActor(creatureData) {
     const resolvedItems = await Promise.all(
       allSpells.map(async spell => {
         const result = await importSpellItem(spell);
-        if (result.source === "compendium") return regenerateClonedItemIds(result.data);
+        if (result.source === "compendium") return buildSpellItemFromClone(spell);
         return buildSyntheticSpellItem(spell, creatureData);
       })
     );

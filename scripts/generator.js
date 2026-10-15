@@ -103,9 +103,11 @@ async function generate({ playerCount, playerLevel, enemyCount, difficulty, them
   const groupActual = results.reduce((acc, r) => {
     acc.hp += r.profile.hp;
     acc.dpr += r.profile.dpr;
-    acc.ac = acc.ac ? (acc.ac + r.profile.ac) / 2 : r.profile.ac;
+    acc.ac += r.profile.ac;
     return acc;
   }, { hp: 0, ac: 0, dpr: 0 });
+  // average it so creature order doesn't change it
+  if (results.length) groupActual.ac /= results.length;
 
   const groupExpected = { hp: envelope.groupHP, dpr: envelope.groupDPR, ac: groupActual.ac };
   const rounds = estimateRounds(partyEstimate, groupActual);

@@ -2,14 +2,14 @@
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/Elemor)
 [![Foundry Version](https://img.shields.io/badge/Foundry-v12--v14-informational?style=for-the-badge)](https://foundryvtt.com)
 [![dnd5e Version](https://img.shields.io/badge/dnd5e-4.0%2B-informational?style=for-the-badge)](https://github.com/foundryvtt/dnd5e)
-[![Module Version](https://img.shields.io/badge/Version-2.2.1-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
+[![Module Version](https://img.shields.io/badge/Version-2.3.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
 <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/encounter-forge/latest/total">
 
-**Encounter Forge** is a Foundry VTT (v12) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
+**Encounter Forge** is a Foundry VTT (v12-v14) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
 
-Instead of pulling a stat block from a compendium and hoping the CR math works out, Encounter Forge assembles a creature from a chassis, traits, actions, and (optionally) spells, then tunes its HP, AC, and damage so the resulting encounter actually lands at the difficulty you asked for.
+Instead of pulling a stat block from a compendium and hoping the CR math works out, Encounter Forge assembles a creature from a chassis, traits, actions, and (optionally) spells, then tunes its HP, AC, and damage toward the difficulty you asked for. The estimate is built from party HP and damage per round, so it can't account for tactics, terrain, control effects, or what your party has left in the tank. Read the creature before you run it.
 
-> **Status:** Actively developed. Foundry v12-v14, dnd5e system 4.0+ (verified on 5.3.3).
+> **Status:** Actively developed. Foundry v12-v14, dnd5e system 4.0+ (verified on 5.3.3 and 6.0.5).
 
 ---
 
@@ -32,7 +32,7 @@ In short: a "Hard" fight with two generated enemies and a "Hard" fight with four
 
 ## Not an AI generator - and works fully offline
 
-Encounter Forge contains **no AI, no language model, and no network calls of any kind.** Every creature is assembled procedurally from local JSON content pools (chassis archetypes, traits, actions, spells, names) using deterministic math you can read in plain JavaScript. There's nothing to configure, no API key, no tokens, no internet connection required (other than being online to play obviously), and no data ever leaves your machine. Generation is instant and fully reproducible from the same inputs (though actions, traits, etc are randomizes via the pool of said items, so that differs or fights would be boring).
+Encounter Forge contains/requires **no AI and no language model.** Every creature is assembled procedurally from local JSON content pools (chassis archetypes, traits, actions, spells, names) using deterministic math you can read in plain JavaScript. There's nothing to configure, no API key, no tokens, and nothing about your world or your party is ever sent anywhere. Generating a creature needs no internet connection at all (other than being online to play obviously). The only network request is the update check, which asks GitHub if there's a newer release. It sends nothing else, and there's no setting to turn it off yet. The difficulty targets are deterministic from the same inputs, and the creature built to hit them varies (actions, traits, etc are randomizes via the pool of said items, so that differs or fights would be boring).
 
 ---
 

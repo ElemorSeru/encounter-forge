@@ -233,7 +233,7 @@ Spellcasting is available to `controller` and `leader` chassis (always) and `art
 | 3-4 | 2 | 2 |
 | 5-6 | 2 | 3 |
 
-The casting stat is the creature's highest mental ability score (INT/WIS/CHA); spell DC and attack bonus derive from that plus proficiency bonus. The pool covers 160 spells across 8 schools (18 cantrips, 142 leveled). Spells are imported from the active Foundry compendium by name; if a spell isn't found, a synthetic item is built from its `fallback` definition.
+The casting stat is the creature's highest mental ability score (INT/WIS/CHA); spell DC and attack bonus derive from that plus proficiency bonus. The pool covers 160 spells across 8 schools (18 cantrips, 142 leveled). Built in spells are made from their definitions in Encounter Forge's spell list. A spell you add through Custom Content is copied from your export and keeps its own description, damage and effects, but it casts the same way: leveled spells once a day, cantrips at will, with no spell slots.
 
 ### Adding your own content
 
@@ -315,7 +315,7 @@ ReSync refreshes the underlying copy of the item that gets placed on generated c
 
 If the source item can no longer be found (deleted, or imported from another world, see [Sharing custom content](#sharing-custom-content-importexport) below), a warning banner appears at the top of the dialog. You can still edit and save the entry, but ReSync won't have a live item to pull mechanical updates from.
 
-ReSync links an entry to one specific item document by its Foundry UUID, captured at the moment you export it, not by name or the item content. If you export "the same" item from multiple places (copies embedded on different actors or duplicated items), each export creates its own independent entry tied to its own copy; ReSyncing one never affects the others, and there's no deduplication. 
+ReSync links an entry to one specific item document by its Foundry UUID, captured at the moment you export it, not by name or the item content. If you export "the same" item from multiple places (copies embedded on different actors or duplicated items), each export creates its own independent entry tied to its own copy; ReSyncing one never affects the others, and there's no deduplication.
 If that specific document is later deleted or moved, the entry's Source Item shows as missing even if an identical looking item still exists elsewhere under a different UUID. There's no name-based fallback to relink it. In that case, re-export from a current item to get a fresh entry with live ReSync.
 
 ### The Custom Content manager

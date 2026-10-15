@@ -1495,7 +1495,8 @@
       ],
       "activation_type": "bonus",
       "description": "Bonus Action to cast. A spectral weapon appears within range and makes an immediate melee spell attack for 1d8 Force damage. Concentration, up to 1 minute. As a Bonus Action on later turns, move it 20 feet and attack again.",
-      "melee": true
+      "melee": true,
+      "add_modifier": true
     }
   },
   {
@@ -2409,7 +2410,8 @@
         "bludgeoning"
       ],
       "melee": true,
-      "description": "Melee spell attack, dealing {damage} damage. The weapon is empowered by nature magic and uses the caster's spellcasting modifier for attack and damage rolls."
+      "description": "Melee spell attack, dealing {damage} damage. The weapon is empowered by nature magic and uses the caster's spellcasting modifier for attack and damage rolls.",
+      "add_modifier": true
     }
   },
   {

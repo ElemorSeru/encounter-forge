@@ -161,13 +161,15 @@ export async function nearestCRForStats(hp, dpr) {
 }
 
 export async function estimateGroupFromCreatures(creatures) {
-  return creatures.reduce((acc, creature) => {
+  const group = creatures.reduce((acc, creature) => {
     const profile = estimateCreatureProfile(creature);
     acc.hp += profile.hp;
     acc.dpr += profile.dpr;
-    acc.ac = acc.ac ? (acc.ac + profile.ac) / 2 : profile.ac;
+    acc.ac += profile.ac;
     return acc;
   }, { hp: 0, ac: 0, dpr: 0 });
+  if (creatures.length) group.ac /= creatures.length;
+  return group;
 }
 
 export async function estimatePartyGeneric(playerCount, playerLevel) {

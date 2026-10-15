@@ -93,9 +93,9 @@ if (ef?.active && ef.api) {
 
 | Field | Type | Default | Description |
 |---|---|---|---|
-| `playerCount` | number | `4` | Number of players in the party (1–8) |
-| `playerLevel` | number | `1` | Average player level (1–20) |
-| `enemyCount` | number | `1` | Number of creatures to generate (1–10) |
+| `playerCount` | number | `4` | Number of players in the party (1-8) |
+| `playerLevel` | number | `1` | Average player level (1-20) |
+| `enemyCount` | number | `1` | Number of creatures to generate (1-10) |
 | `difficulty` | string | `"medium"` | Encounter difficulty: `"easy"`, `"medium"`, `"hard"`, or `"deadly"` |
 | `theme` | string | `"any"` | Creature theme hint. See valid values below. |
 | `name` | string | *(procedural)* | Override the generated name. If omitted, a name is generated from the descriptor pool. When generating multiple enemies, all creatures share this name. |

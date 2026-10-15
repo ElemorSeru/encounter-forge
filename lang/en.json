@@ -54,7 +54,7 @@
   "ENCOUNTERFORGE.Dialog.Readout.CR": "Target CR",
   "ENCOUNTERFORGE.Dialog.Readout.Enemy": "Enemy DPR / HP",
   "ENCOUNTERFORGE.Dialog.Readout.Party": "Party DPR / HP",
-  "ENCOUNTERFORGE.Dialog.Readout.Rounds": "Rounds (defeat / threaten (drain))",
+  "ENCOUNTERFORGE.Dialog.Readout.Rounds": "Estimated rounds: to defeat enemies / to exhaust party HP",
   "ENCOUNTERFORGE.Dialog.Readout.Outlook": "Outlook",
   "ENCOUNTERFORGE.Outcome.Easy": "Easy",
   "ENCOUNTERFORGE.Outcome.Manageable": "Manageable",

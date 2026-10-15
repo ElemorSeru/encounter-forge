@@ -23,7 +23,7 @@ const CASTING_STAT_KEY = {
 };
 
 let _spellPool = null;
-let _spellIndex = null; // Map<normalised name, { packId, itemId }>
+let _spellIndex = null; // Map<normalized name, { packId, itemId }>
 
 registerCacheInvalidator(() => {
   _spellPool = null;
