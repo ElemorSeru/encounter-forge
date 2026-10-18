@@ -3,7 +3,7 @@
 [![Foundry Version](https://img.shields.io/badge/Foundry-v12--v14-informational?style=for-the-badge)](https://foundryvtt.com)
 [![dnd5e Version](https://img.shields.io/badge/dnd5e-4.0%2B-informational?style=for-the-badge)](https://github.com/foundryvtt/dnd5e)
 [![Module Version](https://img.shields.io/badge/Version-2.3.0-success?style=for-the-badge)](https://github.com/ElemorSeru/encounter-forge/releases/latest)
-<img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/encounter-forge/latest/total">
+<img alt="GitHub Downloads (latest release)" src="https://img.shields.io/github/downloads/ElemorSeru/encounter-forge/latest/module.zip">
 
 **Encounter Forge** is a Foundry VTT (v12-v14) module for D&D 5e that builds brand-new, balanced NPCs on demand, sized to *your* party, not a generic XP table or basic CR.
 
